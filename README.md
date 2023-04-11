@@ -93,7 +93,7 @@ Gazelle allows users to plan, share, and log their journey as they travel locall
 * Login
    * Sign up (if NO account exists)
    * Itinerary tab (if account exists)
-* Map
+* Explore
    * Map View
    * List View
 * Community
