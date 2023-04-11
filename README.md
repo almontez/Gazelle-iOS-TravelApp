@@ -1,7 +1,7 @@
 Original App Design Project
 ===
 
-# Gazelle
+# Gazelle: Travel Log
 
 ## Table of Contents
 1. [Overview](#Overview)
