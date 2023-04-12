@@ -75,7 +75,7 @@ Gazelle allows users to plan, share, and log their journey as they travel locall
    * Users can post photos to a community feed
    * Users can post text blobs to a community feed
    * *Stretch Goal*: Users can like photos
-   * *Stretch Goal*: Users can comment on photos
+   * *Stretch Goal*: Users can comment on photos and text blobs
    * *Stretch Goal*: Users can edit their community posts
    * *Stretch Goal*: Users can delete their community posts
 
