@@ -13,6 +13,10 @@
 		0BFFAB3A29E640FE002C249E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BFFAB3829E640FE002C249E /* Main.storyboard */; };
 		0BFFAB3C29E640FF002C249E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BFFAB3B29E640FF002C249E /* Assets.xcassets */; };
 		0BFFAB3F29E640FF002C249E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BFFAB3D29E640FF002C249E /* LaunchScreen.storyboard */; };
+		695E523A29EB66CA00FCFC0D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695E523929EB66CA00FCFC0D /* LoginViewController.swift */; };
+		695E523C29EB66DA00FCFC0D /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695E523B29EB66DA00FCFC0D /* SignupViewController.swift */; };
+		695E523E29EB66E700FCFC0D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695E523D29EB66E700FCFC0D /* User.swift */; };
+		695E524129EB66F400FCFC0D /* ParseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 695E524029EB66F400FCFC0D /* ParseSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,9 @@
 		0BFFAB3B29E640FF002C249E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0BFFAB3E29E640FF002C249E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0BFFAB4029E640FF002C249E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		695E523929EB66CA00FCFC0D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		695E523B29EB66DA00FCFC0D /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		695E523D29EB66E700FCFC0D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				695E524129EB66F400FCFC0D /* ParseSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,6 +68,9 @@
 				0BFFAB3429E640FE002C249E /* SceneDelegate.swift */,
 				0BFFAB3629E640FE002C249E /* ViewController.swift */,
 				0BFFAB3829E640FE002C249E /* Main.storyboard */,
+				695E523929EB66CA00FCFC0D /* LoginViewController.swift */,
+				695E523B29EB66DA00FCFC0D /* SignupViewController.swift */,
+				695E523D29EB66E700FCFC0D /* User.swift */,
 				0BFFAB3B29E640FF002C249E /* Assets.xcassets */,
 				0BFFAB3D29E640FF002C249E /* LaunchScreen.storyboard */,
 				0BFFAB4029E640FF002C249E /* Info.plist */,
@@ -83,6 +94,9 @@
 			dependencies = (
 			);
 			name = Gazelle;
+			packageProductDependencies = (
+				695E524029EB66F400FCFC0D /* ParseSwift */,
+			);
 			productName = Gazelle;
 			productReference = 0BFFAB2F29E640FE002C249E /* Gazelle.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +125,9 @@
 				Base,
 			);
 			mainGroup = 0BFFAB2629E640FE002C249E;
+			packageReferences = (
+				695E523F29EB66F400FCFC0D /* XCRemoteSwiftPackageReference "Parse-Swift" */,
+			);
 			productRefGroup = 0BFFAB3029E640FE002C249E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,7 +155,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				695E523A29EB66CA00FCFC0D /* LoginViewController.swift in Sources */,
 				0BFFAB3729E640FE002C249E /* ViewController.swift in Sources */,
+				695E523E29EB66E700FCFC0D /* User.swift in Sources */,
+				695E523C29EB66DA00FCFC0D /* SignupViewController.swift in Sources */,
 				0BFFAB3329E640FE002C249E /* AppDelegate.swift in Sources */,
 				0BFFAB3529E640FE002C249E /* SceneDelegate.swift in Sources */,
 			);
@@ -295,6 +315,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -323,6 +344,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -358,6 +380,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		695E523F29EB66F400FCFC0D /* XCRemoteSwiftPackageReference "Parse-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/parse-community/Parse-Swift";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		695E524029EB66F400FCFC0D /* ParseSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 695E523F29EB66F400FCFC0D /* XCRemoteSwiftPackageReference "Parse-Swift" */;
+			productName = ParseSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0BFFAB2729E640FE002C249E /* Project object */;
 }
