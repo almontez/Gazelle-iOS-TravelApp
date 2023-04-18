@@ -4,18 +4,13 @@
 //
 //  Created by Angela Li Montez on 4/17/23.
 //
-//  Citations:
-//  https://iosapptemplates.com/blog/swift-programming/mapkit-tutorial
-//  https://medium.com/swlh/how-to-work-with-mapkit-5c96c45f32f0
-//  https://medium.com/@kiransjadhav111/corelocation-map-kit-get-the-users-current-location-set-a-pin-in-swift-edb12f9166b2
-//  https://www.johncodeos.com/how-to-display-location-and-routes-with-corelocation-mapkit-using-swift/
-//  https://medium.com/@pravinbendre772/search-for-places-and-display-results-using-mapkit-a987bd6504df
+//  Citation: https://medium.com/@pravinbendre772/search-for-places-and-display-results-using-mapkit-a987bd6504df
 
 import UIKit
 import MapKit
 
 protocol HandleMapSearch {
-    func dropPinZoomIn(placemark:MKPlacemark)
+    func dropPinZoomIn(placemark: MKPlacemark)
 }
 
 class MapViewController: UIViewController {
@@ -90,12 +85,8 @@ extension MapViewController: HandleMapSearch {
         let annotation = MKPointAnnotation()
         annotation.coordinate = placemark.coordinate
         annotation.title = placemark.name
-        if let city = placemark.locality,
-        let state = placemark.administrativeArea {
-            annotation.subtitle = "(city), (state)"
-        }
         mapView.addAnnotation(annotation)
-        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
         let region = MKCoordinateRegion(center: placemark.coordinate, span: span)
         mapView.setRegion(region, animated: true)
     }

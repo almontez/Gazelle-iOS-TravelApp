@@ -87,6 +87,7 @@
         <!--Navigation Controller-->
         <scene sceneID="wBM-ng-ci8">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GIS-q2-FUG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="k7i-El-wjT" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="5Ee-E9-xoa">
@@ -98,7 +99,6 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="VzD-T9-m7k"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GIS-q2-FUG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="17.557251908396946" y="-2.1126760563380285"/>
         </scene>

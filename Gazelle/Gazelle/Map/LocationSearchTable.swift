@@ -4,6 +4,8 @@
 //
 //  Created by Angela Li Montez on 4/18/23.
 //
+//  Citation: https://medium.com/@pravinbendre772/search-for-places-and-display-results-using-mapkit-a987bd6504df
+
 
 import UIKit
 import MapKit
@@ -18,6 +20,26 @@ class LocationSearchTable: UITableViewController {
         super.viewDidLoad()
         tableView.delegate = self
     }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return matchingItems.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "searchResult")!
+        let selectedItem = matchingItems[indexPath.row].placemark
+        cell.textLabel?.text = selectedItem.name
+        let address = formatAddress(of: selectedItem)
+        cell.detailTextLabel?.text = address
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedItem = matchingItems[indexPath.row].placemark
+        handleMapSearchDelegate?.dropPinZoomIn(placemark: selectedItem)
+        dismiss(animated: true, completion: nil)
+    }
+
 }
 
 extension LocationSearchTable : UISearchResultsUpdating {
@@ -38,25 +60,25 @@ extension LocationSearchTable : UISearchResultsUpdating {
     }
 }
 
-extension LocationSearchTable {
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return matchingItems.count
+func formatAddress(of selectedItem: MKPlacemark) -> String {
+    var address = ""
+    if selectedItem.subThoroughfare != nil {
+        address += selectedItem.subThoroughfare! + " "
     }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "searchResult")!
-        let selectedItem = matchingItems[indexPath.row].placemark
-        cell.textLabel?.text = selectedItem.name
-        let address = "\(selectedItem.thoroughfare ?? ""), \(selectedItem.locality ?? ""), \(selectedItem.subLocality ?? ""), \(selectedItem.administrativeArea ?? ""), \(selectedItem.postalCode ?? ""), \(selectedItem.country ?? "")"
-        cell.detailTextLabel?.text = address
-        return cell
+    if selectedItem.thoroughfare != nil {
+        address += selectedItem.thoroughfare! + ", "
     }
-}
-
-extension LocationSearchTable {
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedItem = matchingItems[indexPath.row].placemark
-        handleMapSearchDelegate?.dropPinZoomIn(placemark: selectedItem)
-        dismiss(animated: true, completion: nil)
+    if selectedItem.locality != nil {
+        address += selectedItem.locality! + ", "
     }
+    if selectedItem.administrativeArea != nil {
+        address += selectedItem.administrativeArea! + " "
+    }
+    if selectedItem.postalCode != nil {
+        address += selectedItem.postalCode! + ", "
+    }
+    if selectedItem.country != nil {
+        address += selectedItem.country!
+    }
+    return address
 }
