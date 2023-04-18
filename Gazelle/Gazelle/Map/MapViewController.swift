@@ -14,15 +14,41 @@
 import UIKit
 import MapKit
 
+protocol HandleMapSearch {
+    func dropPinZoomIn(placemark:MKPlacemark)
+}
+
 class MapViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
     let locationManager = CLLocationManager()
     
+    var resultSearchController: UISearchController? = nil
+    var selectedPin: MKPlacemark? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestLocation()
         locationManager.requestWhenInUseAuthorization()
+        
+        let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable
+        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
+        resultSearchController?.searchResultsUpdater = locationSearchTable
+        
+        let searchBar = resultSearchController!.searchBar
+        searchBar.sizeToFit()
+        searchBar.placeholder = "Search for places"
+        navigationItem.searchController = resultSearchController
+        
+        resultSearchController?.hidesNavigationBarDuringPresentation = false
+        definesPresentationContext = true
+        
+        locationSearchTable.mapView = mapView
+        
+        locationSearchTable.handleMapSearchDelegate = self
+        
     }
 
 }
@@ -36,8 +62,6 @@ extension MapViewController: CLLocationManagerDelegate {
             print("Restricted or Denied")
         case .authorizedAlways, .authorizedWhenInUse:
             print("Authorized")
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.requestLocation()
         default:
             print("Status Unknown")
         }
@@ -54,5 +78,25 @@ extension MapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Error:: \(error)")
+    }
+}
+
+extension MapViewController: HandleMapSearch {
+    func dropPinZoomIn(placemark:MKPlacemark){
+        // cache the pin
+        selectedPin = placemark
+        // clear existing pins
+        mapView.removeAnnotations(mapView.annotations)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = placemark.coordinate
+        annotation.title = placemark.name
+        if let city = placemark.locality,
+        let state = placemark.administrativeArea {
+            annotation.subtitle = "(city), (state)"
+        }
+        mapView.addAnnotation(annotation)
+        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        let region = MKCoordinateRegion(center: placemark.coordinate, span: span)
+        mapView.setRegion(region, animated: true)
     }
 }
