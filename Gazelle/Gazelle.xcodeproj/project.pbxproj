@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B16853729EF11610069DDCA /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B16853629EF11610069DDCA /* LocationSearchTable.swift */; };
+		0B2BFD9629ED93BA007ED65B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2BFD9529ED93BA007ED65B /* MapViewController.swift */; };
 		0BFFAB3329E640FE002C249E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFFAB3229E640FE002C249E /* AppDelegate.swift */; };
 		0BFFAB3529E640FE002C249E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFFAB3429E640FE002C249E /* SceneDelegate.swift */; };
 		0BFFAB3729E640FE002C249E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFFAB3629E640FE002C249E /* ViewController.swift */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B16853629EF11610069DDCA /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
+		0B2BFD9529ED93BA007ED65B /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		0BFFAB2F29E640FE002C249E /* Gazelle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gazelle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BFFAB3229E640FE002C249E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0BFFAB3429E640FE002C249E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +41,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B2BFD9429ED9378007ED65B /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				0B2BFD9529ED93BA007ED65B /* MapViewController.swift */,
+				0B16853629EF11610069DDCA /* LocationSearchTable.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
 		0BFFAB2629E640FE002C249E = {
 			isa = PBXGroup;
 			children = (
@@ -56,6 +69,7 @@
 		0BFFAB3129E640FE002C249E /* Gazelle */ = {
 			isa = PBXGroup;
 			children = (
+				0B2BFD9429ED9378007ED65B /* Map */,
 				0BFFAB3229E640FE002C249E /* AppDelegate.swift */,
 				0BFFAB3429E640FE002C249E /* SceneDelegate.swift */,
 				0BFFAB3629E640FE002C249E /* ViewController.swift */,
@@ -140,7 +154,9 @@
 			files = (
 				0BFFAB3729E640FE002C249E /* ViewController.swift in Sources */,
 				0BFFAB3329E640FE002C249E /* AppDelegate.swift in Sources */,
+				0B16853729EF11610069DDCA /* LocationSearchTable.swift in Sources */,
 				0BFFAB3529E640FE002C249E /* SceneDelegate.swift in Sources */,
+				0B2BFD9629ED93BA007ED65B /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
