@@ -6,12 +6,33 @@
 //
 
 import UIKit
+import ParseSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        ParseSwift.initialize(applicationId: "51eRgf3TpLLzr7Qev3Uy4Yi3YukEG4tnWXY0Hd7d",
+                              clientKey: "UE51gai4dB37BRKSpNSuilnGmRoPqyTuCdLsILVt",
+                              serverURL: URL(string: "https://parseapi.back4app.com")!)
+        
+        // Test server connection: Delete Later
+        // Instantiate the test parse object
+        var tripUser = TripUsers()
+        tripUser.tripId = "Test Id"
+        tripUser.userId = "Test Id"
+
+        // Save to your server asynchronously (preferred way) - Performs work on background queue and returns to specified callbackQueue.
+        // If no callbackQueue is specified it returns to main queue.
+        tripUser.save { result in
+            switch result {
+            case .success(let savedDestination):
+                print("✅ Parse Object SAVED!")
+            case .failure(let error):
+                assertionFailure("Error saving: \(error)")
+            }
+        }
         return true
     }
 
