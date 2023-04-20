@@ -35,8 +35,9 @@ class LocationSearchTable: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let categories = retrieveCategory(matchingItems[indexPath.row])
         let selectedItem = matchingItems[indexPath.row].placemark
-        handleMapSearchDelegate?.dropPinZoomIn(placemark: selectedItem)
+        handleMapSearchDelegate?.dropPinZoomIn(placemark: selectedItem, categories)
         dismiss(animated: true, completion: nil)
     }
 
@@ -81,4 +82,24 @@ func formatAddress(of selectedItem: MKPlacemark) -> String {
         address += selectedItem.country!
     }
     return address
+}
+
+// Citation: https://stackoverflow.com/questions/27478034/how-to-access-the-category-or-type-of-an-mkmapitem
+func retrieveCategory(_ item: MKMapItem) -> Set<String> {
+    let geo_place = item.value(forKey: "place") as! NSObject
+    // print(geo_place)
+    let geo_business = geo_place.value(forKey: "business") as! NSObject
+    let categories = geo_business.value(forKey: "localizedCategories") as! [AnyObject]
+    
+    var categoriesSet = Set<String>()
+    
+    if let categoriesResult = (categories.first as? [AnyObject]) {
+        for geo_cat in categoriesResult {
+            let geo_loc_name = geo_cat.value(forKeyPath: "localizedNames") as! NSObject
+            let category = (geo_loc_name.value(forKeyPath: "name") as! [String]).first!
+            
+            categoriesSet.insert(category)
+        }
+    }
+    return categoriesSet
 }
