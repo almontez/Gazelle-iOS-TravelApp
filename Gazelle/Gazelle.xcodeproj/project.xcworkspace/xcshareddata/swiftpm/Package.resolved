@@ -3,10 +3,10 @@
     {
       "identity" : "parse-swift",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/parse-community/Parse-Swift",
+      "location" : "https://github.com/parse-community/Parse-Swift.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "3d4bb13acd7496a49b259e541928ad493219d363"
+        "revision" : "dc7666f774755be333f48f25c4d8bead0a1a6877",
+        "version" : "4.14.2"
       }
     }
   ],

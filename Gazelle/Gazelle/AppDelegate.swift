@@ -11,8 +11,6 @@ import ParseSwift
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Initializes database connection
         ParseSwift.initialize(applicationId: "51eRgf3TpLLzr7Qev3Uy4Yi3YukEG4tnWXY0Hd7d",
