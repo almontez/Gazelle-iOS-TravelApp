@@ -16,6 +16,14 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
+    var backImageView: UIImageView = {
+        let backImageView = UIImageView(frame: .zero)
+        backImageView.image = UIImage(named: "bg_image")
+        backImageView.contentMode = .scaleAspectFill
+        backImageView.translatesAutoresizingMaskIntoConstraints = false
+        return backImageView
+    }()
+    
     
     @IBAction func onSignupTapped(_ sender: Any) {
         guard let username = usernameField.text,
@@ -59,6 +67,13 @@ class SignupViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        view.insertSubview(backImageView, at: 0)
+        NSLayoutConstraint.activate([
+            backImageView.topAnchor.constraint(equalTo: view.topAnchor),
+            backImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            backImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
     
 

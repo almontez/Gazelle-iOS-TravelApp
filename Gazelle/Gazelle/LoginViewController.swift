@@ -13,6 +13,16 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
+    var backImageView: UIImageView = {
+        let backImageView = UIImageView(frame: .zero)
+        backImageView.image = UIImage(named: "bg_image")
+        backImageView.contentMode = .scaleAspectFill
+        backImageView.translatesAutoresizingMaskIntoConstraints = false
+        return backImageView
+    }()
+    
+    
+    
     @IBAction func onLoginTapped(_ sender: Any) {
         guard let username = usernameField.text,
               let password = passwordField.text,
@@ -42,6 +52,13 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.insertSubview(backImageView, at: 0)
+        NSLayoutConstraint.activate([
+            backImageView.topAnchor.constraint(equalTo: view.topAnchor),
+            backImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            backImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
         // Do any additional setup after loading the view.
     }
     
