@@ -15,6 +15,8 @@
 		0B16853729EF11610069DDCA /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B16853629EF11610069DDCA /* LocationSearchTable.swift */; };
 		0B2BFD9629ED93BA007ED65B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2BFD9529ED93BA007ED65B /* MapViewController.swift */; };
 		0B43044229F8769700A03026 /* ItineraryItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B43044129F8769700A03026 /* ItineraryItemCell.swift */; };
+		0B43044629F87AA300A03026 /* TripFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B43044529F87AA300A03026 /* TripFormController.swift */; };
+		0B43044829F87C0B00A03026 /* TripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B43044729F87C0B00A03026 /* TripsViewController.swift */; };
 		0B4FDD8429F75DC200B60588 /* ItineraryFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4FDD8329F75DC200B60588 /* ItineraryFormController.swift */; };
 		0B4FDD8629F779D800B60588 /* ItineraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4FDD8529F779D800B60588 /* ItineraryViewController.swift */; };
 		0BFFAB3329E640FE002C249E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFFAB3229E640FE002C249E /* AppDelegate.swift */; };
@@ -35,6 +37,8 @@
 		0B16853629EF11610069DDCA /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		0B2BFD9529ED93BA007ED65B /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		0B43044129F8769700A03026 /* ItineraryItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryItemCell.swift; sourceTree = "<group>"; };
+		0B43044529F87AA300A03026 /* TripFormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripFormController.swift; sourceTree = "<group>"; };
+		0B43044729F87C0B00A03026 /* TripsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsViewController.swift; sourceTree = "<group>"; };
 		0B4FDD8329F75DC200B60588 /* ItineraryFormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryFormController.swift; sourceTree = "<group>"; };
 		0B4FDD8529F779D800B60588 /* ItineraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryViewController.swift; sourceTree = "<group>"; };
 		0BFFAB2F29E640FE002C249E /* Gazelle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gazelle.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,7 +68,6 @@
 		0B031C1629F1926400FB4A70 /* Itinerary */ = {
 			isa = PBXGroup;
 			children = (
-				0B031C1A29F1956100FB4A70 /* Models */,
 				0B4FDD8329F75DC200B60588 /* ItineraryFormController.swift */,
 				0B4FDD8529F779D800B60588 /* ItineraryViewController.swift */,
 				0B43044129F8769700A03026 /* ItineraryItemCell.swift */,
@@ -75,6 +78,7 @@
 		0B031C1A29F1956100FB4A70 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				695E523D29EB66E700FCFC0D /* User.swift */,
 				0B031C1B29F1958D00FB4A70 /* Trips.swift */,
 				0B031C1D29F195A000FB4A70 /* Destinations.swift */,
 				0B031C1F29F195AF00FB4A70 /* ItineraryItems.swift */,
@@ -92,12 +96,20 @@
 			path = Map;
 			sourceTree = "<group>";
 		};
+		0B43044329F87A5700A03026 /* Trips */ = {
+			isa = PBXGroup;
+			children = (
+				0B43044529F87AA300A03026 /* TripFormController.swift */,
+				0B43044729F87C0B00A03026 /* TripsViewController.swift */,
+			);
+			path = Trips;
+			sourceTree = "<group>";
+		};
 		0B4FDD8029F75C0800B60588 /* Users */ = {
 			isa = PBXGroup;
 			children = (
 				695E523929EB66CA00FCFC0D /* LoginViewController.swift */,
 				695E523B29EB66DA00FCFC0D /* SignupViewController.swift */,
-				695E523D29EB66E700FCFC0D /* User.swift */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -121,6 +133,8 @@
 		0BFFAB3129E640FE002C249E /* Gazelle */ = {
 			isa = PBXGroup;
 			children = (
+				0B031C1A29F1956100FB4A70 /* Models */,
+				0B43044329F87A5700A03026 /* Trips */,
 				0B4FDD8029F75C0800B60588 /* Users */,
 				0B031C1629F1926400FB4A70 /* Itinerary */,
 				0B2BFD9429ED9378007ED65B /* Map */,
@@ -211,10 +225,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B43044629F87AA300A03026 /* TripFormController.swift in Sources */,
 				0B43044229F8769700A03026 /* ItineraryItemCell.swift in Sources */,
 				695E523A29EB66CA00FCFC0D /* LoginViewController.swift in Sources */,
 				0B4FDD8629F779D800B60588 /* ItineraryViewController.swift in Sources */,
 				695E523E29EB66E700FCFC0D /* User.swift in Sources */,
+				0B43044829F87C0B00A03026 /* TripsViewController.swift in Sources */,
 				695E523C29EB66DA00FCFC0D /* SignupViewController.swift in Sources */,
 				0B4FDD8429F75DC200B60588 /* ItineraryFormController.swift in Sources */,
 				0B031C2029F195AF00FB4A70 /* ItineraryItems.swift in Sources */,

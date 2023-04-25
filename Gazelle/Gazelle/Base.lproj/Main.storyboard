@@ -227,7 +227,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="Qd7-J7-4uL" kind="relationship" relationship="viewControllers" id="9Oe-RX-ZHm"/>
+                        <segue destination="qoO-Iu-Ah1" kind="relationship" relationship="viewControllers" id="XzU-TU-8sY"/>
+                        <segue destination="Qd7-J7-4uL" kind="relationship" relationship="viewControllers" id="quu-eE-Iu5"/>
                         <segue destination="2rq-UF-wH7" kind="relationship" relationship="viewControllers" id="CiK-lr-NuM"/>
                     </connections>
                 </tabBarController>
@@ -333,16 +334,16 @@
                             <constraint firstItem="H3v-if-FDM" firstAttribute="trailing" secondItem="Gix-qJ-Cc0" secondAttribute="trailing" id="xA6-35-eBG"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Itinerary" image="book.closed" catalog="system" selectedImage="book.closed.fill" id="Qaa-ST-pFd"/>
+                    <tabBarItem key="tabBarItem" title="Itinerary" image="list.bullet.clipboard" catalog="system" selectedImage="list.bullet.clipboard.fill" id="Qaa-ST-pFd"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OHL-TO-Xe1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1106" y="1589"/>
+            <point key="canvasLocation" x="-1106" y="854"/>
         </scene>
-        <!--Itinerary-->
+        <!--Itinerary Item Form-->
         <scene sceneID="trd-tk-YZk">
             <objects>
-                <viewController id="0bJ-DE-vv3" customClass="ItineraryFormController" customModule="Gazelle" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Itinerary Item Form" id="0bJ-DE-vv3" customClass="ItineraryFormController" customModule="Gazelle" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0xw-sO-yBp">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -538,28 +539,190 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T7E-sE-2c4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1106" y="2344"/>
+            <point key="canvasLocation" x="-1106" y="1611"/>
         </scene>
-        <!--View Controller-->
+        <!--Trips-->
         <scene sceneID="SwH-bk-Gzf">
             <objects>
-                <viewController id="qoO-Iu-Ah1" sceneMemberID="viewController">
+                <viewController id="qoO-Iu-Ah1" customClass="TripsViewController" customModule="Gazelle" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ncj-pu-wal">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MT5-Z0-D8B">
+                                <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                                <items>
+                                    <navigationItem title="Scheduled Trips" id="7uM-7s-Omp">
+                                        <barButtonItem key="rightBarButtonItem" image="plus.app" catalog="system" id="pcj-Bp-JeG">
+                                            <connections>
+                                                <segue destination="JYl-cW-gLn" kind="show" id="QLk-Fg-urI"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="kRh-99-6ZY">
+                                <rect key="frame" x="0.0" y="103" width="393" height="666"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="142" id="l72-f9-x7v">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="142"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="l72-f9-x7v" id="7Ap-SI-eor">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="142"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Axk-r2-tAM">
+                                                    <rect key="frame" x="36" y="27" width="321" height="88"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Trip Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="20j-g3-lDH">
+                                                            <rect key="frame" x="0.0" y="0.0" width="122.33333333333333" height="51.666666666666664"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UyD-Wk-hwk">
+                                                            <rect key="frame" x="0.0" y="67.666666666666671" width="87.333333333333329" height="20.333333333333329"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Axk-r2-tAM" firstAttribute="leading" secondItem="7Ap-SI-eor" secondAttribute="leadingMargin" constant="16" id="16N-ZD-TAV"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Axk-r2-tAM" secondAttribute="bottom" constant="16" id="BEk-eT-klV"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Axk-r2-tAM" secondAttribute="trailing" constant="16" id="UP4-IN-xaL"/>
+                                                <constraint firstItem="Axk-r2-tAM" firstAttribute="top" secondItem="7Ap-SI-eor" secondAttribute="topMargin" constant="16" id="hLA-dM-wEh"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="uZe-Nf-fMu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="uZe-Nf-fMu" firstAttribute="trailing" secondItem="kRh-99-6ZY" secondAttribute="trailing" id="AKZ-Jc-bmz"/>
+                            <constraint firstItem="kRh-99-6ZY" firstAttribute="leading" secondItem="uZe-Nf-fMu" secondAttribute="leading" id="Knr-zO-zth"/>
+                            <constraint firstItem="kRh-99-6ZY" firstAttribute="top" secondItem="MT5-Z0-D8B" secondAttribute="bottom" id="Ocs-0F-cFC"/>
+                            <constraint firstItem="MT5-Z0-D8B" firstAttribute="trailing" secondItem="uZe-Nf-fMu" secondAttribute="trailing" id="dqy-WM-ZtW"/>
+                            <constraint firstItem="uZe-Nf-fMu" firstAttribute="bottom" secondItem="kRh-99-6ZY" secondAttribute="bottom" id="dub-tk-x3z"/>
+                            <constraint firstItem="MT5-Z0-D8B" firstAttribute="leading" secondItem="uZe-Nf-fMu" secondAttribute="leading" id="ltD-GJ-tZK"/>
+                            <constraint firstItem="MT5-Z0-D8B" firstAttribute="top" secondItem="uZe-Nf-fMu" secondAttribute="top" id="ng2-HI-GXo"/>
+                        </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Trips" image="map" catalog="system" selectedImage="map.fill" id="cDh-fs-Z8E"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gho-U6-0TV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1008" y="851"/>
+            <point key="canvasLocation" x="-2477.0992366412211" y="853.52112676056345"/>
+        </scene>
+        <!--Trip Form Controller-->
+        <scene sceneID="pzm-GV-E6e">
+            <objects>
+                <viewController id="JYl-cW-gLn" customClass="TripFormController" customModule="Gazelle" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Baq-WQ-FX0">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="QrK-fQ-TZf">
+                                <rect key="frame" x="25" y="50" width="343" height="258"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Trip" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tSq-be-fjo">
+                                        <rect key="frame" x="119.33333333333334" y="0.0" width="104.33333333333334" height="24"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="gNJ-sR-2ed" userLabel="Event Name">
+                                        <rect key="frame" x="0.0" y="49" width="343" height="62.333333333333343"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trip Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KV8-dz-gO0">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="20.333333333333332"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RKg-qX-uL7">
+                                                <rect key="frame" x="0.0" y="28.333333333333329" width="343" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="RKg-qX-uL7" firstAttribute="leading" secondItem="gNJ-sR-2ed" secondAttribute="leading" id="RzJ-aI-Etm"/>
+                                            <constraint firstAttribute="trailing" secondItem="RKg-qX-uL7" secondAttribute="trailing" id="vDk-Yd-P5X"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Rhi-U2-f9R" userLabel="Location">
+                                        <rect key="frame" x="0.0" y="136.33333333333334" width="343" height="62.333333333333343"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OCe-ae-2eE">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="20.333333333333332"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Vm-uX-O7R">
+                                                <rect key="frame" x="0.0" y="28.333333333333314" width="343" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="5Vm-uX-O7R" firstAttribute="leading" secondItem="Rhi-U2-f9R" secondAttribute="leading" id="eFu-Zj-fhE"/>
+                                            <constraint firstAttribute="trailing" secondItem="5Vm-uX-O7R" secondAttribute="trailing" id="rAr-De-zq7"/>
+                                        </constraints>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lDJ-Fl-ALp">
+                                        <rect key="frame" x="141" y="223.66666666666669" width="61" height="34.333333333333314"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Save"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Save"/>
+                                        <connections>
+                                            <action selector="saveBtnTapped:" destination="JYl-cW-gLn" eventType="touchUpInside" id="q2d-vF-wEu"/>
+                                            <action selector="saveButtonTapped:" destination="0bJ-DE-vv3" eventType="touchUpInside" id="k4q-I5-U1m"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="gNJ-sR-2ed" secondAttribute="trailing" id="LJg-A7-k5U"/>
+                                    <constraint firstItem="Rhi-U2-f9R" firstAttribute="leading" secondItem="QrK-fQ-TZf" secondAttribute="leading" id="RZK-nS-2JH"/>
+                                    <constraint firstItem="gNJ-sR-2ed" firstAttribute="leading" secondItem="QrK-fQ-TZf" secondAttribute="leading" id="fSy-NQ-UGq"/>
+                                    <constraint firstAttribute="trailing" secondItem="Rhi-U2-f9R" secondAttribute="trailing" id="wFf-7M-3kd"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Kej-Zw-WiK"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="QrK-fQ-TZf" firstAttribute="leading" secondItem="Kej-Zw-WiK" secondAttribute="leading" constant="25" id="KlG-jp-wYy"/>
+                            <constraint firstItem="QrK-fQ-TZf" firstAttribute="top" secondItem="Kej-Zw-WiK" secondAttribute="top" constant="50" id="eq6-0n-d86"/>
+                            <constraint firstAttribute="trailing" secondItem="QrK-fQ-TZf" secondAttribute="trailing" constant="25" id="gpv-vT-QMn"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="uRJ-CG-49F"/>
+                    <connections>
+                        <outlet property="tripDescription" destination="5Vm-uX-O7R" id="Pfo-dL-IvN"/>
+                        <outlet property="tripName" destination="RKg-qX-uL7" id="tje-eE-IVg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TnU-Hk-gI7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2477.0992366412211" y="1610.5633802816901"/>
         </scene>
         <!--Map-->
         <scene sceneID="9qR-ly-CTC">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2rq-UF-wH7" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Map" image="map" catalog="system" selectedImage="map.fill" id="e97-q8-zyc"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="globe.americas" catalog="system" selectedImage="globe.americas.fill" id="e97-q8-zyc"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="GtV-aX-S7d">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -655,6 +818,10 @@
         <image name="Title" width="1089" height="236"/>
         <image name="book.closed" catalog="system" width="115" height="128"/>
         <image name="book.closed.fill" catalog="system" width="115" height="128"/>
+        <image name="globe.americas" catalog="system" width="128" height="123"/>
+        <image name="globe.americas.fill" catalog="system" width="128" height="123"/>
+        <image name="list.bullet.clipboard" catalog="system" width="103" height="128"/>
+        <image name="list.bullet.clipboard.fill" catalog="system" width="103" height="128"/>
         <image name="map" catalog="system" width="128" height="112"/>
         <image name="map.fill" catalog="system" width="128" height="110"/>
         <image name="plus.app" catalog="system" width="128" height="114"/>
