@@ -14,16 +14,15 @@
 		0B031C2229F195C700FB4A70 /* TripUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B031C2129F195C700FB4A70 /* TripUsers.swift */; };
 		0B16853729EF11610069DDCA /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B16853629EF11610069DDCA /* LocationSearchTable.swift */; };
 		0B2BFD9629ED93BA007ED65B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2BFD9529ED93BA007ED65B /* MapViewController.swift */; };
+		0B4FDD8429F75DC200B60588 /* ItineraryFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4FDD8329F75DC200B60588 /* ItineraryFormController.swift */; };
 		0BFFAB3329E640FE002C249E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFFAB3229E640FE002C249E /* AppDelegate.swift */; };
 		0BFFAB3529E640FE002C249E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFFAB3429E640FE002C249E /* SceneDelegate.swift */; };
-		0BFFAB3729E640FE002C249E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFFAB3629E640FE002C249E /* ViewController.swift */; };
 		0BFFAB3A29E640FE002C249E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BFFAB3829E640FE002C249E /* Main.storyboard */; };
 		0BFFAB3C29E640FF002C249E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BFFAB3B29E640FF002C249E /* Assets.xcassets */; };
 		0BFFAB3F29E640FF002C249E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BFFAB3D29E640FF002C249E /* LaunchScreen.storyboard */; };
 		695E523A29EB66CA00FCFC0D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695E523929EB66CA00FCFC0D /* LoginViewController.swift */; };
 		695E523C29EB66DA00FCFC0D /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695E523B29EB66DA00FCFC0D /* SignupViewController.swift */; };
 		695E523E29EB66E700FCFC0D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695E523D29EB66E700FCFC0D /* User.swift */; };
-		695E524129EB66F400FCFC0D /* ParseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 695E524029EB66F400FCFC0D /* ParseSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,10 +32,10 @@
 		0B031C2129F195C700FB4A70 /* TripUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripUsers.swift; sourceTree = "<group>"; };
 		0B16853629EF11610069DDCA /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		0B2BFD9529ED93BA007ED65B /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		0B4FDD8329F75DC200B60588 /* ItineraryFormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryFormController.swift; sourceTree = "<group>"; };
 		0BFFAB2F29E640FE002C249E /* Gazelle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gazelle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BFFAB3229E640FE002C249E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0BFFAB3429E640FE002C249E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0BFFAB3629E640FE002C249E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0BFFAB3929E640FE002C249E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0BFFAB3B29E640FF002C249E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0BFFAB3E29E640FF002C249E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -62,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				0B031C1A29F1956100FB4A70 /* Models */,
+				0B4FDD8329F75DC200B60588 /* ItineraryFormController.swift */,
 			);
 			path = Itinerary;
 			sourceTree = "<group>";
@@ -86,6 +86,16 @@
 			path = Map;
 			sourceTree = "<group>";
 		};
+		0B4FDD8029F75C0800B60588 /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				695E523929EB66CA00FCFC0D /* LoginViewController.swift */,
+				695E523B29EB66DA00FCFC0D /* SignupViewController.swift */,
+				695E523D29EB66E700FCFC0D /* User.swift */,
+			);
+			path = Users;
+			sourceTree = "<group>";
+		};
 		0BFFAB2629E640FE002C249E = {
 			isa = PBXGroup;
 			children = (
@@ -105,15 +115,12 @@
 		0BFFAB3129E640FE002C249E /* Gazelle */ = {
 			isa = PBXGroup;
 			children = (
+				0B4FDD8029F75C0800B60588 /* Users */,
 				0B031C1629F1926400FB4A70 /* Itinerary */,
 				0B2BFD9429ED9378007ED65B /* Map */,
 				0BFFAB3229E640FE002C249E /* AppDelegate.swift */,
 				0BFFAB3429E640FE002C249E /* SceneDelegate.swift */,
-				0BFFAB3629E640FE002C249E /* ViewController.swift */,
 				0BFFAB3829E640FE002C249E /* Main.storyboard */,
-				695E523929EB66CA00FCFC0D /* LoginViewController.swift */,
-				695E523B29EB66DA00FCFC0D /* SignupViewController.swift */,
-				695E523D29EB66E700FCFC0D /* User.swift */,
 				0BFFAB3B29E640FF002C249E /* Assets.xcassets */,
 				0BFFAB3D29E640FF002C249E /* LaunchScreen.storyboard */,
 				0BFFAB4029E640FF002C249E /* Info.plist */,
@@ -199,12 +206,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				695E523A29EB66CA00FCFC0D /* LoginViewController.swift in Sources */,
-				0BFFAB3729E640FE002C249E /* ViewController.swift in Sources */,
 				695E523E29EB66E700FCFC0D /* User.swift in Sources */,
 				695E523C29EB66DA00FCFC0D /* SignupViewController.swift in Sources */,
+				0B4FDD8429F75DC200B60588 /* ItineraryFormController.swift in Sources */,
 				0B031C2029F195AF00FB4A70 /* ItineraryItems.swift in Sources */,
 				0B031C2229F195C700FB4A70 /* TripUsers.swift in Sources */,
-				0BFFAB3729E640FE002C249E /* ViewController.swift in Sources */,
 				0B031C1E29F195A000FB4A70 /* Destinations.swift in Sources */,
 				0BFFAB3329E640FE002C249E /* AppDelegate.swift in Sources */,
 				0B031C1C29F1958D00FB4A70 /* Trips.swift in Sources */,
