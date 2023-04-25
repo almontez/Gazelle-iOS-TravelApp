@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ParseSwift
 
 class ItineraryFormController: UIViewController {
 
@@ -23,6 +24,7 @@ class ItineraryFormController: UIViewController {
         // getCountriesList()
     }
     
+    // citation: https://stackoverflow.com/questions/44346811/extracting-hours-and-minutes-from-uidatepicker
     @IBAction func saveButtonTapped(_ sender: UIButton) {
         print(eventTextField.text ?? "No Event Title Provided")
         print(locationTextField.text ?? "No Location Provided")
@@ -31,6 +33,14 @@ class ItineraryFormController: UIViewController {
         print(endDatePicker.date)
         print(endTimePicker.date)
         print(descriptionTextField.text ?? "No Description Provided")
+        
+        // Create Itinerary Item
+        var post = ItineraryItem()
+        
+        // Set Properties
+        
+        // Return to Itinerary View Controller
+        
     }
 
 //  Citation https://stackoverflow.com/questions/27875463/how-do-i-get-a-list-of-countries-in-swift-ios

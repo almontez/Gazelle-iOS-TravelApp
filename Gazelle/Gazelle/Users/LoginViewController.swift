@@ -35,7 +35,7 @@ class LoginViewController: UIViewController {
         
         User.login(username: username, password: password){ [weak self] result in
             switch result {
-            case .success(let user):
+            case .success(_):
                 // Post a notification that the user has successfully logged in.
                 NotificationCenter.default.post(name: Notification.Name("login"), object: nil)
                 

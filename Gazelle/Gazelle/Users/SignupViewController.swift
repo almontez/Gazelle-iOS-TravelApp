@@ -51,7 +51,7 @@ class SignupViewController: UIViewController {
         newUser.signup { [weak self] result in
 
             switch result {
-            case .success(let user):
+            case .success(_):
                 // Post a notification that the user has successfully signed up.
                 NotificationCenter.default.post(name: Notification.Name("login"), object: nil)
 

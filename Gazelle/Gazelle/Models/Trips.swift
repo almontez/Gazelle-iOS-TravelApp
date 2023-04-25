@@ -19,4 +19,5 @@ struct Trips: ParseObject {
     // Custom Trip properties
     var title: String?
     var description: String?
+    var user: User?
 }
