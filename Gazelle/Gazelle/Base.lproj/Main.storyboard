@@ -164,7 +164,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V3l-SH-r9V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1044" y="-782"/>
+            <point key="canvasLocation" x="1043.5114503816794" y="-782.3943661971831"/>
         </scene>
         <!--Signup View Controller-->
         <scene sceneID="wzH-m5-0op">
@@ -320,7 +320,7 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Itinerary Item Form" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V9K-NZ-3f1">
                                 <rect key="frame" x="16" y="75" width="361" height="24"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -444,7 +444,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eZz-ak-Yxf">
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eZz-ak-Yxf">
                                         <rect key="frame" x="0.0" y="28.333333333333258" width="333" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -457,8 +457,12 @@
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="el0-1t-i4H">
                                 <rect key="frame" x="30" y="622.66666666666663" width="333" height="34.333333333333371"/>
-                                <state key="normal" title="Button"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Save"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Save"/>
+                                <connections>
+                                    <action selector="saveButtonTapped:" destination="0bJ-DE-vv3" eventType="touchUpInside" id="ic2-j2-UuW"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="C6V-HG-rq6"/>
@@ -490,13 +494,13 @@
                     <tabBarItem key="tabBarItem" title="Itinerary" image="book.closed" catalog="system" selectedImage="book.closed.fill" id="9M0-Fg-WqI"/>
                     <navigationItem key="navigationItem" id="0C3-Iv-iTx"/>
                     <connections>
-                        <outlet property="descriptionTextField" destination="eZz-ak-Yxf" id="cW6-F8-sIq"/>
-                        <outlet property="endDatePicker" destination="rSQ-k6-hQy" id="QJe-Zs-gUe"/>
-                        <outlet property="endTimePicker" destination="3IV-qH-nQw" id="wrz-Sj-ksl"/>
-                        <outlet property="eventTextField" destination="Orn-UQ-AOW" id="1eO-XI-aF7"/>
-                        <outlet property="locationTextField" destination="FMR-c1-8ig" id="wXf-hz-IPM"/>
-                        <outlet property="startDatePicker" destination="33j-yq-H9M" id="nkN-nq-hKn"/>
-                        <outlet property="startTimePicker" destination="PvU-YJ-nNV" id="YRQ-pb-rgs"/>
+                        <outlet property="descriptionTextField" destination="eZz-ak-Yxf" id="two-MJ-UQF"/>
+                        <outlet property="endDatePicker" destination="rSQ-k6-hQy" id="Po5-ge-N7L"/>
+                        <outlet property="endTimePicker" destination="3IV-qH-nQw" id="gAD-N3-8zI"/>
+                        <outlet property="eventTextField" destination="Orn-UQ-AOW" id="cEb-Pa-k4d"/>
+                        <outlet property="locationTextField" destination="FMR-c1-8ig" id="52e-M1-2aB"/>
+                        <outlet property="startDatePicker" destination="33j-yq-H9M" id="aAg-9y-1JP"/>
+                        <outlet property="startTimePicker" destination="PvU-YJ-nNV" id="d0e-ox-vwl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T7E-sE-2c4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
