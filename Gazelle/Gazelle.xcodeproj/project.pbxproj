@@ -12,6 +12,7 @@
 		0B031C1E29F195A000FB4A70 /* Destinations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B031C1D29F195A000FB4A70 /* Destinations.swift */; };
 		0B031C2029F195AF00FB4A70 /* ItineraryItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B031C1F29F195AF00FB4A70 /* ItineraryItems.swift */; };
 		0B031C2229F195C700FB4A70 /* TripUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B031C2129F195C700FB4A70 /* TripUsers.swift */; };
+		0B092BD329F8ACCA0008B7D9 /* TripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B092BD229F8ACCA0008B7D9 /* TripCell.swift */; };
 		0B16853729EF11610069DDCA /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B16853629EF11610069DDCA /* LocationSearchTable.swift */; };
 		0B2BFD9629ED93BA007ED65B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2BFD9529ED93BA007ED65B /* MapViewController.swift */; };
 		0B43044229F8769700A03026 /* ItineraryItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B43044129F8769700A03026 /* ItineraryItemCell.swift */; };
@@ -34,6 +35,7 @@
 		0B031C1D29F195A000FB4A70 /* Destinations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destinations.swift; sourceTree = "<group>"; };
 		0B031C1F29F195AF00FB4A70 /* ItineraryItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryItems.swift; sourceTree = "<group>"; };
 		0B031C2129F195C700FB4A70 /* TripUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripUsers.swift; sourceTree = "<group>"; };
+		0B092BD229F8ACCA0008B7D9 /* TripCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripCell.swift; sourceTree = "<group>"; };
 		0B16853629EF11610069DDCA /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		0B2BFD9529ED93BA007ED65B /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		0B43044129F8769700A03026 /* ItineraryItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryItemCell.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 			children = (
 				0B43044529F87AA300A03026 /* TripFormController.swift */,
 				0B43044729F87C0B00A03026 /* TripsViewController.swift */,
+				0B092BD229F8ACCA0008B7D9 /* TripCell.swift */,
 			);
 			path = Trips;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 				0B43044829F87C0B00A03026 /* TripsViewController.swift in Sources */,
 				695E523C29EB66DA00FCFC0D /* SignupViewController.swift in Sources */,
 				0B4FDD8429F75DC200B60588 /* ItineraryFormController.swift in Sources */,
+				0B092BD329F8ACCA0008B7D9 /* TripCell.swift in Sources */,
 				0B031C2029F195AF00FB4A70 /* ItineraryItems.swift in Sources */,
 				0B031C2229F195C700FB4A70 /* TripUsers.swift in Sources */,
 				0B031C1E29F195A000FB4A70 /* Destinations.swift in Sources */,

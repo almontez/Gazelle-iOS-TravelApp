@@ -565,7 +565,7 @@
                                 <rect key="frame" x="0.0" y="103" width="393" height="666"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="142" id="l72-f9-x7v">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TripCell" rowHeight="142" id="l72-f9-x7v" customClass="TripCell" customModule="Gazelle" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="142"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="l72-f9-x7v" id="7Ap-SI-eor">
@@ -597,6 +597,10 @@
                                                 <constraint firstItem="Axk-r2-tAM" firstAttribute="top" secondItem="7Ap-SI-eor" secondAttribute="topMargin" constant="16" id="hLA-dM-wEh"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="tripDescription" destination="UyD-Wk-hwk" id="vkd-Hq-RDw"/>
+                                            <outlet property="tripTitle" destination="20j-g3-lDH" id="Iat-hm-1N9"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -614,6 +618,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Trips" image="map" catalog="system" selectedImage="map.fill" id="cDh-fs-Z8E"/>
+                    <connections>
+                        <outlet property="tripsTableView" destination="kRh-99-6ZY" id="1Aw-aw-8aD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gho-U6-0TV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
