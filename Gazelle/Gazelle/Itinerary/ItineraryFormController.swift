@@ -18,7 +18,6 @@ class ItineraryFormController: UIViewController {
     @IBOutlet weak var endTimePicker: UIDatePicker!
     @IBOutlet weak var descriptionTextField: UITextField!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // getCountriesList()
@@ -35,7 +34,7 @@ class ItineraryFormController: UIViewController {
         print(descriptionTextField.text ?? "No Description Provided")
         
         // Create Itinerary Item
-        var post = ItineraryItem()
+        // var post = ItineraryItem()
         
         // Set Properties
         

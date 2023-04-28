@@ -12,22 +12,28 @@ class TripFormController: UIViewController {
 
     @IBOutlet weak var tripName: UITextField!
     @IBOutlet weak var tripDescription: UITextField!
+    @IBOutlet weak var tripLocation: UITextField!
+    @IBOutlet weak var tripStartDate: UIDatePicker!
+    @IBOutlet weak var tripEndDate: UIDatePicker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     @IBAction func saveBtnTapped(_ sender: UIButton) {
-        if (tripName.text == "") {
-            tripNameRequredAlert()
+        if (tripName.text == "" || tripLocation.text == "") {
+            tripFieldRequredAlert()
         } else {
             // Create new Trip object
-            var newTrip = Trips()
+            var newTrip = Trip()
             
             // Set Properties
             newTrip.title = tripName.text
             newTrip.description = tripDescription.text
-            newTrip.user = User.current
+            newTrip.userId = User.current?.objectId as String?
+            newTrip.location = tripLocation.text
+            newTrip.startDate = formatDate(tripStartDate)
+            newTrip.endDate = formatDate(tripEndDate)
             
             // Save Trip
             newTrip.save { [weak self] result in
@@ -37,7 +43,7 @@ class TripFormController: UIViewController {
                         print("✅ New Trip Saved!")
 
                         // Return to previous view controller
-                        self?.dismiss(animated: true, completion: nil)
+                        self?.dismiss(animated: true)
                         
                     case .failure(let error):
                         // Failed sign up
@@ -55,10 +61,17 @@ class TripFormController: UIViewController {
         present(alertController, animated: true)
     }
     
-    private func tripNameRequredAlert() {
-        let alertController = UIAlertController(title: "Required", message: "The name or title of your trip is required.", preferredStyle: .alert)
+    private func tripFieldRequredAlert() {
+        let alertController = UIAlertController(title: "Required", message: "The the name, location, and dates of your trip are required.", preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(action)
         present(alertController, animated: true)
+    }
+    
+    func formatDate(_ date: UIDatePicker) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM dd, yyyy"
+        let dateString = dateFormatter.string(from: date.date)
+        return dateString
     }
 }
