@@ -22,7 +22,7 @@ class TripFormController: UIViewController {
             tripNameRequredAlert()
         } else {
             // Create new Trip object
-            var newTrip = Trips()
+            var newTrip = Trip()
             
             // Set Properties
             newTrip.title = tripName.text

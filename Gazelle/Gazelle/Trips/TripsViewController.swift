@@ -12,7 +12,7 @@ class TripsViewController: UIViewController, UITableViewDelegate {
     
     @IBOutlet weak var tripsTableView: UITableView!
     
-    private var trips = [Trips]() {
+    private var trips = [Trip]() {
         didSet {
             tripsTableView.reloadData()
         }
@@ -33,7 +33,7 @@ class TripsViewController: UIViewController, UITableViewDelegate {
     func queryTrips() {
         // Create query to fetch Trips for User
         let userId = User.current?.objectId
-        let query = Trips.query("userId" == "\(userId!)")
+        let query = Trip.query("userId" == "\(userId!)")
     
         // Fetch Trip objects from DB
         query.find { [weak self] result in
@@ -41,6 +41,7 @@ class TripsViewController: UIViewController, UITableViewDelegate {
             case .success(let trips):
                 print(trips)
                 self?.trips = trips
+                self?.tripsTableView.reloadData()
                 
             case .failure(let error):
                 self?.showAlert(description: error.localizedDescription)

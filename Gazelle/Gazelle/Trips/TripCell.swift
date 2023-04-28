@@ -18,7 +18,7 @@ class TripCell: UITableViewCell {
     }
     
     // Configure cell's UI for Trips objects
-    func configure(with trip: Trips) {
+    func configure(with trip: Trip) {
         tripTitle.text = trip.title
         tripDescription.text = trip.description
     }

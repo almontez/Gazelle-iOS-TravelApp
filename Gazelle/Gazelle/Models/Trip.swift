@@ -8,7 +8,7 @@
 import Foundation
 import ParseSwift
 
-struct Trips: ParseObject {
+struct Trip: ParseObject {
     // Required by `ParseObject`.
     var objectId: String?
     var createdAt: Date?
@@ -19,5 +19,8 @@ struct Trips: ParseObject {
     // Custom Trip properties
     var title: String?
     var description: String?
+    var location: String?
+    var startDate: String?
+    var endDate: String?
     var userId: String?
 }
