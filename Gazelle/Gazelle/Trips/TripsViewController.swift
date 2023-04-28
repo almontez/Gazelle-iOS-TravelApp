@@ -30,12 +30,11 @@ class TripsViewController: UIViewController, UITableViewDelegate {
         queryTrips()
     }
     
-    private func queryTrips() {
-        // Create query to fetch Trips
-        let query = Trips.query()
-            .include("users")
-            // TODO: Order based on date. May need to add dates to trip instead of destinations...figure it out
-        
+    func queryTrips() {
+        // Create query to fetch Trips for User
+        let userId = User.current?.objectId
+        let query = Trips.query("userId" == "\(userId!)")
+    
         // Fetch Trip objects from DB
         query.find { [weak self] result in
             switch result {

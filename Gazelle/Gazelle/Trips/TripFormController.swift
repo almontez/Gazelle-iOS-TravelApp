@@ -27,7 +27,7 @@ class TripFormController: UIViewController {
             // Set Properties
             newTrip.title = tripName.text
             newTrip.description = tripDescription.text
-            newTrip.user = User.current
+            newTrip.userId = User.current?.objectId as String?
             
             // Save Trip
             newTrip.save { [weak self] result in
@@ -37,7 +37,7 @@ class TripFormController: UIViewController {
                         print("✅ New Trip Saved!")
 
                         // Return to previous view controller
-                        self?.dismiss(animated: true, completion: nil)
+                        self?.dismiss(animated: true)
                         
                     case .failure(let error):
                         // Failed sign up
