@@ -20,6 +20,7 @@ class TripsViewController: UIViewController, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tripsTableView.backgroundView = UIImageView(image: UIImage(named: "bg_image"))
         tripsTableView.delegate = self
         tripsTableView.dataSource = self
         // tripsTableView.allowsSelection = true
@@ -39,9 +40,7 @@ class TripsViewController: UIViewController, UITableViewDelegate {
         query.find { [weak self] result in
             switch result {
             case .success(let trips):
-                print(trips)
                 self?.trips = trips
-                self?.tripsTableView.reloadData()
                 
             case .failure(let error):
                 self?.showAlert(description: error.localizedDescription)
@@ -58,8 +57,12 @@ class TripsViewController: UIViewController, UITableViewDelegate {
 }
 
 extension TripsViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return trips.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -67,7 +70,7 @@ extension TripsViewController: UITableViewDataSource {
                 TripCell else {
                 return UITableViewCell()
         }
-        cell.configure(with: trips[indexPath.row])
+        cell.configure(with: trips[indexPath.section])
         return cell
     }
 }
