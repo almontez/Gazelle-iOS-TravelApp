@@ -224,7 +224,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="far-PV-yzQ">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
                     </tabBar>
                     <connections>
                         <segue destination="qoO-Iu-Ah1" kind="relationship" relationship="viewControllers" id="XzU-TU-8sY"/>
@@ -246,6 +246,7 @@
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zaH-fP-CSO">
                                 <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                                <color key="barTintColor" systemColor="systemGray6Color"/>
                                 <items>
                                     <navigationItem title="Trip Name" id="doG-kQ-Fz8">
                                         <barButtonItem key="leftBarButtonItem" title="Item" id="DAF-TV-Q2c"/>
@@ -551,6 +552,8 @@
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MT5-Z0-D8B">
                                 <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                <color key="barTintColor" systemColor="systemGray6Color"/>
                                 <textAttributes key="largeTitleTextAttributes">
                                     <color key="textShadowColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </textAttributes>
@@ -568,7 +571,7 @@
                                 <rect key="frame" x="0.0" y="103" width="393" height="666"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="TripCell" rowHeight="158" id="l72-f9-x7v" customClass="TripCell" customModule="Gazelle" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="TripCell" rowHeight="158" id="l72-f9-x7v" customClass="TripCell" customModule="Gazelle" customModuleProvider="target">
                                         <rect key="frame" x="20" y="55.333332061767578" width="353" height="158"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="l72-f9-x7v" id="7Ap-SI-eor">
@@ -761,7 +764,7 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lDJ-Fl-ALp">
-                                        <rect key="frame" x="141" y="418" width="61" height="34.333333333333314"/>
+                                        <rect key="frame" x="0.0" y="418" width="343" height="34.333333333333314"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="Save"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Save"/>
@@ -777,8 +780,10 @@
                                     <constraint firstItem="Rhi-U2-f9R" firstAttribute="leading" secondItem="QrK-fQ-TZf" secondAttribute="leading" id="RZK-nS-2JH"/>
                                     <constraint firstAttribute="trailing" secondItem="pG6-Lc-wcI" secondAttribute="trailing" id="cya-O1-UJl"/>
                                     <constraint firstItem="gNJ-sR-2ed" firstAttribute="leading" secondItem="QrK-fQ-TZf" secondAttribute="leading" id="fSy-NQ-UGq"/>
+                                    <constraint firstAttribute="trailing" secondItem="lDJ-Fl-ALp" secondAttribute="trailing" id="jIO-6i-hp3"/>
                                     <constraint firstAttribute="trailing" secondItem="fRb-32-8hp" secondAttribute="trailing" id="mky-aV-UlH"/>
                                     <constraint firstItem="pG6-Lc-wcI" firstAttribute="leading" secondItem="QrK-fQ-TZf" secondAttribute="leading" id="pII-MP-KMw"/>
+                                    <constraint firstItem="lDJ-Fl-ALp" firstAttribute="leading" secondItem="QrK-fQ-TZf" secondAttribute="leading" id="vsZ-su-fvF"/>
                                     <constraint firstAttribute="trailing" secondItem="Rhi-U2-f9R" secondAttribute="trailing" id="wFf-7M-3kd"/>
                                 </constraints>
                             </stackView>
@@ -913,6 +918,12 @@
         <image name="plus.app" catalog="system" width="128" height="114"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tertiarySystemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

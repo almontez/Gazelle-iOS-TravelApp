@@ -18,6 +18,7 @@ class TripFormController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initializeHideKeyboard()
     }
     
     @IBAction func saveBtnTapped(_ sender: UIButton) {
@@ -73,5 +74,17 @@ class TripFormController: UIViewController {
         dateFormatter.dateFormat = "MMMM dd, yyyy"
         let dateString = dateFormatter.string(from: date.date)
         return dateString
+    }
+}
+
+// citation: https://www.cometchat.com/tutorials/how-to-dismiss-ios-keyboard-swift
+extension TripFormController {
+    func initializeHideKeyboard() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissMyKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissMyKeyboard(){
+        view.endEditing(true)
     }
 }
