@@ -9,6 +9,8 @@ import UIKit
 import ParseSwift
 
 class ItineraryFormController: UIViewController {
+    
+    var tripId: String?
 
     @IBOutlet weak var eventTextField: UITextField!
     @IBOutlet weak var locationTextField: UITextField!
@@ -20,38 +22,107 @@ class ItineraryFormController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // getCountriesList()
+        initializeHideKeyboard()
     }
     
     // citation: https://stackoverflow.com/questions/44346811/extracting-hours-and-minutes-from-uidatepicker
     @IBAction func saveButtonTapped(_ sender: UIButton) {
-        print(eventTextField.text ?? "No Event Title Provided")
-        print(locationTextField.text ?? "No Location Provided")
-        print(startDatePicker.date)
-        print(startTimePicker.date)
-        print(endDatePicker.date)
-        print(endTimePicker.date)
-        print(descriptionTextField.text ?? "No Description Provided")
-        
-        // Create Itinerary Item
-        // var post = ItineraryItem()
-        
-        // Set Properties
-        
-        // Return to Itinerary View Controller
-        
+        if (eventTextField.text == "" || locationTextField.text == "") {
+            itineraryItemFieldRequredAlert()
+        } else {
+            // Create Itinerary Item
+            var newItem = ItineraryItem()
+            
+            // Set Properties
+            newItem.title = eventTextField.text
+            newItem.location = locationTextField.text
+            newItem.startDate = formatDate(startDatePicker)
+            newItem.startTime = formatTime(startTimePicker)
+            newItem.endDate = formatDate(endDatePicker)
+            newItem.endTime = formatTime(endTimePicker)
+            newItem.description = descriptionTextField.text
+            newItem.tripId = tripId!
+            
+            // Save Itinerary Item
+            newItem.save { [weak self] result in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(_):
+                        print("✅ New Itinerary Item Saved!")
+                        
+                        // Return to previous view controller
+                        self?.dismiss(animated: true)
+                        
+                    case .failure(let error):
+                        self?.showAlert(description: error.localizedDescription)
+                    }
+                }
+            }
+        }
     }
-
-//  Citation https://stackoverflow.com/questions/27875463/how-do-i-get-a-list-of-countries-in-swift-ios
-    func getCountriesList() -> [String] {
-        var countriesList: [String] = []
+    
+    private func showAlert(description: String?) {
+        let alertController = UIAlertController(title: "Unable to Save Itinerary Item", message: description ?? "Unknown error", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(action)
+        present(alertController, animated: true)
+    }
+    
+    private func itineraryItemFieldRequredAlert() {
+        let alertController = UIAlertController(title: "Required", message: "The the name, location, and dates of your itinerary event are required.", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(action)
+        present(alertController, animated: true)
+    }
+    
+    private func formatDate(_ date: UIDatePicker) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM dd, yyyy"
+        let dateString = dateFormatter.string(from: date.date)
+        return dateString
+    }
+    
+    private func formatTime(_ time: UIDatePicker) -> String {
+        var meridiemFlag = "AM"
+        var stringMins = ""
+        var stringHrs = ""
+        let timeComponents = Calendar.current.dateComponents([.hour, .minute], from: time.date)
+        var hour = timeComponents.hour!
+        let minutes = timeComponents.minute!
         
-        for code in NSLocale.isoCountryCodes  {
-            let id = NSLocale.localeIdentifier(fromComponents: [NSLocale.Key.countryCode.rawValue: code])
-            let name = NSLocale(localeIdentifier: "en_US").displayName(forKey: NSLocale.Key.identifier, value: id) ?? "Country not found for code: \(code)"
-            countriesList.append(name)
+        if (hour > 11) {
+            meridiemFlag = "PM"
+            if (hour != 12) {
+                hour -= 12
+            }
+            stringHrs = String(hour)
+        } else {
+            stringHrs = String(hour)
         }
         
-        return countriesList
+        if (hour == 0 && meridiemFlag == "AM") {
+            hour += 12
+            stringHrs = String(hour)
+        }
+        
+        if (minutes < 10) {
+            stringMins = "0" + String(minutes)
+        } else {
+            stringMins = String(minutes)
+        }
+        
+        return "\(stringHrs):\(stringMins) \(meridiemFlag)"
+    }
+}
+
+// citation: https://www.cometchat.com/tutorials/how-to-dismiss-ios-keyboard-swift
+extension ItineraryFormController {
+    func initializeHideKeyboard() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissMyKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissMyKeyboard(){
+        view.endEditing(true)
     }
 }

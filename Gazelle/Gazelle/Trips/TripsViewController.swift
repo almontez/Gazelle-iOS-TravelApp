@@ -23,7 +23,7 @@ class TripsViewController: UIViewController, UITableViewDelegate {
         tripsTableView.backgroundView = UIImageView(image: UIImage(named: "bg_image"))
         tripsTableView.delegate = self
         tripsTableView.dataSource = self
-        // tripsTableView.allowsSelection = true
+        tripsTableView.allowsSelection = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -31,7 +31,7 @@ class TripsViewController: UIViewController, UITableViewDelegate {
         queryTrips()
     }
     
-    func queryTrips() {
+    private func queryTrips() {
         // Create query to fetch Trips for User
         let userId = User.current?.objectId
         let query = Trip.query("userId" == "\(userId!)")
@@ -45,6 +45,15 @@ class TripsViewController: UIViewController, UITableViewDelegate {
             case .failure(let error):
                 self?.showAlert(description: error.localizedDescription)
             }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let cell = sender as? UITableViewCell,
+           let indextPath = tripsTableView.indexPath(for: cell),
+           let ItineraryViewController = segue.destination as? ItineraryViewController {
+            let trip = trips[indextPath.section]
+            ItineraryViewController.tripId = trip.objectId as String?
         }
     }
     
@@ -74,3 +83,4 @@ extension TripsViewController: UITableViewDataSource {
         return cell
     }
 }
+
