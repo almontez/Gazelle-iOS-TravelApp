@@ -227,7 +227,7 @@
                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                     </tabBar>
                     <connections>
-                        <segue destination="qoO-Iu-Ah1" kind="relationship" relationship="viewControllers" id="XzU-TU-8sY"/>
+                        <segue destination="FTp-ef-Mgl" kind="relationship" relationship="viewControllers" id="XzU-TU-8sY"/>
                         <segue destination="Qd7-J7-4uL" kind="relationship" relationship="viewControllers" id="quu-eE-Iu5"/>
                         <segue destination="2rq-UF-wH7" kind="relationship" relationship="viewControllers" id="CiK-lr-NuM"/>
                     </connections>
@@ -252,7 +252,7 @@
                                         <barButtonItem key="leftBarButtonItem" title="Item" id="DAF-TV-Q2c"/>
                                         <barButtonItem key="rightBarButtonItem" image="plus.app" catalog="system" id="P8z-3E-hsI">
                                             <connections>
-                                                <segue destination="0bJ-DE-vv3" kind="show" id="NxG-v3-04w"/>
+                                                <segue destination="0bJ-DE-vv3" kind="showDetail" id="N6g-65-Tj4"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -336,10 +336,14 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Itinerary" image="list.bullet.clipboard" catalog="system" selectedImage="list.bullet.clipboard.fill" id="Qaa-ST-pFd"/>
+                    <navigationItem key="navigationItem" id="7Me-Rt-cVd"/>
+                    <connections>
+                        <outlet property="itineraryTableView" destination="Gix-qJ-Cc0" id="TTd-qo-BVu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OHL-TO-Xe1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1106" y="854"/>
+            <point key="canvasLocation" x="82" y="1660"/>
         </scene>
         <!--Itinerary Item Form-->
         <scene sceneID="trd-tk-YZk">
@@ -429,11 +433,8 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <datePicker toolTip="Help" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PvU-YJ-nNV">
+                                                    <datePicker toolTip="Help" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="PvU-YJ-nNV">
                                                         <rect key="frame" x="0.0" y="28.333333333333314" width="166.33333333333334" height="72"/>
-                                                        <date key="date" timeIntervalSinceReferenceDate="704089700.92894697">
-                                                            <!--2023-04-25 04:28:20 +0000-->
-                                                        </date>
                                                     </datePicker>
                                                 </subviews>
                                             </stackView>
@@ -481,7 +482,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eZz-ak-Yxf">
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="fill" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eZz-ak-Yxf">
                                                 <rect key="frame" x="0.0" y="28.333333333333371" width="343" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -540,9 +541,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T7E-sE-2c4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1106" y="1611"/>
+            <point key="canvasLocation" x="82" y="2489"/>
         </scene>
-        <!--Trips-->
+        <!--Scheduled Trips-->
         <scene sceneID="SwH-bk-Gzf">
             <objects>
                 <viewController id="qoO-Iu-Ah1" customClass="TripsViewController" customModule="Gazelle" customModuleProvider="target" sceneMemberID="viewController">
@@ -551,7 +552,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MT5-Z0-D8B">
-                                <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                                <rect key="frame" x="0.0" y="103" width="393" height="44"/>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <color key="barTintColor" systemColor="systemGray6Color"/>
                                 <textAttributes key="largeTitleTextAttributes">
@@ -568,7 +569,7 @@
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="kRh-99-6ZY">
-                                <rect key="frame" x="0.0" y="103" width="393" height="666"/>
+                                <rect key="frame" x="0.0" y="147" width="393" height="622"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="TripCell" rowHeight="158" id="l72-f9-x7v" customClass="TripCell" customModule="Gazelle" customModuleProvider="target">
@@ -622,6 +623,7 @@
                                             <outlet property="tripDescription" destination="UyD-Wk-hwk" id="vkd-Hq-RDw"/>
                                             <outlet property="tripLocation" destination="c3q-vY-6il" id="iMD-ns-V5s"/>
                                             <outlet property="tripTitle" destination="20j-g3-lDH" id="Iat-hm-1N9"/>
+                                            <segue destination="Qd7-J7-4uL" kind="show" id="iUi-UJ-uQo"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -639,25 +641,25 @@
                             <constraint firstItem="MT5-Z0-D8B" firstAttribute="top" secondItem="uZe-Nf-fMu" secondAttribute="top" id="ng2-HI-GXo"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Trips" image="map" catalog="system" selectedImage="map.fill" id="cDh-fs-Z8E"/>
+                    <navigationItem key="navigationItem" title="Scheduled Trips" id="j1M-kO-jLh"/>
                     <connections>
                         <outlet property="tripsTableView" destination="kRh-99-6ZY" id="1Aw-aw-8aD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gho-U6-0TV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2477.0992366412211" y="853.52112676056345"/>
+            <point key="canvasLocation" x="-1274" y="1660"/>
         </scene>
         <!--Trip Form Controller-->
         <scene sceneID="pzm-GV-E6e">
             <objects>
                 <viewController id="JYl-cW-gLn" customClass="TripFormController" customModule="Gazelle" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Baq-WQ-FX0">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="QrK-fQ-TZf">
-                                <rect key="frame" x="25" y="49.999999999999972" width="343" height="452.33333333333326"/>
+                                <rect key="frame" x="25" y="152.99999999999997" width="343" height="452.33333333333326"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Trip" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tSq-be-fjo">
                                         <rect key="frame" x="99.333333333333329" y="0.0" width="144.33333333333337" height="33.666666666666664"/>
@@ -666,7 +668,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="gNJ-sR-2ed" userLabel="Event Name">
-                                        <rect key="frame" x="0.0" y="58.666666666666671" width="343" height="62.333333333333329"/>
+                                        <rect key="frame" x="0.0" y="58.666666666666657" width="343" height="62.333333333333343"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trip Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KV8-dz-gO0">
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="20.333333333333332"/>
@@ -675,7 +677,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RKg-qX-uL7">
-                                                <rect key="frame" x="0.0" y="28.333333333333329" width="343" height="34"/>
+                                                <rect key="frame" x="0.0" y="28.333333333333343" width="343" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 <userDefinedRuntimeAttributes>
@@ -700,7 +702,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jao-YS-KmZ">
-                                                <rect key="frame" x="0.0" y="22.333333333333343" width="343" height="34"/>
+                                                <rect key="frame" x="0.0" y="22.333333333333314" width="343" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -807,7 +809,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TnU-Hk-gI7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2477.0992366412211" y="1610.5633802816901"/>
+            <point key="canvasLocation" x="-1274" y="2489"/>
         </scene>
         <!--Map-->
         <scene sceneID="9qR-ly-CTC">
@@ -826,7 +828,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A70-pG-Vvg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="82" y="854"/>
+            <point key="canvasLocation" x="2674" y="854"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -857,7 +859,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="82" y="1611"/>
+            <point key="canvasLocation" x="2673" y="1646"/>
         </scene>
         <!--Location Search Table-->
         <scene sceneID="cTF-Tg-jVV">
@@ -901,9 +903,31 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7LP-sV-amh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="82" y="2344"/>
+            <point key="canvasLocation" x="2673" y="2489"/>
+        </scene>
+        <!--Trips-->
+        <scene sceneID="7Jm-PS-Pf8">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FTp-ef-Mgl" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Trips" image="map" catalog="system" selectedImage="map.fill" id="cDh-fs-Z8E"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="W7B-Ti-FbO">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="qoO-Iu-Ah1" kind="relationship" relationship="rootViewController" id="fbT-yM-IoD"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZAu-Is-xS5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1273" y="873"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="quu-eE-Iu5"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="IconNoBackground" width="2122" height="2121"/>
         <image name="Title" width="1089" height="236"/>

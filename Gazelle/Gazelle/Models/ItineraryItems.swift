@@ -18,10 +18,11 @@ struct ItineraryItem: ParseObject {
     
     // Custom ItineraryItem properties
     var title: String?
-    var startDate: String?     // fix property so it'll do dates *might have to combine date/time
-    var startTime: String?       // fix property so it'll do time
-    var endDate: String?       // fix property so it'll do dates *might have to combine date/time
-    var endTime: String?       // fix property so it'll do time
+    var location: String?
+    var startDate: String?
+    var startTime: String?
+    var endDate: String?
+    var endTime: String?
     var description: String?
-    var tripId: String?        // figure out how to get this value from the db
+    var tripId: String?
 }

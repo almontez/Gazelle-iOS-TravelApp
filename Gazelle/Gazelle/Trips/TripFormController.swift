@@ -47,7 +47,7 @@ class TripFormController: UIViewController {
                         self?.dismiss(animated: true)
                         
                     case .failure(let error):
-                        // Failed sign up
+                        // Failed to save new trip
                         self?.showAlert(description: error.localizedDescription)
                     }
                 }
