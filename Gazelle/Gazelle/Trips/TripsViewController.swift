@@ -52,7 +52,7 @@ class TripsViewController: UIViewController, UITableViewDelegate {
         if let cell = sender as? UITableViewCell,
            let indextPath = tripsTableView.indexPath(for: cell),
            let ItineraryViewController = segue.destination as? ItineraryViewController {
-            let trip = trips[indextPath.row]
+            let trip = trips[indextPath.section]
             ItineraryViewController.tripId = trip.objectId as String?
         }
     }

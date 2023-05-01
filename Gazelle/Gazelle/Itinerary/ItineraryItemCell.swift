@@ -17,13 +17,24 @@ class ItineraryItemCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        self.layer.borderWidth = 3.0
+        self.layer.borderColor = UIColor.black.cgColor
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    func configure(with item: ItineraryItem) {
+        itemTitle.text = item.title
+        itemDates.text = formatDates(from: item.startDate!, to: item.endDate!)
+        itemTimes.text = formatTimes(from: item.startTime!, to: item.endTime!)
+        itemLocation.text = item.location
+        itemDescription.text = item.description
+    }
+    
+    func formatDates(from startDate: String, to endDate: String) -> String {
+        return "\(startDate) - \(endDate)"
+    }
+    
+    func formatTimes(from startTime: String, to endTime: String) -> String {
+        return "\(startTime) - \(endTime)"
     }
 
 }

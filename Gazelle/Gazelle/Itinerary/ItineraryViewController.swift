@@ -24,7 +24,7 @@ class ItineraryViewController: UIViewController, UITableViewDelegate {
         super.viewDidLoad()
         itineraryTableView.backgroundView = UIImageView(image: UIImage(named: "bg_image"))
         itineraryTableView.delegate = self
-        //itineraryTableView.dataSource = self
+        itineraryTableView.dataSource = self
         itineraryTableView.allowsSelection = false
         queryItineraryItems()
     }
@@ -37,7 +37,6 @@ class ItineraryViewController: UIViewController, UITableViewDelegate {
         query.find { [weak self] result in
             switch result {
             case .success(let itineraryItems):
-                print(itineraryItems)
                 self?.itineraryItems = itineraryItems
             case .failure(let error):
                 self?.showAlert(description: error.localizedDescription)
@@ -59,13 +58,22 @@ class ItineraryViewController: UIViewController, UITableViewDelegate {
     }
 }
 
-/*
+
 extension ItineraryViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return itineraryItems.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ItineraryItemCell", for: indexPath) as?
+                ItineraryItemCell else {
+                return UITableViewCell()
+        }
+        cell.configure(with: itineraryItems[indexPath.section])
+        return cell
     }
-}*/
+}

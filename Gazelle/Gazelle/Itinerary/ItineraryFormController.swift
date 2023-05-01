@@ -50,9 +50,9 @@ class ItineraryFormController: UIViewController {
                     case .success(_):
                         print("✅ New Itinerary Item Saved!")
                         
+                        // Return to previous view controller
                         self?.dismiss(animated: true)
                         
-                        // Return to previous view controller
                     case .failure(let error):
                         self?.showAlert(description: error.localizedDescription)
                     }
