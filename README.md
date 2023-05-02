@@ -6,7 +6,7 @@ Original App Design Project
 ## Table of Contents
 1. [Overview](#Overview)
 1. [Product Spec](#Product-Spec)
-1. [Wireframes](#Wireframes)
+1. [Schema](#Schema)
 
 ## Overview
 ### Description
@@ -40,7 +40,9 @@ Gazelle allows users to plan and log their journys as they travel locally, natio
 
 * Users can log-out
 * Users can edit their scheduled trips
-* Users can edit their itinerary items
+* Users can delete their scheduled trips
+* Users can edit their itinerary events
+* Users can delete their itinerary events
 * Users can add points of interest from the map to their itinerary
 
 **Optional Nice-to-have Stories**
@@ -75,7 +77,7 @@ Gazelle allows users to plan and log their journys as they travel locally, natio
 * Trips
    * Create Trips Form
    * Itinerary TableView
-      * Addd Itinerary Event Form
+      * Add Itinerary Event Form
 * Explore
    * Map View
    * List View
