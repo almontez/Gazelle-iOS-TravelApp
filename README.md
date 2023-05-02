@@ -8,7 +8,7 @@
 
 ## Overview
 ### Description
-Gazelle allows users to plan and log their journys as they travel locally, nationally, and worldwide. Users can create a trip, add events to their itinerary and search for locations in the in-app map.
+Gazelle allows users to plan and log their journeys as they travel locally, nationally, and worldwide. Users can create a trip, add events to their itinerary, and search for locations in the in-app map.
 
 ### App Evaluation
 - **Category:** Travel
