@@ -1,6 +1,3 @@
-Original App Design Project
-===
-
 # Gazelle: Traval Itinerary 
 
 ## Table of Contents
@@ -83,3 +80,4 @@ Gazelle allows users to plan and log their journys as they travel locally, natio
    * List View
 
 ## Schema
+<img src="https://github.com/almontez/CodePathiOS-SP23-Project/blob/main/Read%20Me%20Media/Gazelle%20Database%20diagram.png" height=500>
