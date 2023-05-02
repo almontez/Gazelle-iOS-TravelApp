@@ -3,7 +3,7 @@
 ## Table of Contents
 1. [Overview](#Overview)
 2. [Demo](#Demo)
-3. [Product Spec](#Product-Spec)
+3. [Product Specs](#Product-Specs)
 4. [Schema](#Schema)
 
 ## Overview
@@ -24,7 +24,7 @@ Gazelle allows users to plan and log their journeys as they travel locally, nati
 
 GIF created with Apple Simulator 
 
-## Product Spec
+## Product Specs
 
 ### 1. User Stories (Required and Optional)
 
