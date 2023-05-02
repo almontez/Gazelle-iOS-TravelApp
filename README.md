@@ -1,9 +1,10 @@
-# Gazelle: Traval Itinerary 
+# Gazelle: Travel Log 
 
 ## Table of Contents
 1. [Overview](#Overview)
-1. [Product Spec](#Product-Spec)
-1. [Schema](#Schema)
+2. [Demo](#Demo)
+3. [Product Spec](#Product-Spec)
+4. [Schema](#Schema)
 
 ## Overview
 ### Description
@@ -16,6 +17,14 @@ Gazelle allows users to plan and log their journys as they travel locally, natio
 - **Market:** This app is useful for any user who like to plan and track their trips.
 - **Habit:** Users can use Gazelle as many times they want to plan trips, view plans, log experiences, and revisit past trips.
 - **Scope:** Gazelle will act as a central hub for users to store relevant travel information about their trip including but not limited to flight data, hotel bookings, transportation, points of interest, and excursions.
+
+## Demo
+
+Demo of implemented user stories:
+
+<img src='https://github.com/almontez/CodePathiOS-S23-BeRealClone-Pt.1/blob/main/ReadMe%20Media/demo2.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+GIF created with Apple Simulator 
 
 ## Product Spec
 
@@ -81,3 +90,19 @@ Gazelle allows users to plan and log their journys as they travel locally, natio
 
 ## Schema
 <img src="https://github.com/almontez/CodePathiOS-SP23-Project/blob/main/Read%20Me%20Media/Gazelle%20Database%20diagram.png" height=500>
+
+## License
+
+    Copyright 2023 Angela Montez & Dylan Canipe
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
