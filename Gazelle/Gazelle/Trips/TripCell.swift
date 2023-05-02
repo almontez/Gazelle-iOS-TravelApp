@@ -13,6 +13,7 @@ class TripCell: UITableViewCell {
     @IBOutlet weak var tripDescription: UILabel!
     @IBOutlet weak var tripDates: UILabel!
     @IBOutlet weak var tripLocation: UILabel!
+    @IBOutlet weak var deleteTripBtn: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -11,6 +11,7 @@ import ParseSwift
 class TripsViewController: UIViewController, UITableViewDelegate {
     
     @IBOutlet weak var tripsTableView: UITableView!
+    @IBOutlet weak var deleteTripBtn: UIButton!
     
     private var trips = [Trip]() {
         didSet {
@@ -43,22 +44,44 @@ class TripsViewController: UIViewController, UITableViewDelegate {
                 self?.trips = trips
                 
             case .failure(let error):
-                self?.showAlert(description: error.localizedDescription)
+                self?.showQueryAlert(description: error.localizedDescription)
+            }
+        }
+    }
+    
+    @IBAction func deleteButtonTapped(_ sender: UIButton) {
+        deleteTrip(trip: trips[sender.tag])
+    }
+    
+    private func deleteTrip(trip: Trip) {
+        trip.delete { [weak self] result in
+            switch result {
+            case .success(_):
+                print("❎ Trip Deleted!")
+            case .failure(let error):
+                self?.showDeleteAlert(description: error.localizedDescription)
             }
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let cell = sender as? UITableViewCell,
-           let indextPath = tripsTableView.indexPath(for: cell),
+           let indexPath = tripsTableView.indexPath(for: cell),
            let ItineraryViewController = segue.destination as? ItineraryViewController {
-            let trip = trips[indextPath.section]
+            let trip = trips[indexPath.section]
             ItineraryViewController.tripId = trip.objectId as String?
         }
     }
     
-    private func showAlert(description: String?) {
+    private func showQueryAlert(description: String?) {
         let alertController = UIAlertController(title: "Oops...", message: "\(description ?? "Please try again...")", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(action)
+        present(alertController, animated: true)
+    }
+    
+    private func showDeleteAlert(description: String?) {
+        let alertController = UIAlertController(title: "Unable to Delete Trip", message: description ?? "Unknown error", preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(action)
         present(alertController, animated: true)
@@ -79,6 +102,8 @@ extension TripsViewController: UITableViewDataSource {
                 TripCell else {
                 return UITableViewCell()
         }
+        
+        cell.deleteTripBtn.tag = indexPath.section
         cell.configure(with: trips[indexPath.section])
         return cell
     }
