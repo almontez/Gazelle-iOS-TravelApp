@@ -20,7 +20,7 @@ Gazelle allows users to plan and log their journys as they travel locally, natio
 
 ## Demo
 
-<img src='https://github.com/almontez/CodePathiOS-S23-BeRealClone-Pt.1/blob/main/ReadMe%20Media/demo2.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://github.com/almontez/CodePathiOS-SP23-Project/blob/main/Read%20Me%20Media/GazelleDemo.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with Apple Simulator 
 
