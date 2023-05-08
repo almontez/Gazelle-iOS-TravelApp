@@ -21,6 +21,7 @@ class TripsViewController: UIViewController, UITableViewDelegate {
         tripsTableView.delegate = self
         tripsTableView.dataSource = self
         tripsTableView.allowsSelection = true
+        tripsTableView.rowHeight = 200
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -127,7 +128,7 @@ extension TripsViewController {
     
 }
 
-// MARK: - Alert Functions
+// MARK: - Alerts
 extension TripsViewController {
     private func showQueryAlert(description: String?) {
         let alertController = UIAlertController(title: "Oops...", message: "\(description ?? "Please try again...")", preferredStyle: .alert)
