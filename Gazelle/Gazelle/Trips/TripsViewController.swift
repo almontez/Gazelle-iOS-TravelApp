@@ -8,6 +8,7 @@
 import UIKit
 import ParseSwift
 
+// MARK: - Views Life Cycle
 class TripsViewController: UIViewController, UITableViewDelegate {
     
     @IBOutlet weak var tripsTableView: UITableView!
@@ -28,11 +29,12 @@ class TripsViewController: UIViewController, UITableViewDelegate {
         super.viewWillAppear(animated)
         queryTrips()
     }
-    
-    @IBAction func deleteButtonTapped(_ sender: UIButton) {
-        deleteTrip(trip: trips[sender.tag])
-    }
-    
+}
+
+
+// MARK: - Segue Code
+extension TripsViewController {
+    // Prepare data for segue from Trips View Controller to Itinerary View Controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let cell = sender as? UITableViewCell,
            let indexPath = tripsTableView.indexPath(for: cell),
@@ -42,10 +44,12 @@ class TripsViewController: UIViewController, UITableViewDelegate {
         }
     }
     
+    // Unwind segue from Trip Form to Trips View Controller
     @IBAction func unwindToTrips(_ unwindSegue: UIStoryboardSegue) {
         createTrip(newTrip: newTrip)
     }
 }
+
 
 // MARK: - TableView Operations
 extension TripsViewController: UITableViewDataSource {
@@ -68,6 +72,7 @@ extension TripsViewController: UITableViewDataSource {
         return cell
     }
 }
+
 
 // MARK: - CRUD Operations
 extension TripsViewController {
@@ -127,6 +132,16 @@ extension TripsViewController {
     }
     
 }
+
+
+// MARK: - Button Actions
+extension TripsViewController {
+    @IBAction func deleteButtonTapped(_ sender: UIButton) {
+        deleteTrip(trip: trips[sender.tag])
+    }
+    
+}
+
 
 // MARK: - Alerts
 extension TripsViewController {
