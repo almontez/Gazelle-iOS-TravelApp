@@ -56,6 +56,9 @@ class TripsViewController: UIViewController, UITableViewDelegate {
             switch result {
             case .success(_):
                 print("❎ Trip Deleted!")
+                if let row = self?.trips.firstIndex(where: {$0.objectId == trip.objectId}) {
+                    self?.trips.remove(at: row)
+                }
             case .failure(let error):
                 self?.showDeleteAlert(description: error.localizedDescription)
             }
@@ -72,8 +75,7 @@ class TripsViewController: UIViewController, UITableViewDelegate {
     }
     
     @IBAction func unwindToTrips(_ unwindSegue: UIStoryboardSegue) {
-        let sourceViewController = unwindSegue.source
-        queryTrips()
+        print("Unwiding to Trips")
     }
     
     private func showQueryAlert(description: String?) {
