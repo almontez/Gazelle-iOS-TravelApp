@@ -45,6 +45,11 @@ class ItineraryViewController: UIViewController, UITableViewDelegate {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let ItineraryFormController = segue.destination as? ItineraryFormController
+        ItineraryFormController?.tripId = tripId
+    }
+    
     private func showAlert(description: String?) {
         let alertController = UIAlertController(title: "Oops...", message: "\(description ?? "Please try again...")", preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default)
@@ -52,10 +57,6 @@ class ItineraryViewController: UIViewController, UITableViewDelegate {
         present(alertController, animated: true)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let ItineraryFormController = segue.destination as? ItineraryFormController
-        ItineraryFormController?.tripId = tripId
-    }
 }
 
 

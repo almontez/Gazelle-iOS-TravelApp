@@ -11,7 +11,6 @@ import ParseSwift
 class TripsViewController: UIViewController, UITableViewDelegate {
     
     @IBOutlet weak var tripsTableView: UITableView!
-    @IBOutlet weak var deleteTripBtn: UIButton!
     
     private var trips = [Trip]() {
         didSet {
@@ -42,7 +41,6 @@ class TripsViewController: UIViewController, UITableViewDelegate {
             switch result {
             case .success(let trips):
                 self?.trips = trips
-                
             case .failure(let error):
                 self?.showQueryAlert(description: error.localizedDescription)
             }
@@ -71,6 +69,11 @@ class TripsViewController: UIViewController, UITableViewDelegate {
             let trip = trips[indexPath.section]
             ItineraryViewController.tripId = trip.objectId as String?
         }
+    }
+    
+    @IBAction func unwindToTrips(_ unwindSegue: UIStoryboardSegue) {
+        let sourceViewController = unwindSegue.source
+        queryTrips()
     }
     
     private func showQueryAlert(description: String?) {

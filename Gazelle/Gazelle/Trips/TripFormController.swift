@@ -42,10 +42,6 @@ class TripFormController: UIViewController {
                     switch result {
                     case .success(_):
                         print("✅ New Trip Saved!")
-
-                        // Return to previous view controller
-                        self?.dismiss(animated: true)
-                        
                     case .failure(let error):
                         // Failed to save new trip
                         self?.showAlert(description: error.localizedDescription)

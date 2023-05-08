@@ -780,6 +780,7 @@
                                         <connections>
                                             <action selector="saveBtnTapped:" destination="JYl-cW-gLn" eventType="touchUpInside" id="q2d-vF-wEu"/>
                                             <action selector="saveButtonTapped:" destination="0bJ-DE-vv3" eventType="touchUpInside" id="k4q-I5-U1m"/>
+                                            <segue destination="bbb-S5-VGQ" kind="unwind" unwindAction="unwindToTrips:" id="fCv-Gv-1uS"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -815,6 +816,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TnU-Hk-gI7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="bbb-S5-VGQ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-1274" y="2489"/>
         </scene>
