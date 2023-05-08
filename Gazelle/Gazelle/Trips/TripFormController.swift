@@ -21,10 +21,8 @@ class TripFormController: UIViewController {
         initializeHideKeyboard()
     }
     
-    @IBAction func saveBtnTapped(_ sender: UIButton) {
-        if (tripName.text == "" || tripLocation.text == "") {
-            tripFieldRequredAlert()
-        } else {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let TripsViewController = segue.destination as? TripsViewController {
             // Create new Trip object
             var newTrip = Trip()
             
@@ -36,26 +34,8 @@ class TripFormController: UIViewController {
             newTrip.startDate = formatDate(tripStartDate)
             newTrip.endDate = formatDate(tripEndDate)
             
-            // Save Trip
-            newTrip.save { [weak self] result in
-                DispatchQueue.main.async {
-                    switch result {
-                    case .success(_):
-                        print("✅ New Trip Saved!")
-                    case .failure(let error):
-                        // Failed to save new trip
-                        self?.showAlert(description: error.localizedDescription)
-                    }
-                }
-            }
+            TripsViewController.newTrip = newTrip
         }
-    }
-    
-    private func showAlert(description: String?) {
-        let alertController = UIAlertController(title: "Unable to Create Trip", message: description ?? "Unknown error", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
-        present(alertController, animated: true)
     }
     
     private func tripFieldRequredAlert() {

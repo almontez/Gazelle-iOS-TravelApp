@@ -645,7 +645,7 @@
                     <navigationItem key="navigationItem" title="Scheduled Trips" id="j1M-kO-jLh">
                         <barButtonItem key="rightBarButtonItem" image="plus.app" catalog="system" id="pcj-Bp-JeG">
                             <connections>
-                                <segue destination="JYl-cW-gLn" kind="showDetail" id="rkx-sd-OQj"/>
+                                <segue destination="JYl-cW-gLn" kind="presentation" identifier="segueToTripsForm" id="rkx-sd-OQj"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -778,9 +778,7 @@
                                         <state key="normal" title="Save"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Save"/>
                                         <connections>
-                                            <action selector="saveBtnTapped:" destination="JYl-cW-gLn" eventType="touchUpInside" id="q2d-vF-wEu"/>
-                                            <action selector="saveButtonTapped:" destination="0bJ-DE-vv3" eventType="touchUpInside" id="k4q-I5-U1m"/>
-                                            <segue destination="bbb-S5-VGQ" kind="unwind" identifier="unwindToTrips" unwindAction="unwindToTrips:" id="fCv-Gv-1uS"/>
+                                            <segue destination="bbb-S5-VGQ" kind="unwind" unwindAction="unwindToTrips:" id="bXw-qU-gCC"/>
                                         </connections>
                                     </button>
                                 </subviews>

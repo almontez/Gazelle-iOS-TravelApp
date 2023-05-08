@@ -11,12 +11,9 @@ import ParseSwift
 class TripsViewController: UIViewController, UITableViewDelegate {
     
     @IBOutlet weak var tripsTableView: UITableView!
+    var newTrip = Trip()
     
-    private var trips = [Trip]() {
-        didSet {
-            tripsTableView.reloadData()
-        }
-    }
+    private var trips = [Trip]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,38 +28,8 @@ class TripsViewController: UIViewController, UITableViewDelegate {
         queryTrips()
     }
     
-    private func queryTrips() {
-        // Create query to fetch Trips for User
-        let userId = User.current?.objectId
-        let query = Trip.query("userId" == "\(userId!)")
-    
-        // Fetch Trip objects from DB
-        query.find { [weak self] result in
-            switch result {
-            case .success(let trips):
-                self?.trips = trips
-            case .failure(let error):
-                self?.showQueryAlert(description: error.localizedDescription)
-            }
-        }
-    }
-    
     @IBAction func deleteButtonTapped(_ sender: UIButton) {
         deleteTrip(trip: trips[sender.tag])
-    }
-    
-    private func deleteTrip(trip: Trip) {
-        trip.delete { [weak self] result in
-            switch result {
-            case .success(_):
-                print("❎ Trip Deleted!")
-                if let row = self?.trips.firstIndex(where: {$0.objectId == trip.objectId}) {
-                    self?.trips.remove(at: row)
-                }
-            case .failure(let error):
-                self?.showDeleteAlert(description: error.localizedDescription)
-            }
-        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -75,24 +42,11 @@ class TripsViewController: UIViewController, UITableViewDelegate {
     }
     
     @IBAction func unwindToTrips(_ unwindSegue: UIStoryboardSegue) {
-        print("Unwiding to Trips")
-    }
-    
-    private func showQueryAlert(description: String?) {
-        let alertController = UIAlertController(title: "Oops...", message: "\(description ?? "Please try again...")", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
-        present(alertController, animated: true)
-    }
-    
-    private func showDeleteAlert(description: String?) {
-        let alertController = UIAlertController(title: "Unable to Delete Trip", message: description ?? "Unknown error", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
-        present(alertController, animated: true)
+        createTrip(newTrip: newTrip)
     }
 }
 
+// MARK: - TableView Operations
 extension TripsViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return trips.count
@@ -114,3 +68,85 @@ extension TripsViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - CRUD Operations
+extension TripsViewController {
+    func createTrip(newTrip: Trip) {
+        newTrip.save { [weak self] result in
+            guard let self = self else {return}
+            switch result {
+            case .success(let savedTrip):
+                print("✅ New Trip Saved")
+                self.trips.append(savedTrip)
+                DispatchQueue.main.async {
+                    self.tripsTableView.reloadData()
+                }
+            case .failure(let error):
+                self.showCreationFailureAlert(description: error.localizedDescription)
+            }
+        }
+    }
+    
+    private func queryTrips() {
+        // Create query to fetch Trips for User
+        let userId = User.current?.objectId
+        let query = Trip.query("userId" == "\(userId!)")
+    
+        // Fetch Trip objects from DB
+        query.find { [weak self] result in
+            switch result {
+            case .success(let trips):
+                print("✅ Trip Query Completed")
+                self?.trips = trips
+                DispatchQueue.main.async {
+                    self?.tripsTableView.reloadData()
+                }
+            case .failure(let error):
+                self?.showQueryAlert(description: error.localizedDescription)
+            }
+        }
+    }
+    
+    func updateObjects() {}
+    
+    private func deleteTrip(trip: Trip) {
+        trip.delete { [weak self] result in
+            switch result {
+            case .success(_):
+                print("❎ Trip Deleted!")
+                if let row = self?.trips.firstIndex(where: {$0.objectId == trip.objectId}) {
+                    self?.trips.remove(at: row)
+                    DispatchQueue.main.async {
+                        self?.tripsTableView.reloadData()
+                    }
+                }
+            case .failure(let error):
+                self?.showDeleteAlert(description: error.localizedDescription)
+            }
+        }
+    }
+    
+}
+
+// MARK: - Alert Functions
+extension TripsViewController {
+    private func showQueryAlert(description: String?) {
+        let alertController = UIAlertController(title: "Oops...", message: "\(description ?? "Please try again...")", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(action)
+        present(alertController, animated: true)
+    }
+    
+    private func showDeleteAlert(description: String?) {
+        let alertController = UIAlertController(title: "Unable to Delete Trip", message: description ?? "Unknown error", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(action)
+        present(alertController, animated: true)
+    }
+    
+    private func showCreationFailureAlert(description: String?) {
+        let alertController = UIAlertController(title: "Unable to Create Trip", message: description ?? "Unknown error", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(action)
+        present(alertController, animated: true)
+    }
+}
