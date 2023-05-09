@@ -65,6 +65,8 @@ extension ItineraryViewController: UITableViewDataSource {
                 ItineraryItemCell else {
                 return UITableViewCell()
         }
+        
+        cell.eventDeleteBtn.tag = indexPath.section
         cell.configure(with: itineraryItems[indexPath.section])
         return cell
     }
@@ -110,13 +112,32 @@ extension ItineraryViewController {
     
     private func updateItineraryItem() {}
     
-    private func deleteItinteraryItem() {}
+    private func deleteItinteraryItem(event: ItineraryItem) {
+        event.delete { [weak self] result in
+            switch result {
+            case .success(_):
+                print("❎ Event Deleted!")
+                if let row = self?.itineraryItems.firstIndex(where: {$0.objectId == event.objectId}) {
+                    self?.itineraryItems.remove(at: row)
+                    DispatchQueue.main.async {
+                        self?.itineraryTableView.reloadData()
+                    }
+                }
+            case .failure(let error):
+                self?.showDeleteAlert(description: error.localizedDescription)
+            }
+        }
+    }
     
 }
 
 
 // MARK: - Button Actions
-extension ItineraryViewController {}
+extension ItineraryViewController {
+    @IBAction func deleteBtnTapped(_ sender: UIButton) {
+        deleteItinteraryItem(event: itineraryItems[sender.tag])
+    }
+}
 
 
 // MARK: - Alerts
