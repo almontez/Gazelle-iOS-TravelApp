@@ -670,6 +670,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Trips" id="j1M-kO-jLh">
+                        <barButtonItem key="leftBarButtonItem" title="Log Out" id="lde-aa-7yb">
+                            <connections>
+                                <action selector="onLogOutTapped:" destination="qoO-Iu-Ah1" id="3ab-UD-XYi"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="plus.app" catalog="system" id="pcj-Bp-JeG">
                             <connections>
                                 <segue destination="JYl-cW-gLn" kind="presentation" identifier="segueToTripsForm" id="rkx-sd-OQj"/>
