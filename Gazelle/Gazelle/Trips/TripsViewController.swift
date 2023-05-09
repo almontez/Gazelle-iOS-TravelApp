@@ -41,6 +41,7 @@ extension TripsViewController {
            let ItineraryViewController = segue.destination as? ItineraryViewController {
             let trip = trips[indexPath.section]
             ItineraryViewController.tripId = trip.objectId as String?
+            ItineraryViewController.navigationItem.title = trip.title as String?
         }
     }
     

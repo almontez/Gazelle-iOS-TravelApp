@@ -558,7 +558,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T7E-sE-2c4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="eNQ-SL-RKt" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="389" y="2489"/>
+            <point key="canvasLocation" x="387" y="2489"/>
         </scene>
         <!--Trips View Controller-->
         <scene sceneID="SwH-bk-Gzf">
@@ -669,7 +669,7 @@
                             <constraint firstItem="uZe-Nf-fMu" firstAttribute="bottom" secondItem="kRh-99-6ZY" secondAttribute="bottom" id="dub-tk-x3z"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Scheduled Trips" id="j1M-kO-jLh">
+                    <navigationItem key="navigationItem" title="Trips" id="j1M-kO-jLh">
                         <barButtonItem key="rightBarButtonItem" image="plus.app" catalog="system" id="pcj-Bp-JeG">
                             <connections>
                                 <segue destination="JYl-cW-gLn" kind="presentation" identifier="segueToTripsForm" id="rkx-sd-OQj"/>
