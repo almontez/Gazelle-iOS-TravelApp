@@ -25,11 +25,16 @@ class ItineraryFormController: UIViewController {
         initializeHideKeyboard()
     }
     
-    // citation: https://stackoverflow.com/questions/44346811/extracting-hours-and-minutes-from-uidatepicker
     @IBAction func saveButtonTapped(_ sender: UIButton) {
         if (eventTextField.text == "" || locationTextField.text == "") {
             itineraryItemFieldRequredAlert()
         } else {
+            performSegue(withIdentifier: "unwindToItinerary", sender: nil)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let ItineraryViewController = segue.destination as? ItineraryViewController {
             // Create Itinerary Item
             var newItem = ItineraryItem()
             
@@ -43,29 +48,8 @@ class ItineraryFormController: UIViewController {
             newItem.description = descriptionTextField.text
             newItem.tripId = tripId!
             
-            // Save Itinerary Item
-            newItem.save { [weak self] result in
-                DispatchQueue.main.async {
-                    switch result {
-                    case .success(_):
-                        print("✅ New Itinerary Item Saved!")
-                        
-                        // Return to previous view controller
-                        self?.dismiss(animated: true)
-                        
-                    case .failure(let error):
-                        self?.showAlert(description: error.localizedDescription)
-                    }
-                }
-            }
+            ItineraryViewController.newEvent = newItem
         }
-    }
-    
-    private func showAlert(description: String?) {
-        let alertController = UIAlertController(title: "Unable to Save Itinerary Item", message: description ?? "Unknown error", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
-        present(alertController, animated: true)
     }
     
     private func itineraryItemFieldRequredAlert() {
@@ -75,6 +59,7 @@ class ItineraryFormController: UIViewController {
         present(alertController, animated: true)
     }
     
+    // citation: https://stackoverflow.com/questions/44346811/extracting-hours-and-minutes-from-uidatepicker
     private func formatDate(_ date: UIDatePicker) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM dd, yyyy"
