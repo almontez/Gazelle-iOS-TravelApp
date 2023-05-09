@@ -8,13 +8,13 @@
 import UIKit
 import ParseSwift
 
-// MARK: - Views Life Cycle
+// MARK: - View Life Cycle
 class TripsViewController: UIViewController, UITableViewDelegate {
     
-    @IBOutlet weak var tripsTableView: UITableView!
     var newTrip = Trip()
-    
     private var trips = [Trip]()
+    
+    @IBOutlet weak var tripsTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,18 +76,17 @@ extension TripsViewController: UITableViewDataSource {
 
 // MARK: - CRUD Operations
 extension TripsViewController {
-    func createTrip(newTrip: Trip) {
+    private func createTrip(newTrip: Trip) {
         newTrip.save { [weak self] result in
-            guard let self = self else {return}
             switch result {
             case .success(let savedTrip):
                 print("✅ New Trip Saved")
-                self.trips.append(savedTrip)
+                self?.trips.append(savedTrip)
                 DispatchQueue.main.async {
-                    self.tripsTableView.reloadData()
+                    self?.tripsTableView.reloadData()
                 }
             case .failure(let error):
-                self.showCreationFailureAlert(description: error.localizedDescription)
+                self?.showCreationFailureAlert(description: error.localizedDescription)
             }
         }
     }
@@ -112,7 +111,7 @@ extension TripsViewController {
         }
     }
     
-    func updateObjects() {}
+    private func updateObjects() {}
     
     private func deleteTrip(trip: Trip) {
         trip.delete { [weak self] result in

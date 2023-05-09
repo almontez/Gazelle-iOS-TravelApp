@@ -527,9 +527,11 @@
                         <outlet property="locationTextField" destination="FMR-c1-8ig" id="52e-M1-2aB"/>
                         <outlet property="startDatePicker" destination="33j-yq-H9M" id="aAg-9y-1JP"/>
                         <outlet property="startTimePicker" destination="PvU-YJ-nNV" id="d0e-ox-vwl"/>
+                        <segue destination="eNQ-SL-RKt" kind="unwind" identifier="unwindToItinerary" unwindAction="unwindToItinerary:" id="oRy-qd-YDD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T7E-sE-2c4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="eNQ-SL-RKt" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="389" y="2489"/>
         </scene>
@@ -778,7 +780,7 @@
                                         <state key="normal" title="Save"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Save"/>
                                         <connections>
-                                            <segue destination="bbb-S5-VGQ" kind="unwind" unwindAction="unwindToTrips:" id="bXw-qU-gCC"/>
+                                            <action selector="saveBtnTapped:" destination="JYl-cW-gLn" eventType="touchUpInside" id="Zcx-PE-A1Z"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -811,6 +813,7 @@
                         <outlet property="tripLocation" destination="Jao-YS-KmZ" id="omD-xz-Qc4"/>
                         <outlet property="tripName" destination="RKg-qX-uL7" id="tje-eE-IVg"/>
                         <outlet property="tripStartDate" destination="8cZ-v3-3zb" id="e5M-h8-aMI"/>
+                        <segue destination="bbb-S5-VGQ" kind="unwind" identifier="unwindToTrips" unwindAction="unwindToTrips:" id="WXU-QV-UBg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TnU-Hk-gI7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

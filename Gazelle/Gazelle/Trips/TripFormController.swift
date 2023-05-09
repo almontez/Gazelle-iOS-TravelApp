@@ -21,6 +21,15 @@ class TripFormController: UIViewController {
         initializeHideKeyboard()
     }
     
+    @IBAction func saveBtnTapped(_ sender: Any) {
+        if (tripName.text == "" || tripLocation.text == "") {
+            print("Empty")
+            tripFieldRequredAlert()
+        } else {
+            performSegue(withIdentifier: "unwindToTrips", sender: nil)
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let TripsViewController = segue.destination as? TripsViewController {
             // Create new Trip object
