@@ -18,6 +18,7 @@
 		0B43044829F87C0B00A03026 /* TripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B43044729F87C0B00A03026 /* TripsViewController.swift */; };
 		0B4FDD8429F75DC200B60588 /* ItineraryFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4FDD8329F75DC200B60588 /* ItineraryFormController.swift */; };
 		0B4FDD8629F779D800B60588 /* ItineraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4FDD8529F779D800B60588 /* ItineraryViewController.swift */; };
+		0BEB4A8E2A0C118C00EFB55C /* TripEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEB4A8D2A0C118C00EFB55C /* TripEditController.swift */; };
 		0BFFAB3329E640FE002C249E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFFAB3229E640FE002C249E /* AppDelegate.swift */; };
 		0BFFAB3529E640FE002C249E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFFAB3429E640FE002C249E /* SceneDelegate.swift */; };
 		0BFFAB3A29E640FE002C249E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BFFAB3829E640FE002C249E /* Main.storyboard */; };
@@ -39,6 +40,7 @@
 		0B43044729F87C0B00A03026 /* TripsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsViewController.swift; sourceTree = "<group>"; };
 		0B4FDD8329F75DC200B60588 /* ItineraryFormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryFormController.swift; sourceTree = "<group>"; };
 		0B4FDD8529F779D800B60588 /* ItineraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryViewController.swift; sourceTree = "<group>"; };
+		0BEB4A8D2A0C118C00EFB55C /* TripEditController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripEditController.swift; sourceTree = "<group>"; };
 		0BFFAB2F29E640FE002C249E /* Gazelle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gazelle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BFFAB3229E640FE002C249E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0BFFAB3429E640FE002C249E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				0B43044529F87AA300A03026 /* TripFormController.swift */,
 				0B43044729F87C0B00A03026 /* TripsViewController.swift */,
 				0B092BD229F8ACCA0008B7D9 /* TripCell.swift */,
+				0BEB4A8D2A0C118C00EFB55C /* TripEditController.swift */,
 			);
 			path = Trips;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 				0B031C2029F195AF00FB4A70 /* ItineraryItems.swift in Sources */,
 				0BFFAB3329E640FE002C249E /* AppDelegate.swift in Sources */,
 				0B031C1C29F1958D00FB4A70 /* Trip.swift in Sources */,
+				0BEB4A8E2A0C118C00EFB55C /* TripEditController.swift in Sources */,
 				0B16853729EF11610069DDCA /* LocationSearchTable.swift in Sources */,
 				0BFFAB3529E640FE002C249E /* SceneDelegate.swift in Sources */,
 				0B2BFD9629ED93BA007ED65B /* MapViewController.swift in Sources */,

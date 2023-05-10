@@ -36,12 +36,23 @@ class TripsViewController: UIViewController, UITableViewDelegate {
 extension TripsViewController {
     // Prepare data for segue from Trips View Controller to Itinerary View Controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let cell = sender as? UITableViewCell,
-           let indexPath = tripsTableView.indexPath(for: cell),
-           let ItineraryViewController = segue.destination as? ItineraryViewController {
-            let trip = trips[indexPath.section]
-            ItineraryViewController.tripId = trip.objectId as String?
-            ItineraryViewController.navigationItem.title = trip.title as String?
+        switch segue.identifier {
+        case "segueToEdit":
+            if let btn = sender as? UIButton,
+               let TripEditController = segue.destination as? TripEditController {
+                let trip = trips[btn.tag]
+                TripEditController.tripId = trip.objectId as String?
+            }
+        case "segueToItinerary":
+            if let cell = sender as? UITableViewCell,
+               let indexPath = tripsTableView.indexPath(for: cell),
+               let ItineraryViewController = segue.destination as? ItineraryViewController {
+                let trip = trips[indexPath.section]
+                ItineraryViewController.tripId = trip.objectId as String?
+                ItineraryViewController.navigationItem.title = trip.title as String?
+            }
+        default:
+            print("Default Option: \(segue.identifier!)")
         }
     }
     
@@ -69,6 +80,7 @@ extension TripsViewController: UITableViewDataSource {
         }
         
         cell.deleteTripBtn.tag = indexPath.section
+        cell.editTripBtn.tag = indexPath.section
         cell.configure(with: trips[indexPath.section])
         return cell
     }
@@ -150,7 +162,6 @@ extension TripsViewController {
         alertController.addAction(cancelAction)
         present(alertController, animated: true)
     }
-    
 }
 
 
