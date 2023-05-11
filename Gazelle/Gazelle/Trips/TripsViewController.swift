@@ -39,7 +39,7 @@ extension TripsViewController {
     // Prepare data for segue from Trips View Controller to Itinerary View Controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
-        case "segueToEdit":
+        case "segueToEditTrip":
             if let btn = sender as? UIButton,
                let TripEditController = segue.destination as? TripEditController {
                 let trip = trips[btn.tag]

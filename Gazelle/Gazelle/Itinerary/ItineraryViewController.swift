@@ -24,7 +24,7 @@ class ItineraryViewController: UIViewController, UITableViewDelegate {
         itineraryTableView.delegate = self
         itineraryTableView.dataSource = self
         itineraryTableView.allowsSelection = false
-        itineraryTableView.rowHeight = 200
+        itineraryTableView.rowHeight = 250
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,8 +38,19 @@ class ItineraryViewController: UIViewController, UITableViewDelegate {
 extension ItineraryViewController {
     // Send tripId to Itinerary Form Controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let ItineraryFormController = segue.destination as? ItineraryFormController
-        ItineraryFormController?.tripId = tripId
+        switch segue.identifier {
+        case "segueToEditEvent":
+            if let btn = sender as? UIButton,
+               let ItineraryEditController = segue.destination as? ItineraryEditController {
+                let event = itineraryItems[btn.tag]
+                ItineraryEditController.itineraryItemId = event.objectId as String?
+            }
+        case "segueToItineraryForm":
+            let ItineraryFormController = segue.destination as? ItineraryFormController
+            ItineraryFormController?.tripId = tripId
+        default:
+            print("❌ Segue from Itinerary View Controller Unknown")
+        }
     }
     
     // Unwind segue from Itinerary Event Form to Itinerary View Controller
