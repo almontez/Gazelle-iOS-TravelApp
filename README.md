@@ -31,21 +31,14 @@ GIF created with Apple Simulator
 **Implemented Stories**
 
 * Users can log in, sign up, and log out
-* Users can view, create, and delete scheduled trips
-* Users can view, create, and delete itinerary events
+* Users can view, create, edit, and delete scheduled trips
+* Users can view, create, edit, and delete itinerary events
 * Users can view a map
 * Users can search the map based on zip code or other geolocation data
 
 **Future User Stories**
 
-* Users can edit their scheduled trips
-* Users can edit their itinerary events
 * Users can add points of interest from the map to their itinerary
-
-**Optional Nice-to-have Stories**
-
-* Users can receive notifications about what's next in their itinerary
-* Users can invite friends to edit itinerary 
 
 ### 2. Screen Archetypes
 
