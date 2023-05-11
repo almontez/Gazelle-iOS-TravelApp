@@ -26,7 +26,6 @@ class ItineraryViewController: UIViewController, UITableViewDelegate {
         itineraryTableView.delegate = self
         itineraryTableView.dataSource = self
         itineraryTableView.allowsSelection = false
-        itineraryTableView.rowHeight = 250
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -111,7 +110,7 @@ extension ItineraryViewController {
     
     private func queryItineraryItems() {
         // Create query to fetch Itinerary Items for Trip
-        let query = ItineraryItem.query("tripId" == "\(tripId!)")
+        let query = ItineraryItem.query("tripId" == "\(tripId!)").order([.ascending("startDate"), .descending("startTime")])
         
         // Fetch Itinerary Item Objects from DB
         query.find { [weak self] result in

@@ -24,7 +24,6 @@ class TripsViewController: UIViewController, UITableViewDelegate {
         tripsTableView.delegate = self
         tripsTableView.dataSource = self
         tripsTableView.allowsSelection = true
-        tripsTableView.rowHeight = 200
     }
     
     override func viewWillAppear(_ animated: Bool) {
