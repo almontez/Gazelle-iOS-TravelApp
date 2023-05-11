@@ -326,6 +326,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="eventDeleteBtn" destination="Afk-RG-ncT" id="EaZ-Ot-mSj"/>
+                                            <outlet property="eventUpdateBtn" destination="pCh-Ov-qCM" id="kby-Ok-zHL"/>
                                             <outlet property="itemDates" destination="8hi-6x-jBf" id="c4J-je-LTH"/>
                                             <outlet property="itemDescription" destination="UZZ-gG-QHy" id="c2e-Ns-Har"/>
                                             <outlet property="itemLocation" destination="Pd4-UY-wWu" id="mZz-On-bgo"/>
@@ -1225,6 +1226,7 @@
                                                     </label>
                                                     <datePicker toolTip="Help" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="jOS-ic-fm3">
                                                         <rect key="frame" x="0.0" y="28.333333333333314" width="166.33333333333334" height="72"/>
+                                                        <locale key="locale" localeIdentifier="en_US"/>
                                                     </datePicker>
                                                 </subviews>
                                             </stackView>
@@ -1256,8 +1258,9 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="0TZ-e4-Vb1">
+                                                    <datePicker tag="1" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="0TZ-e4-Vb1">
                                                         <rect key="frame" x="0.0" y="28.333333333333314" width="166.33333333333334" height="50"/>
+                                                        <locale key="locale" localeIdentifier="en_US"/>
                                                     </datePicker>
                                                 </subviews>
                                             </stackView>

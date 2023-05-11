@@ -78,6 +78,7 @@ extension ItineraryViewController: UITableViewDataSource {
         }
         
         cell.eventDeleteBtn.tag = indexPath.section
+        cell.eventUpdateBtn.tag = indexPath.section
         cell.configure(with: itineraryItems[indexPath.section])
         return cell
     }

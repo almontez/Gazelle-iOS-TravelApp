@@ -51,8 +51,9 @@ extension ItineraryEditController {
         locationTextField.text = foundItem.location
         descriptionTextField.text = foundItem.description
         startDatePicker.date = formatOldDate(foundItem.startDate)
-        formatOldTime(date: foundItem.startDate, time: foundItem.startTime)
+        formatOldTime(time: foundItem.startTime!, picker: startTimePicker)
         endDatePicker.date = formatOldDate(foundItem.endDate)
+        formatOldTime(time: foundItem.endTime!, picker: endTimePicker)
     }
     
     private func formatOldDate(_ date: String?) -> Date {
@@ -62,12 +63,41 @@ extension ItineraryEditController {
         return formattedDate!
     }
     
-    private func formatOldTime(date: String?, time: String?) {
-        print(time)
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMMM dd, yyyy'T'HH:mm:ssZZZZZ"
-        let formattedDate = dateFormatter.date(from: time!)
-        print(formattedDate)
+    // Citation: https://stackoverflow.com/questions/28985483/how-to-change-uidatepicker-to-a-specific-time-in-code
+    private func formatOldTime(time: String, picker: UIDatePicker) {
+        // Time Separators
+        let separatorIdx = time.firstIndex(of: ":")!
+        let meridiemSeparator = time.firstIndex(of: " ")!
+        // Get hr from string
+        let hrIdx = time.index(before: separatorIdx)
+        var hr = Int(time[...hrIdx])
+        // Get mins from string
+        let minStart = time.index(after: separatorIdx)
+        let minEnd = time.index(before: meridiemSeparator)
+        let min = Int(time[minStart...minEnd])
+        // Get AM/PM from string
+        let meridiemStart = time.index(after: meridiemSeparator)
+        let meridiem = time[meridiemStart...]
+        
+        // Convert hr to 24 hr format
+        if meridiem == "PM" && hr! != 12 {
+            hr! += 12
+        } else if meridiem == "AM" && hr! == 12 {
+            hr! -= 12
+        }
+        
+        // Update time on UIDatePicker
+        let calendar = Calendar.current
+        var components = DateComponents()
+        components.hour = hr!
+        components.minute = min!
+        
+        if picker.tag == 0 {
+            startTimePicker.setDate(calendar.date(from: components)!, animated: false)
+        } else {
+            endTimePicker.setDate(calendar.date(from: components)!, animated: false)
+        }
+
     }
     
     private func formatNewDate(_ date: UIDatePicker) -> String {
