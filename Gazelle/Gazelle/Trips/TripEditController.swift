@@ -21,13 +21,10 @@ class TripEditController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initializeHideKeyboard()
         findSpecificTrip(id: tripId!)
     }
-}
-
-
-// MARK: Database Related Operations
-extension TripEditController {
+    
     private func findSpecificTrip(id tripId: String) {
         let query = Trip.query("objectId" == "\(tripId)")
         
@@ -42,7 +39,34 @@ extension TripEditController {
             }
         }
     }
+    
+    @IBAction func updateBtnTapped(_ sender: UIButton) {
+        if (tripName.text == "" || tripLocation.text == "") {
+            tripFieldRequredAlert()
+        } else {
+            performSegue(withIdentifier: "unwindToUpdatedTrips", sender: nil)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let TripsViewController = segue.destination as? TripsViewController {
+            // Create new Trip object
+            var updatedTrip = Trip()
+            
+            // Set Properties
+            updatedTrip.title = tripName.text
+            updatedTrip.description = tripDescription.text
+            updatedTrip.userId = User.current?.objectId as String?
+            updatedTrip.location = tripLocation.text
+            updatedTrip.startDate = formatNewDate(tripStartDate)
+            updatedTrip.endDate = formatNewDate(tripEndDate)
+            
+            TripsViewController.updatedTrip = updatedTrip
+            TripsViewController.updatedTripId = tripId
+        }
+    }
 }
+
 
 // MARK: - UI Related Functions
 extension TripEditController {
@@ -50,16 +74,24 @@ extension TripEditController {
         tripName.text = foundTrip.title
         tripLocation.text = foundTrip.location
         tripDescription.text = foundTrip.description
-        tripStartDate.date = formatDate(foundTrip.startDate)
-        tripEndDate.date = formatDate(foundTrip.endDate)
+        tripStartDate.date = formatOldDate(foundTrip.startDate)
+        tripEndDate.date = formatOldDate(foundTrip.endDate)
     }
     
-    private func formatDate(_ date: String?) -> Date {
+    private func formatOldDate(_ date: String?) -> Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM dd, yyyy"
         let formattedDate = dateFormatter.date(from: date!)
         return formattedDate!
     }
+    
+    private func formatNewDate(_ date: UIDatePicker) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM dd, yyyy"
+        let dateString = dateFormatter.string(from: date.date)
+        return dateString
+    }
+    
 }
 
 
@@ -70,5 +102,24 @@ extension TripEditController {
         let action = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(action)
         present(alertController, animated: true)
+    }
+    
+    private func tripFieldRequredAlert() {
+        let alertController = UIAlertController(title: "Required", message: "The the name, location, and dates of your trip are required.", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(action)
+        present(alertController, animated: true)
+    }
+}
+
+// citation: https://www.cometchat.com/tutorials/how-to-dismiss-ios-keyboard-swift
+extension TripEditController {
+    func initializeHideKeyboard() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissMyKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissMyKeyboard(){
+        view.endEditing(true)
     }
 }

@@ -12,6 +12,8 @@ import ParseSwift
 class TripsViewController: UIViewController, UITableViewDelegate {
     
     var newTrip = Trip()
+    var updatedTrip = Trip()
+    var updatedTripId: String?
     private var trips = [Trip]()
     
     @IBOutlet weak var tripsTableView: UITableView!
@@ -60,6 +62,10 @@ extension TripsViewController {
     @IBAction func unwindToTrips(_ unwindSegue: UIStoryboardSegue) {
         createTrip(newTrip: newTrip)
     }
+    
+    @IBAction func unwindToUpdatedTrips(_ unwindSegue: UIStoryboardSegue) {
+        updateTrip(tripId: updatedTripId!, updatedTrip: updatedTrip)
+    }
 }
 
 
@@ -107,7 +113,7 @@ extension TripsViewController {
     private func queryTrips() {
         // Create query to fetch Trips for User
         let userId = User.current?.objectId
-        let query = Trip.query("userId" == "\(userId!)")
+        let query = Trip.query("userId" == "\(userId!)").order([.descending("startDate")])
     
         // Fetch Trip objects from DB
         query.find { [weak self] result in
@@ -124,7 +130,30 @@ extension TripsViewController {
         }
     }
     
-    private func updateObjects() {}
+    private func updateTrip(tripId: String, updatedTrip: Trip) {
+        var trip = Trip(objectId: tripId)
+     
+        trip.title = updatedTrip.title
+        trip.description = updatedTrip.description
+        trip.userId = updatedTrip.userId
+        trip.location = updatedTrip.location
+        trip.startDate = updatedTrip.startDate
+        trip.endDate = updatedTrip.endDate
+        
+        trip.save { [weak self] result in
+            switch result {
+            case .success:
+                if let row = self?.trips.firstIndex(where: { $0.objectId == trip.objectId }) {
+                    self?.trips[row] = trip
+                    DispatchQueue.main.async {
+                        self?.tripsTableView.reloadData()
+                    }
+                }
+            case .failure(let error):
+                self?.showUpdateFailureAlert(description: error.localizedDescription)
+            }
+        }
+    }
     
     private func deleteTrip(trip: Trip) {
         trip.delete { [weak self] result in
@@ -183,6 +212,13 @@ extension TripsViewController {
     
     private func showCreationFailureAlert(description: String?) {
         let alertController = UIAlertController(title: "Unable to Create Trip", message: description ?? "Unknown error", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(action)
+        present(alertController, animated: true)
+    }
+    
+    private func showUpdateFailureAlert(description: String?) {
+        let alertController = UIAlertController(title: "Unable to Update Trip", message: description ?? "Unknown error", preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(action)
         present(alertController, animated: true)

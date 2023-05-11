@@ -1089,7 +1089,10 @@
                                         <rect key="frame" x="0.0" y="418" width="343" height="34.333333333333314"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="Save"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Save"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Update"/>
+                                        <connections>
+                                            <action selector="updateBtnTapped:" destination="nO5-oi-C23" eventType="touchUpInside" id="8Tn-4d-h3R"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -1121,9 +1124,11 @@
                         <outlet property="tripLocation" destination="DaQ-G4-t1v" id="9ap-ue-Qiv"/>
                         <outlet property="tripName" destination="G3O-JJ-fYj" id="jlS-g5-Fi8"/>
                         <outlet property="tripStartDate" destination="Gag-9B-NTs" id="FUu-Qa-pi5"/>
+                        <segue destination="r4b-lz-3xP" kind="unwind" identifier="unwindToUpdatedTrips" unwindAction="unwindToUpdatedTrips:" id="8bQ-AI-5OZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UgJ-3c-Iej" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="r4b-lz-3xP" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-811" y="2489"/>
         </scene>
