@@ -12,6 +12,8 @@ import ParseSwift
 class TripsViewController: UIViewController, UITableViewDelegate {
     
     var newTrip = Trip()
+    var updatedTrip = Trip()
+    var updatedTripId: String?
     private var trips = [Trip]()
     
     @IBOutlet weak var tripsTableView: UITableView!
@@ -22,7 +24,6 @@ class TripsViewController: UIViewController, UITableViewDelegate {
         tripsTableView.delegate = self
         tripsTableView.dataSource = self
         tripsTableView.allowsSelection = true
-        tripsTableView.rowHeight = 200
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,18 +37,38 @@ class TripsViewController: UIViewController, UITableViewDelegate {
 extension TripsViewController {
     // Prepare data for segue from Trips View Controller to Itinerary View Controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let cell = sender as? UITableViewCell,
-           let indexPath = tripsTableView.indexPath(for: cell),
-           let ItineraryViewController = segue.destination as? ItineraryViewController {
-            let trip = trips[indexPath.section]
-            ItineraryViewController.tripId = trip.objectId as String?
-            ItineraryViewController.navigationItem.title = trip.title as String?
+        switch segue.identifier {
+        case "segueToEditTrip":
+            if let btn = sender as? UIButton,
+               let TripEditController = segue.destination as? TripEditController {
+                let trip = trips[btn.tag]
+                TripEditController.tripId = trip.objectId as String?
+            }
+        case "segueToItinerary":
+            if let cell = sender as? UITableViewCell,
+               let indexPath = tripsTableView.indexPath(for: cell),
+               let ItineraryViewController = segue.destination as? ItineraryViewController {
+                let trip = trips[indexPath.section]
+                ItineraryViewController.tripId = trip.objectId as String?
+                ItineraryViewController.navigationItem.title = trip.title as String?
+            }
+        default:
+            print("Default Option: \(segue.identifier!)")
         }
     }
     
     // Unwind segue from Trip Form to Trips View Controller
     @IBAction func unwindToTrips(_ unwindSegue: UIStoryboardSegue) {
         createTrip(newTrip: newTrip)
+    }
+    
+    @IBAction func unwindToUpdatedTrips(_ unwindSegue: UIStoryboardSegue) {
+        updateTrip(tripId: updatedTripId!, updatedTrip: updatedTrip)
+    }
+    
+    @IBAction func unwindToCancelTripForm(_ unwindSegue: UIStoryboardSegue) {
+        _ = unwindSegue.source
+        // Use data from the view controller which initiated the unwind segue
     }
 }
 
@@ -69,6 +90,7 @@ extension TripsViewController: UITableViewDataSource {
         }
         
         cell.deleteTripBtn.tag = indexPath.section
+        cell.editTripBtn.tag = indexPath.section
         cell.configure(with: trips[indexPath.section])
         return cell
     }
@@ -76,6 +98,7 @@ extension TripsViewController: UITableViewDataSource {
 
 
 // MARK: - CRUD Operations
+// Citation: https://www.back4app.com/docs/ios/parse-swift-sdk/data-objects/swift-crud-database-operations
 extension TripsViewController {
     private func createTrip(newTrip: Trip) {
         newTrip.save { [weak self] result in
@@ -95,7 +118,7 @@ extension TripsViewController {
     private func queryTrips() {
         // Create query to fetch Trips for User
         let userId = User.current?.objectId
-        let query = Trip.query("userId" == "\(userId!)")
+        let query = Trip.query("userId" == "\(userId!)").order([.descending("startDate")])
     
         // Fetch Trip objects from DB
         query.find { [weak self] result in
@@ -112,7 +135,31 @@ extension TripsViewController {
         }
     }
     
-    private func updateObjects() {}
+    private func updateTrip(tripId: String, updatedTrip: Trip) {
+        var trip = Trip(objectId: tripId)
+     
+        trip.title = updatedTrip.title
+        trip.description = updatedTrip.description
+        trip.userId = updatedTrip.userId
+        trip.location = updatedTrip.location
+        trip.startDate = updatedTrip.startDate
+        trip.endDate = updatedTrip.endDate
+        
+        trip.save { [weak self] result in
+            switch result {
+            case .success:
+                print("✅ Trip Updated")
+                if let row = self?.trips.firstIndex(where: { $0.objectId == trip.objectId }) {
+                    self?.trips[row] = trip
+                    DispatchQueue.main.async {
+                        self?.tripsTableView.reloadData()
+                    }
+                }
+            case .failure(let error):
+                self?.showUpdateFailureAlert(description: error.localizedDescription)
+            }
+        }
+    }
     
     private func deleteTrip(trip: Trip) {
         trip.delete { [weak self] result in
@@ -150,7 +197,6 @@ extension TripsViewController {
         alertController.addAction(cancelAction)
         present(alertController, animated: true)
     }
-    
 }
 
 
@@ -172,6 +218,13 @@ extension TripsViewController {
     
     private func showCreationFailureAlert(description: String?) {
         let alertController = UIAlertController(title: "Unable to Create Trip", message: description ?? "Unknown error", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(action)
+        present(alertController, animated: true)
+    }
+    
+    private func showUpdateFailureAlert(description: String?) {
+        let alertController = UIAlertController(title: "Unable to Update Trip", message: description ?? "Unknown error", preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(action)
         present(alertController, animated: true)

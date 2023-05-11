@@ -15,6 +15,7 @@ class ItineraryItemCell: UITableViewCell {
     @IBOutlet weak var itemLocation: UILabel!
     @IBOutlet weak var itemDescription: UILabel!
     @IBOutlet weak var eventDeleteBtn: UIButton!
+    @IBOutlet weak var eventUpdateBtn: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

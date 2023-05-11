@@ -14,6 +14,8 @@ class ItineraryViewController: UIViewController, UITableViewDelegate {
     
     var tripId: String?
     var newEvent = ItineraryItem()
+    var updatedEvent = ItineraryItem()
+    var updatedEventId: String?
     private var itineraryItems = [ItineraryItem]()
     
     @IBOutlet weak var itineraryTableView: UITableView!
@@ -24,7 +26,6 @@ class ItineraryViewController: UIViewController, UITableViewDelegate {
         itineraryTableView.delegate = self
         itineraryTableView.dataSource = self
         itineraryTableView.allowsSelection = false
-        itineraryTableView.rowHeight = 200
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,13 +39,34 @@ class ItineraryViewController: UIViewController, UITableViewDelegate {
 extension ItineraryViewController {
     // Send tripId to Itinerary Form Controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let ItineraryFormController = segue.destination as? ItineraryFormController
-        ItineraryFormController?.tripId = tripId
+        switch segue.identifier {
+        case "segueToEditEvent":
+            if let btn = sender as? UIButton,
+               let ItineraryEditController = segue.destination as? ItineraryEditController {
+                let event = itineraryItems[btn.tag]
+                ItineraryEditController.itineraryItemId = event.objectId as String?
+                ItineraryEditController.tripId = tripId
+            }
+        case "segueToItineraryForm":
+            let ItineraryFormController = segue.destination as? ItineraryFormController
+            ItineraryFormController?.tripId = tripId
+        default:
+            print("❌ Segue from Itinerary View Controller Unknown")
+        }
     }
     
     // Unwind segue from Itinerary Event Form to Itinerary View Controller
     @IBAction func unwindToItinerary(_ unwindSegue: UIStoryboardSegue) {
         createItineraryItem(newEvent: newEvent)
+    }
+    
+    @IBAction func unwindToUpdatedItinerary(_ unwindSegue: UIStoryboardSegue) {
+        updateItineraryItem(itemId: updatedEventId!, updatedItem: updatedEvent)
+    }
+    
+    @IBAction func unwindToCancelItemForm(_ unwindSegue: UIStoryboardSegue) {
+        let sourceViewController = unwindSegue.source
+        // Use data from the view controller which initiated the unwind segue
     }
     
 }
@@ -67,6 +89,7 @@ extension ItineraryViewController: UITableViewDataSource {
         }
         
         cell.eventDeleteBtn.tag = indexPath.section
+        cell.eventUpdateBtn.tag = indexPath.section
         cell.configure(with: itineraryItems[indexPath.section])
         return cell
     }
@@ -92,7 +115,7 @@ extension ItineraryViewController {
     
     private func queryItineraryItems() {
         // Create query to fetch Itinerary Items for Trip
-        let query = ItineraryItem.query("tripId" == "\(tripId!)")
+        let query = ItineraryItem.query("tripId" == "\(tripId!)").order([.ascending("startDate"), .descending("startTime")])
         
         // Fetch Itinerary Item Objects from DB
         query.find { [weak self] result in
@@ -110,7 +133,33 @@ extension ItineraryViewController {
         }
     }
     
-    private func updateItineraryItem() {}
+    private func updateItineraryItem(itemId: String, updatedItem: ItineraryItem) {
+        var item = ItineraryItem(objectId: itemId)
+        
+        item.title = updatedItem.title
+        item.location = updatedItem.location
+        item.startDate = updatedItem.startDate
+        item.startTime = updatedItem.startTime
+        item.endDate = updatedItem.endDate
+        item.endTime = updatedItem.endTime
+        item.description = updatedItem.description
+        item.tripId = updatedItem.tripId
+        
+        item.save { [weak self] result in
+            switch result {
+            case .success:
+                print("✅ Itinerary Updated")
+                if let row = self?.itineraryItems.firstIndex(where: { $0.objectId == item.objectId }) {
+                    self?.itineraryItems[row] = item
+                    DispatchQueue.main.async {
+                        self?.itineraryTableView.reloadData()
+                    }
+                }
+            case .failure(let error):
+                self?.showUpdateFailureAlert(description: error.localizedDescription)
+            }
+        }
+    }
     
     private func deleteItinteraryItem(event: ItineraryItem) {
         event.delete { [weak self] result in
@@ -158,6 +207,13 @@ extension ItineraryViewController {
     
     private func showCreationFailureAlert(description: String?) {
         let alertController = UIAlertController(title: "Unable to Create Itinerary Event", message: description ?? "Unknown error", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(action)
+        present(alertController, animated: true)
+    }
+    
+    private func showUpdateFailureAlert(description: String?) {
+        let alertController = UIAlertController(title: "Unable to Update Trip", message: description ?? "Unknown error", preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(action)
         present(alertController, animated: true)
