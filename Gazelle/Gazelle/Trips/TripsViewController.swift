@@ -98,6 +98,7 @@ extension TripsViewController: UITableViewDataSource {
 
 
 // MARK: - CRUD Operations
+// Citation: https://www.back4app.com/docs/ios/parse-swift-sdk/data-objects/swift-crud-database-operations
 extension TripsViewController {
     private func createTrip(newTrip: Trip) {
         newTrip.save { [weak self] result in
