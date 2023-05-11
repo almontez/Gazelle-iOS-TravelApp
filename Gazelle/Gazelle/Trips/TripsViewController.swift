@@ -143,6 +143,7 @@ extension TripsViewController {
         trip.save { [weak self] result in
             switch result {
             case .success:
+                print("✅ Trip Updated")
                 if let row = self?.trips.firstIndex(where: { $0.objectId == trip.objectId }) {
                     self?.trips[row] = trip
                     DispatchQueue.main.async {

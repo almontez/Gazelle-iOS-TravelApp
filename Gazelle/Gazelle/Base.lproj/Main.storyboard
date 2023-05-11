@@ -1292,7 +1292,10 @@
                                         <rect key="frame" x="0.0" y="552.33333333333337" width="343" height="34.333333333333371"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="Save"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Save"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Update"/>
+                                        <connections>
+                                            <action selector="updateBtnTapped:" destination="err-ud-ILm" eventType="touchUpInside" id="rS8-Ye-7kY"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -1329,9 +1332,11 @@
                         <outlet property="locationTextField" destination="8ez-qv-9Lw" id="fG6-Ov-Fux"/>
                         <outlet property="startDatePicker" destination="QEN-rR-2d6" id="auu-jx-n4m"/>
                         <outlet property="startTimePicker" destination="jOS-ic-fm3" id="qbR-0O-6jU"/>
+                        <segue destination="uwl-w4-jit" kind="unwind" identifier="unwindToUpdatedItinerary" unwindAction="unwindToUpdatedItinerary:" id="R9g-CL-43u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W93-DM-hg3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="uwl-w4-jit" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1294" y="2496"/>
         </scene>

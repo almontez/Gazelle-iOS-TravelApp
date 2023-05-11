@@ -10,6 +10,10 @@ import ParseSwift
 
 class ItineraryEditController: UIViewController {
     
+    var tripId: String?
+    var itineraryItemId: String?
+    private var foundItem = ItineraryItem()
+    
     @IBOutlet weak var eventTextField: UITextField!
     @IBOutlet weak var locationTextField: UITextField!
     @IBOutlet weak var startDatePicker: UIDatePicker!
@@ -17,9 +21,6 @@ class ItineraryEditController: UIViewController {
     @IBOutlet weak var endDatePicker: UIDatePicker!
     @IBOutlet weak var endTimePicker: UIDatePicker!
     @IBOutlet weak var descriptionTextField: UITextField!
-    
-    var itineraryItemId: String?
-    private var foundItem = ItineraryItem()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,12 +34,39 @@ class ItineraryEditController: UIViewController {
         query.find { [weak self] result in
             switch result {
             case .success(let foundEvent):
-                print("✅ Specific Trip Found")
+                print("✅ Specific Event Found")
                 self?.foundItem = foundEvent[0]
                 self?.fillInputFields()
             case .failure(let error):
                 self?.showQueryAlert(description: error.localizedDescription)
             }
+        }
+    }
+    @IBAction func updateBtnTapped(_ sender: UIButton) {
+        if (eventTextField.text == "" || locationTextField.text == "") {
+            itineraryFieldRequredAlert()
+        } else {
+            performSegue(withIdentifier: "unwindToUpdatedItinerary", sender: nil)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let ItineraryViewController = segue.destination as? ItineraryViewController {
+            // Create Itinerary Item
+            var updatedItem = ItineraryItem()
+            
+            // Set Properties
+            updatedItem.title = eventTextField.text
+            updatedItem.location = locationTextField.text
+            updatedItem.startDate = formatNewDate(startDatePicker)
+            updatedItem.startTime = formatNewTime(startTimePicker)
+            updatedItem.endDate = formatNewDate(endDatePicker)
+            updatedItem.endTime = formatNewTime(endTimePicker)
+            updatedItem.description = descriptionTextField.text
+            updatedItem.tripId = tripId!
+            
+            ItineraryViewController.updatedEvent = updatedItem
+            ItineraryViewController.updatedEventId = itineraryItemId
         }
     }
 }
@@ -61,6 +89,13 @@ extension ItineraryEditController {
         dateFormatter.dateFormat = "MMMM dd, yyyy"
         let formattedDate = dateFormatter.date(from: date!)
         return formattedDate!
+    }
+    
+    private func formatNewDate(_ date: UIDatePicker) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM dd, yyyy"
+        let dateString = dateFormatter.string(from: date.date)
+        return dateString
     }
     
     // Citation: https://stackoverflow.com/questions/28985483/how-to-change-uidatepicker-to-a-specific-time-in-code
@@ -97,16 +132,39 @@ extension ItineraryEditController {
         } else {
             endTimePicker.setDate(calendar.date(from: components)!, animated: false)
         }
-
     }
     
-    private func formatNewDate(_ date: UIDatePicker) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMMM dd, yyyy"
-        let dateString = dateFormatter.string(from: date.date)
-        return dateString
+    private func formatNewTime(_ time: UIDatePicker) -> String {
+        var meridiemFlag = "AM"
+        var stringMins = ""
+        var stringHrs = ""
+        let timeComponents = Calendar.current.dateComponents([.hour, .minute], from: time.date)
+        var hour = timeComponents.hour!
+        let minutes = timeComponents.minute!
+        
+        if (hour > 11) {
+            meridiemFlag = "PM"
+            if (hour != 12) {
+                hour -= 12
+            }
+            stringHrs = String(hour)
+        } else {
+            stringHrs = String(hour)
+        }
+        
+        if (hour == 0 && meridiemFlag == "AM") {
+            hour += 12
+            stringHrs = String(hour)
+        }
+        
+        if (minutes < 10) {
+            stringMins = "0" + String(minutes)
+        } else {
+            stringMins = String(minutes)
+        }
+        
+        return "\(stringHrs):\(stringMins) \(meridiemFlag)"
     }
-    
 }
 
 
