@@ -65,6 +65,11 @@ extension TripsViewController {
     @IBAction func unwindToUpdatedTrips(_ unwindSegue: UIStoryboardSegue) {
         updateTrip(tripId: updatedTripId!, updatedTrip: updatedTrip)
     }
+    
+    @IBAction func unwindToCancelTripForm(_ unwindSegue: UIStoryboardSegue) {
+        _ = unwindSegue.source
+        // Use data from the view controller which initiated the unwind segue
+    }
 }
 
 

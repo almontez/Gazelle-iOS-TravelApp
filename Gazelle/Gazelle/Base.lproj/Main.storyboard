@@ -537,11 +537,22 @@
                                     <constraint firstAttribute="trailing" secondItem="dre-zw-1aB" secondAttribute="trailing" id="wzr-Os-qmA"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XBV-K7-ejj">
+                                <rect key="frame" x="338.66666666666669" y="15.000000000000004" width="54.333333333333314" height="34.333333333333343"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="xmark.circle" catalog="system" title=" "/>
+                                <connections>
+                                    <segue destination="eNQ-SL-RKt" kind="unwind" unwindAction="unwindToCancelItemForm:" id="6Us-Nc-QV8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="C6V-HG-rq6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="My7-mU-C6M" firstAttribute="leading" secondItem="C6V-HG-rq6" secondAttribute="leading" constant="25" id="EH3-he-kBa"/>
+                            <constraint firstItem="XBV-K7-ejj" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="C6V-HG-rq6" secondAttribute="leading" symbolic="YES" id="NvK-Ef-Hck"/>
+                            <constraint firstItem="C6V-HG-rq6" firstAttribute="trailing" secondItem="XBV-K7-ejj" secondAttribute="trailing" id="UQf-nH-dDL"/>
+                            <constraint firstItem="XBV-K7-ejj" firstAttribute="top" secondItem="C6V-HG-rq6" secondAttribute="top" constant="15" id="ehF-X3-eDu"/>
                             <constraint firstItem="C6V-HG-rq6" firstAttribute="trailing" secondItem="My7-mU-C6M" secondAttribute="trailing" constant="25" id="ne6-Bk-faP"/>
                             <constraint firstItem="My7-mU-C6M" firstAttribute="top" secondItem="C6V-HG-rq6" secondAttribute="top" constant="50" id="tuR-ov-VgO"/>
                         </constraints>
@@ -835,13 +846,24 @@
                                     <constraint firstAttribute="trailing" secondItem="Rhi-U2-f9R" secondAttribute="trailing" id="wFf-7M-3kd"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xxK-gp-AgX">
+                                <rect key="frame" x="338.66666666666669" y="15.000000000000004" width="54.333333333333314" height="34.333333333333343"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="xmark.circle" catalog="system" title=" "/>
+                                <connections>
+                                    <segue destination="bbb-S5-VGQ" kind="unwind" unwindAction="unwindToCancelTripForm:" id="oD9-NH-pXh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Kej-Zw-WiK"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="xxK-gp-AgX" firstAttribute="top" secondItem="Kej-Zw-WiK" secondAttribute="top" constant="15" id="29O-dq-uKB"/>
+                            <constraint firstItem="xxK-gp-AgX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Kej-Zw-WiK" secondAttribute="leading" symbolic="YES" id="7DB-bO-57b"/>
                             <constraint firstItem="QrK-fQ-TZf" firstAttribute="leading" secondItem="Kej-Zw-WiK" secondAttribute="leading" constant="25" id="KlG-jp-wYy"/>
                             <constraint firstItem="QrK-fQ-TZf" firstAttribute="top" secondItem="Kej-Zw-WiK" secondAttribute="top" constant="50" id="eq6-0n-d86"/>
                             <constraint firstAttribute="trailing" secondItem="QrK-fQ-TZf" secondAttribute="trailing" constant="25" id="gpv-vT-QMn"/>
+                            <constraint firstAttribute="trailing" secondItem="xxK-gp-AgX" secondAttribute="trailing" id="vY6-d1-svd"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="uRJ-CG-49F"/>
@@ -1112,10 +1134,21 @@
                                     <constraint firstAttribute="trailing" secondItem="ycF-wb-wnb" secondAttribute="trailing" id="wsO-po-FPC"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gji-Yl-2x2">
+                                <rect key="frame" x="338.66666666666669" y="15.000000000000004" width="54.333333333333314" height="34.333333333333343"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="xmark.circle" catalog="system" title=" "/>
+                                <connections>
+                                    <segue destination="r4b-lz-3xP" kind="unwind" unwindAction="unwindToCancelTripForm:" id="EDy-b8-gDr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="O5J-Ef-4In"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="O5J-Ef-4In" firstAttribute="trailing" secondItem="gji-Yl-2x2" secondAttribute="trailing" id="BS7-Oq-rvL"/>
+                            <constraint firstItem="gji-Yl-2x2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="O5J-Ef-4In" secondAttribute="leading" symbolic="YES" id="T7L-Xb-IuN"/>
+                            <constraint firstItem="gji-Yl-2x2" firstAttribute="top" secondItem="O5J-Ef-4In" secondAttribute="top" constant="15" id="WyZ-ae-GxD"/>
                             <constraint firstAttribute="trailing" secondItem="g9a-yj-K6q" secondAttribute="trailing" constant="25" id="gDi-pl-tZq"/>
                             <constraint firstItem="g9a-yj-K6q" firstAttribute="leading" secondItem="O5J-Ef-4In" secondAttribute="leading" constant="25" id="hEN-A3-sL0"/>
                             <constraint firstItem="g9a-yj-K6q" firstAttribute="top" secondItem="O5J-Ef-4In" secondAttribute="top" constant="50" id="zwB-6r-4YY"/>
@@ -1313,13 +1346,24 @@
                                     <constraint firstAttribute="trailing" secondItem="Un2-9Y-iKm" secondAttribute="trailing" id="uzD-jJ-g9G"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dTM-zV-6bX">
+                                <rect key="frame" x="338.66666666666669" y="15.000000000000004" width="54.333333333333314" height="34.333333333333343"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="xmark.circle" catalog="system" title=" "/>
+                                <connections>
+                                    <segue destination="uwl-w4-jit" kind="unwind" unwindAction="unwindToCancelItemForm:" id="Mc0-la-Yx4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="K5V-ta-nSu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Lms-6e-s2i" firstAttribute="top" secondItem="K5V-ta-nSu" secondAttribute="top" constant="50" id="ENd-I4-obn"/>
                             <constraint firstItem="K5V-ta-nSu" firstAttribute="trailing" secondItem="Lms-6e-s2i" secondAttribute="trailing" constant="25" id="M9j-76-twU"/>
+                            <constraint firstItem="K5V-ta-nSu" firstAttribute="trailing" secondItem="dTM-zV-6bX" secondAttribute="trailing" id="XTi-yG-vkw"/>
                             <constraint firstItem="Lms-6e-s2i" firstAttribute="leading" secondItem="K5V-ta-nSu" secondAttribute="leading" constant="25" id="hul-kU-gT6"/>
+                            <constraint firstItem="dTM-zV-6bX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="K5V-ta-nSu" secondAttribute="leading" symbolic="YES" id="jbq-Fe-9cm"/>
+                            <constraint firstItem="dTM-zV-6bX" firstAttribute="top" secondItem="K5V-ta-nSu" secondAttribute="top" constant="15" id="umB-iH-H6w"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Itinerary" image="book.closed" catalog="system" selectedImage="book.closed.fill" id="N67-Ki-tUu"/>
@@ -1355,6 +1399,7 @@
         <image name="pencil.circle" catalog="system" width="128" height="123"/>
         <image name="plus.app" catalog="system" width="128" height="114"/>
         <image name="trash.circle" catalog="system" width="128" height="123"/>
+        <image name="xmark.circle" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
