@@ -229,6 +229,7 @@
                     <connections>
                         <segue destination="FTp-ef-Mgl" kind="relationship" relationship="viewControllers" id="XzU-TU-8sY"/>
                         <segue destination="2rq-UF-wH7" kind="relationship" relationship="viewControllers" id="CiK-lr-NuM"/>
+                        <segue destination="aaG-qf-Cce" kind="relationship" relationship="viewControllers" id="7Gd-GR-S9R"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="58R-sE-g0V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1384,6 +1385,23 @@
             </objects>
             <point key="canvasLocation" x="1294" y="2496"/>
         </scene>
+        <!--Explore-->
+        <scene sceneID="HKr-QX-aDW">
+            <objects>
+                <viewController id="aaG-qf-Cce" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DKU-LV-I8Q">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="cCK-0t-82K"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Explore" image="magnifyingglass.circle" catalog="system" selectedImage="magnifyingglass.circle.fill" id="xz4-1L-C3L"/>
+                    <navigationItem key="navigationItem" id="hXO-9I-liA"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f2B-TI-Apb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2673" y="18"/>
+        </scene>
     </scenes>
     <resources>
         <image name="IconNoBackground" width="2122" height="2121"/>
@@ -1394,6 +1412,8 @@
         <image name="globe.americas.fill" catalog="system" width="128" height="123"/>
         <image name="list.bullet.clipboard" catalog="system" width="103" height="128"/>
         <image name="list.bullet.clipboard.fill" catalog="system" width="103" height="128"/>
+        <image name="magnifyingglass.circle" catalog="system" width="128" height="123"/>
+        <image name="magnifyingglass.circle.fill" catalog="system" width="128" height="123"/>
         <image name="map" catalog="system" width="128" height="112"/>
         <image name="map.fill" catalog="system" width="128" height="110"/>
         <image name="pencil.circle" catalog="system" width="128" height="123"/>
