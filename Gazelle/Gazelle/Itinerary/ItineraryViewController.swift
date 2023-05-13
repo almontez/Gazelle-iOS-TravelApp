@@ -65,7 +65,7 @@ extension ItineraryViewController {
     }
     
     @IBAction func unwindToCancelItemForm(_ unwindSegue: UIStoryboardSegue) {
-        let sourceViewController = unwindSegue.source
+        _ = unwindSegue.source
         // Use data from the view controller which initiated the unwind segue
     }
     

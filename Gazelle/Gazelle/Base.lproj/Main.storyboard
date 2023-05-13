@@ -1388,15 +1388,30 @@
         <!--Explore-->
         <scene sceneID="HKr-QX-aDW">
             <objects>
-                <viewController id="aaG-qf-Cce" sceneMemberID="viewController">
+                <viewController id="aaG-qf-Cce" customClass="TappablePOIController" customModule="Gazelle" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DKU-LV-I8Q">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hbu-Cm-BRj">
+                                <rect key="frame" x="0.0" y="59" width="393" height="710"/>
+                                <standardMapConfiguration key="preferredConfiguration"/>
+                            </mapView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="cCK-0t-82K"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="hbu-Cm-BRj" firstAttribute="leading" secondItem="cCK-0t-82K" secondAttribute="leading" id="0YA-9z-okh"/>
+                            <constraint firstItem="cCK-0t-82K" firstAttribute="trailing" secondItem="hbu-Cm-BRj" secondAttribute="trailing" id="RWR-Ik-79Z"/>
+                            <constraint firstItem="hbu-Cm-BRj" firstAttribute="top" secondItem="cCK-0t-82K" secondAttribute="top" id="V0e-n3-1Oj"/>
+                            <constraint firstItem="cCK-0t-82K" firstAttribute="bottom" secondItem="hbu-Cm-BRj" secondAttribute="bottom" id="wNO-Oc-ZCL"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Explore" image="magnifyingglass.circle" catalog="system" selectedImage="magnifyingglass.circle.fill" id="xz4-1L-C3L"/>
                     <navigationItem key="navigationItem" id="hXO-9I-liA"/>
+                    <connections>
+                        <outlet property="mapView" destination="hbu-Cm-BRj" id="ahD-Oo-I3n"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f2B-TI-Apb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

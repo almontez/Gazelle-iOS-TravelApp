@@ -13,6 +13,8 @@
 		0B092BD329F8ACCA0008B7D9 /* TripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B092BD229F8ACCA0008B7D9 /* TripCell.swift */; };
 		0B16853729EF11610069DDCA /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B16853629EF11610069DDCA /* LocationSearchTable.swift */; };
 		0B2BFD9629ED93BA007ED65B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2BFD9529ED93BA007ED65B /* MapViewController.swift */; };
+		0B38355F2A0FFE4F0000A2DA /* TappablePOIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B38355E2A0FFE4F0000A2DA /* TappablePOIController.swift */; };
+		0B3835612A1002DA0000A2DA /* PointsOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3835602A1002DA0000A2DA /* PointsOfInterest.swift */; };
 		0B43044229F8769700A03026 /* ItineraryItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B43044129F8769700A03026 /* ItineraryItemCell.swift */; };
 		0B43044629F87AA300A03026 /* TripFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B43044529F87AA300A03026 /* TripFormController.swift */; };
 		0B43044829F87C0B00A03026 /* TripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B43044729F87C0B00A03026 /* TripsViewController.swift */; };
@@ -36,6 +38,8 @@
 		0B092BD229F8ACCA0008B7D9 /* TripCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripCell.swift; sourceTree = "<group>"; };
 		0B16853629EF11610069DDCA /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		0B2BFD9529ED93BA007ED65B /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		0B38355E2A0FFE4F0000A2DA /* TappablePOIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappablePOIController.swift; sourceTree = "<group>"; };
+		0B3835602A1002DA0000A2DA /* PointsOfInterest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsOfInterest.swift; sourceTree = "<group>"; };
 		0B43044129F8769700A03026 /* ItineraryItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryItemCell.swift; sourceTree = "<group>"; };
 		0B43044529F87AA300A03026 /* TripFormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripFormController.swift; sourceTree = "<group>"; };
 		0B43044729F87C0B00A03026 /* TripsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsViewController.swift; sourceTree = "<group>"; };
@@ -93,6 +97,8 @@
 			children = (
 				0B2BFD9529ED93BA007ED65B /* MapViewController.swift */,
 				0B16853629EF11610069DDCA /* LocationSearchTable.swift */,
+				0B38355E2A0FFE4F0000A2DA /* TappablePOIController.swift */,
+				0B3835602A1002DA0000A2DA /* PointsOfInterest.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -242,7 +248,9 @@
 				0B031C1C29F1958D00FB4A70 /* Trip.swift in Sources */,
 				0BEB4A8E2A0C118C00EFB55C /* TripEditController.swift in Sources */,
 				0B16853729EF11610069DDCA /* LocationSearchTable.swift in Sources */,
+				0B3835612A1002DA0000A2DA /* PointsOfInterest.swift in Sources */,
 				0BFFAB3529E640FE002C249E /* SceneDelegate.swift in Sources */,
+				0B38355F2A0FFE4F0000A2DA /* TappablePOIController.swift in Sources */,
 				0BEB4A902A0D521D00EFB55C /* ItineraryEditController.swift in Sources */,
 				0B2BFD9629ED93BA007ED65B /* MapViewController.swift in Sources */,
 			);
@@ -399,7 +407,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -428,7 +436,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
