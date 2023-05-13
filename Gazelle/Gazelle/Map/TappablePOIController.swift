@@ -14,9 +14,16 @@ class TappablePOIController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
     
+    private enum AnnotationReuseId: String {
+        case featureAnnotation
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
+        
+        // Register annotation view - Necessary if being used as a reusable annotation
+        mapView.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: AnnotationReuseId.featureAnnotation.rawValue)
         
         // Configure map to allow for interaction with all points of interest
         mapView.selectableMapFeatures = [.pointsOfInterest]
@@ -29,13 +36,45 @@ class TappablePOIController: UIViewController {
         let initialLocation = CLLocation(latitude: 21.282778, longitude: -157.829444)
         mapView.centerToLocation(initialLocation)
     }
-
+    
+    private func setupPOIAnnotation(_ annotation: MKMapFeatureAnnotation) -> MKAnnotationView? {
+        let markerAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: AnnotationReuseId.featureAnnotation.rawValue, for: annotation)
+        
+        if let markerAnnotationView = markerAnnotationView as? MKMarkerAnnotationView {
+            // Display callout
+            markerAnnotationView.animatesWhenAdded = true
+            markerAnnotationView.canShowCallout = true
+            
+            // Style and add button to callout
+            let infoBtn = UIButton(type: .detailDisclosure)
+            markerAnnotationView.rightCalloutAccessoryView = infoBtn
+            
+            // Style annotation
+            if let tappedFeatureColor = annotation.iconStyle?.backgroundColor,
+               let image = annotation.iconStyle?.image {
+                
+                markerAnnotationView.markerTintColor = tappedFeatureColor
+                infoBtn.tintColor = tappedFeatureColor
+                
+                let imageView = UIImageView(image: image.withTintColor(tappedFeatureColor, renderingMode: .alwaysOriginal))
+                imageView.bounds = CGRect(origin: .zero, size: CGSize(width: 50, height: 50))
+                markerAnnotationView.leftCalloutAccessoryView = imageView
+            }
+        }
+        
+        return markerAnnotationView
+    }
+    
 }
 
 extension TappablePOIController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        print("I AM BEING CALLED")
-        return nil
+        if let annotation = annotation as? MKMapFeatureAnnotation {
+            // Provide custom annotation for tapped POI
+            return setupPOIAnnotation(annotation)
+        } else {
+            return nil
+        }
     }
     
 }
