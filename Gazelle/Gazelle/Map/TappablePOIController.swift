@@ -49,6 +49,12 @@ class TappablePOIController: UIViewController {
             let infoBtn = UIButton(type: .detailDisclosure)
             markerAnnotationView.rightCalloutAccessoryView = infoBtn
             
+            let detailLabel = UILabel()
+            detailLabel.numberOfLines = 0
+            detailLabel.font = detailLabel.font.withSize(12)
+            detailLabel.text = "Add categories or other data"
+            markerAnnotationView.detailCalloutAccessoryView = detailLabel
+            
             // Style annotation
             if let tappedFeatureColor = annotation.iconStyle?.backgroundColor,
                let image = annotation.iconStyle?.image {
@@ -65,9 +71,37 @@ class TappablePOIController: UIViewController {
         return markerAnnotationView
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let LocationDetailController = segue.destination as? LocationDetailsController else { return }
+        
+        if segue.identifier == "segueToLocationDetails" {
+            guard let selectedAnnotation = mapView.selectedAnnotations.first,
+                  let featureAnnotation = selectedAnnotation as? MKMapFeatureAnnotation
+            else { return }
+            
+            // MKMapFeatureAnnotation` only has limited information about the point of interest.
+            // To get additional information, use `MKMapItemRequest` to get an `MKMapItem`.
+            let request = MKMapItemRequest(mapFeatureAnnotation: featureAnnotation)
+            request.getMapItem { mapItem, error in
+                guard error == nil
+                else {
+                    self.displayError(error)
+                    return
+                }
+                
+                if let mapItem {
+                    var region = self.mapView.region
+                    region.center = mapItem.placemark.coordinate
+                    LocationDetailController.display(mapItem, in: region)
+                }
+            }
+        }
+    }
 }
 
 extension TappablePOIController: MKMapViewDelegate {
+    
+    // Called when POI is tapped
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if let annotation = annotation as? MKMapFeatureAnnotation {
             // Provide custom annotation for tapped POI
@@ -75,6 +109,14 @@ extension TappablePOIController: MKMapViewDelegate {
         } else {
             return nil
         }
+    }
+    
+    // Called when callout is tapped
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if let annotation = view.annotation, annotation.isKind(of: MKMapFeatureAnnotation.self) {
+            performSegue(withIdentifier: "segueToLocationDetails", sender: self)
+        }
+        
     }
     
 }
@@ -91,4 +133,16 @@ private extension MKMapView {
       longitudinalMeters: regionRadius)
     setRegion(coordinateRegion, animated: true)
   }
+}
+
+
+// MARK: - Alerts
+extension TappablePOIController {
+    private func displayError(_ error: Error?) {
+        guard let error = error as NSError? else { return }
+        let alertController = UIAlertController(title: "Oops...", message: error.description, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(action)
+        present(alertController, animated: true)
+    }
 }
