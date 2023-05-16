@@ -59,9 +59,9 @@ class ItineraryEditController: UIViewController {
             // Set Properties
             updatedItem.title = eventTextField.text
             updatedItem.location = locationTextField.text
-            updatedItem.startDate = formatNewDate(startDatePicker)
+            updatedItem.startDate = formatDate(startDatePicker)
             updatedItem.startTime = formatTime(startTimePicker)
-            updatedItem.endDate = formatNewDate(endDatePicker)
+            updatedItem.endDate = formatDate(endDatePicker)
             updatedItem.endTime = formatTime(endTimePicker)
             updatedItem.description = descriptionTextField.text
             updatedItem.tripId = tripId!

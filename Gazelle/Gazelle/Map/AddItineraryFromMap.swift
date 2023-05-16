@@ -15,7 +15,7 @@ class AddItineraryFromMap: UIViewController {
     var tripDict = [String: String]()
     var tripId: String?
     var mapItem: MKMapItem?
-
+    
     @IBOutlet weak var eventTextField: UITextField!
     @IBOutlet weak var locationTextField: UITextField!
     @IBOutlet weak var tripNamePicker: UIButton!
@@ -63,7 +63,7 @@ class AddItineraryFromMap: UIViewController {
         // Create query to fetch Trips for User
         let userId = User.current?.objectId
         let query = Trip.query("userId" == "\(userId!)")
-    
+        
         // Fetch Trip objects from D
         query.find { [weak self] result in
             switch result {
@@ -101,45 +101,5 @@ class AddItineraryFromMap: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("I am being called")
-    }
-    
-    // citation: https://stackoverflow.com/questions/44346811/extracting-hours-and-minutes-from-uidatepicker
-    private func formatDate(_ date: UIDatePicker) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMMM dd, yyyy"
-        let dateString = dateFormatter.string(from: date.date)
-        return dateString
-    }
-    
-    private func formatTime(_ time: UIDatePicker) -> String {
-        var meridiemFlag = "AM"
-        var stringMins = ""
-        var stringHrs = ""
-        let timeComponents = Calendar.current.dateComponents([.hour, .minute], from: time.date)
-        var hour = timeComponents.hour!
-        let minutes = timeComponents.minute!
-        
-        if (hour > 11) {
-            meridiemFlag = "PM"
-            if (hour != 12) {
-                hour -= 12
-            }
-            stringHrs = String(hour)
-        } else {
-            stringHrs = String(hour)
-        }
-        
-        if (hour == 0 && meridiemFlag == "AM") {
-            hour += 12
-            stringHrs = String(hour)
-        }
-        
-        if (minutes < 10) {
-            stringMins = "0" + String(minutes)
-        } else {
-            stringMins = String(minutes)
-        }
-        
-        return "\(stringHrs):\(stringMins) \(meridiemFlag)"
     }
 }
