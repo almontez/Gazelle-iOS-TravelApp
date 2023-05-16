@@ -4,8 +4,9 @@
 //
 //  Created by Angela Li Montez on 5/13/23.
 //
-//  Citation: https://www.kodeco.com/7738344-mapkit-tutorial-getting-started#toc-anchor-006
 //  Citation: https://developer.apple.com/documentation/mapkit/interacting_with_nearby_points_of_interest
+//  Citation: https://medium.com/@pravinbendre772/search-for-places-and-display-results-using-mapkit-a987bd6504df
+//  Citation: https://thorntech.com/how-to-search-for-location-using-apples-mapkit/
 
 import UIKit
 import MapKit
@@ -14,14 +15,21 @@ class TappablePOIController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
     
+    // Used for saving itinerary items from map
+    // Related to AddItineraryFromMap controller
     var newEvent = ItineraryItem()
     
+    // Used for identifing and registering map annotations
     private enum AnnotationReuseId: String {
         case featureAnnotation
     }
     
+    // Used for location related operations
+    let locationManager = CLLocationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        // START: Use for map annotations
         mapView.delegate = self
         
         // Register annotation view - Necessary if being used as a reusable annotation
@@ -32,11 +40,14 @@ class TappablePOIController: UIViewController {
         let mapConfiguration = MKStandardMapConfiguration()
         mapConfiguration.pointOfInterestFilter = MKPointOfInterestFilter.includingAll
         mapView.preferredConfiguration = mapConfiguration
+        // END
         
-        // TODO: DELETE LATER - Narrowing Area To Help Development
-        // Set initial location in Honolulu
-        let initialLocation = CLLocation(latitude: 21.282778, longitude: -157.829444)
-        mapView.centerToLocation(initialLocation)
+        // START: Use for identifying user location
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestLocation()
+        // END
     }
 }
 
@@ -125,6 +136,35 @@ extension TappablePOIController: MKMapViewDelegate {
     
 }
 
+// MARK: - Location Related Operations
+extension TappablePOIController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .notDetermined:
+            print("Not Determined")
+        case .restricted, .denied:
+            print("Restricted or Denied")
+        case .authorizedAlways, .authorizedWhenInUse:
+            print("Authorized")
+        default:
+            print("Status Unknown")
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
+            print("Location:: \(location)")
+            let zoom = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+            let region = MKCoordinateRegion(center: location.coordinate, span: zoom)
+            mapView.setRegion(region, animated: true)
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error:: \(error)")
+    }
+}
+
 // MARK: - CRUD Operations
 extension TappablePOIController {
     private func createItineraryItem(newEvent: ItineraryItem) {
@@ -143,18 +183,3 @@ extension TappablePOIController {
         }
     }
 }
-
-// TODO: MAY DELETE LATER BUT COULD USE TO CENTER ON THE USERS LOCATION
-private extension MKMapView {
-  func centerToLocation(
-    _ location: CLLocation,
-    regionRadius: CLLocationDistance = 1000
-  ) {
-    let coordinateRegion = MKCoordinateRegion(
-      center: location.coordinate,
-      latitudinalMeters: regionRadius,
-      longitudinalMeters: regionRadius)
-    setRegion(coordinateRegion, animated: true)
-  }
-}
-
