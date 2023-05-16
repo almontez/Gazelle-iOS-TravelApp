@@ -878,6 +878,8 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="GtV-aX-S7d">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <color key="barTintColor" systemColor="systemGray6Color"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -972,7 +974,8 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="W7B-Ti-FbO">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <color key="barTintColor" systemColor="systemGray6Color"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1448,7 +1451,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Link" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HqL-ym-ylL">
-                                                    <rect key="frame" x="16" y="0.0" width="361" height="75"/>
+                                                    <rect key="frame" x="15" y="0.0" width="363" height="75"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <color key="textColor" systemColor="labelColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1457,8 +1460,8 @@
                                                 </textView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="HqL-ym-ylL" secondAttribute="trailing" constant="16" id="CLj-U6-eTo"/>
-                                                <constraint firstItem="HqL-ym-ylL" firstAttribute="leading" secondItem="uky-gn-7Wi" secondAttribute="leading" constant="16" id="MbK-yt-Sst"/>
+                                                <constraint firstAttribute="trailing" secondItem="HqL-ym-ylL" secondAttribute="trailing" constant="15" id="CLj-U6-eTo"/>
+                                                <constraint firstItem="HqL-ym-ylL" firstAttribute="leading" secondItem="uky-gn-7Wi" secondAttribute="leading" constant="15" id="MbK-yt-Sst"/>
                                                 <constraint firstItem="HqL-ym-ylL" firstAttribute="top" secondItem="uky-gn-7Wi" secondAttribute="top" id="Wei-IE-Dh8"/>
                                                 <constraint firstAttribute="bottom" secondItem="HqL-ym-ylL" secondAttribute="bottom" id="iDn-J1-94L"/>
                                             </constraints>
@@ -1607,6 +1610,8 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0DT-Qw-p6r">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <color key="barTintColor" systemColor="systemGray6Color"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
