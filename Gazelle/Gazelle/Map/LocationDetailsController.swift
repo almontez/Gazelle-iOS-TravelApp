@@ -7,7 +7,6 @@
 
 import UIKit
 import MapKit
-import Contacts
 
 class LocationDetailsController: UITableViewController {
     
@@ -25,6 +24,35 @@ class LocationDetailsController: UITableViewController {
         updateDisplayedData()
     }
     
+    @IBAction func openItemInMaps(_ sender: UIButton) {
+        mapItem?.openInMaps(launchOptions: nil)
+    }
+
+    func display(_ mapItem: MKMapItem!, in region: MKCoordinateRegion) {
+        self.mapItem = mapItem
+        self.boundingRegion = region
+        updateDisplayedData()
+    }
+}
+
+// MARK: - Segue Code
+extension LocationDetailsController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueToItineraryFromMap" {
+            if let AddItineraryItemFromMap = segue.destination as? AddItineraryFromMap {
+                AddItineraryItemFromMap.mapItem = mapItem
+            }
+        }
+    }
+    
+    @IBAction func unwindToCancelMapItemForm(_ unwindSegue: UIStoryboardSegue) {
+        _ = unwindSegue.source
+        // Use data from the view controller which initiated the unwind segue
+    }
+}
+
+// MARK: - UI Related Operations
+extension LocationDetailsController {
     private func updateDisplayedData() {
         guard isViewLoaded, let mapItem = self.mapItem, let region = boundingRegion
             else { return }
@@ -41,27 +69,6 @@ class LocationDetailsController: UITableViewController {
         mapView.region = region
     }
     
-    @IBAction func openItemInMaps(_ sender: UIButton) {
-        mapItem?.openInMaps(launchOptions: nil)
-    }
-
-    func display(_ mapItem: MKMapItem!, in region: MKCoordinateRegion) {
-        self.mapItem = mapItem
-        self.boundingRegion = region
-        updateDisplayedData()
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "segueToItineraryFromMap" {
-            if let AddItineraryItemFromMap = segue.destination as? AddItineraryFromMap {
-                AddItineraryItemFromMap.mapItem = mapItem
-            }
-        }
-    }
-
-}
-
-extension LocationDetailsController {
     // Citation: https://stackoverflow.com/questions/27478034/how-to-access-the-category-or-type-of-an-mkmapitem
     func retrieveCategory(_ item: MKMapItem) -> Set<String> {
         let geo_place = item.value(forKey: "place") as! NSObject
@@ -80,21 +87,5 @@ extension LocationDetailsController {
             }
         }
         return categoriesSet
-    }
-    
-    func formatCategories(_ categorySet: Set<String>) -> String {
-        var cat_str = ""
-        for item in categorySet {
-            cat_str += "\(item), "
-        }
-        let formatted_str = cat_str.dropLast(2)
-        return String(formatted_str)
-    }
-}
-
-extension MKPlacemark {
-    var formattedAddress: String? {
-        guard let postalAddress = postalAddress else { return nil }
-        return CNPostalAddressFormatter.string(from: postalAddress, style: .mailingAddress).replacingOccurrences(of: "\n", with: " ")
     }
 }

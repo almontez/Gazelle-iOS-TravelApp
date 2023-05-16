@@ -39,11 +39,15 @@ class AddItineraryFromMap: UIViewController {
             print("Working on Map to Itinerary Segue")
         }
     }
-    
+}
+
+// MARK: - Segue Code
+extension AddItineraryFromMap {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("Map to Itinerary Segue being called")
     }
 }
+
 
 // MARK: - UI Related Operations
 extension AddItineraryFromMap {
@@ -60,14 +64,14 @@ extension AddItineraryFromMap {
         }
         
         var optionsArray = [UIAction]()
+        let placeholder = UIAction(title: "Select Trip", state: .on, handler: optionClosure)
+        optionsArray.append(placeholder)
         
         for trip in trips {
             let title = trip.title!
             let action = UIAction(title: title, state: .off, handler: optionClosure)
             optionsArray.append(action)
         }
-        
-        optionsArray[0].state = .on
         let optionsMenu = UIMenu(title: "", options: .displayInline, children: optionsArray)
         
         tripNamePicker.menu = optionsMenu
@@ -102,7 +106,6 @@ extension AddItineraryFromMap {
     private func createTripDictionary() {
         for trip in trips {
             tripDict[trip.title!] = trip.objectId!
-            
         }
     }
     

@@ -7,6 +7,8 @@
 
 import Foundation
 import UIKit
+import Contacts
+import MapKit
 
 extension UIViewController {
     
@@ -91,5 +93,23 @@ extension UIViewController {
         } else {
             picker.setDate(calendar.date(from: components)!, animated: false)
         }
+    }
+}
+
+extension UITableViewController {
+    func formatCategories(_ categorySet: Set<String>) -> String {
+        var cat_str = ""
+        for item in categorySet {
+            cat_str += "\(item), "
+        }
+        let formatted_str = cat_str.dropLast(2)
+        return String(formatted_str)
+    }
+}
+
+extension MKPlacemark {
+    var formattedAddress: String? {
+        guard let postalAddress = postalAddress else { return nil }
+        return CNPostalAddressFormatter.string(from: postalAddress, style: .mailingAddress).replacingOccurrences(of: "\n", with: " ")
     }
 }

@@ -64,7 +64,31 @@ class TappablePOIController: UIViewController {
         
         return markerAnnotationView
     }
+}
+
+extension TappablePOIController: MKMapViewDelegate {
+    // Called when POI is tapped
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if let annotation = annotation as? MKMapFeatureAnnotation {
+            // Provide custom annotation for tapped POI
+            return setupPOIAnnotation(annotation)
+        } else {
+            return nil
+        }
+    }
     
+    // Called when callout is tapped
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if let annotation = view.annotation, annotation.isKind(of: MKMapFeatureAnnotation.self) {
+            performSegue(withIdentifier: "segueToLocationDetails", sender: self)
+        }
+        
+    }
+    
+}
+
+// MARK: - Segue Code
+extension TappablePOIController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let LocationDetailController = segue.destination as? LocationDetailsController else { return }
         
@@ -93,26 +117,6 @@ class TappablePOIController: UIViewController {
     }
 }
 
-extension TappablePOIController: MKMapViewDelegate {
-    // Called when POI is tapped
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        if let annotation = annotation as? MKMapFeatureAnnotation {
-            // Provide custom annotation for tapped POI
-            return setupPOIAnnotation(annotation)
-        } else {
-            return nil
-        }
-    }
-    
-    // Called when callout is tapped
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        if let annotation = view.annotation, annotation.isKind(of: MKMapFeatureAnnotation.self) {
-            performSegue(withIdentifier: "segueToLocationDetails", sender: self)
-        }
-        
-    }
-    
-}
 
 // TODO: MAY DELETE LATER BUT COULD USE TO CENTER ON THE USERS LOCATION
 private extension MKMapView {
