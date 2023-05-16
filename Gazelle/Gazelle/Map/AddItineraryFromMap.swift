@@ -31,6 +31,22 @@ class AddItineraryFromMap: UIViewController {
         queryTrips()
     }
     
+    @IBAction func saveButtonTapped(_ sender: UIButton) {
+        print("Save button tapped")
+        if (eventTextField.text == "" || locationTextField.text == "") {
+            itineraryItemFieldRequredAlert()
+        } else {
+            print("Working on Map to Itinerary Segue")
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("Map to Itinerary Segue being called")
+    }
+}
+
+// MARK: - UI Related Operations
+extension AddItineraryFromMap {
     private func fillInputFields() {
         eventTextField.text = mapItem!.name
         locationTextField.text = mapItem!.placemark.formattedAddress
@@ -58,7 +74,11 @@ class AddItineraryFromMap: UIViewController {
         tripNamePicker.changesSelectionAsPrimaryAction = true
         tripNamePicker.showsMenuAsPrimaryAction = true
     }
-    
+}
+
+
+// MARK: - CRUD Related Operations
+extension AddItineraryFromMap {
     private func queryTrips() {
         // Create query to fetch Trips for User
         let userId = User.current?.objectId
@@ -86,20 +106,4 @@ class AddItineraryFromMap: UIViewController {
         }
     }
     
-    @IBAction func saveButtonTapped(_ sender: UIButton) {
-        print("Save button tapped")
-        if (eventTextField.text == "" || locationTextField.text == "") {
-            itineraryItemFieldRequredAlert()
-        } else {
-            print("In else Branch")
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "Itinerary") as! ItineraryViewController
-            nextViewController.tripId = tripId
-            self.present(nextViewController, animated:true, completion:nil)
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("I am being called")
-    }
 }
