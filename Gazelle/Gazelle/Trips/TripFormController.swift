@@ -24,7 +24,7 @@ class TripFormController: UIViewController {
     @IBAction func saveBtnTapped(_ sender: Any) {
         if (tripName.text == "" || tripLocation.text == "") {
             print("Empty")
-            tripFieldRequredAlert()
+            showMissingFieldsAlert()
         } else {
             performSegue(withIdentifier: "unwindToTrips", sender: nil)
         }

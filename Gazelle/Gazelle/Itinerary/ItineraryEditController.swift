@@ -30,7 +30,7 @@ class ItineraryEditController: UIViewController {
     
     @IBAction func updateBtnTapped(_ sender: UIButton) {
         if (eventTextField.text == "" || locationTextField.text == "") {
-            itineraryItemFieldRequredAlert()
+            showMissingFieldsAlert()
         } else {
             performSegue(withIdentifier: "unwindToUpdatedItinerary", sender: nil)
         }
@@ -83,7 +83,7 @@ extension ItineraryEditController {
                 self?.foundItem = foundEvent[0]
                 self?.fillInputFields()
             case .failure(let error):
-                self?.showQueryAlert(description: error.localizedDescription)
+                self?.showFailureAlert(description: error.localizedDescription)
             }
         }
     }

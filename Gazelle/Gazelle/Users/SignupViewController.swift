@@ -37,7 +37,7 @@ class SignupViewController: UIViewController {
               !email.isEmpty,
               !password.isEmpty else {
 
-            showMissingSignUpFieldsAlert()
+            showMissingFieldsAlert()
             return
         }
         

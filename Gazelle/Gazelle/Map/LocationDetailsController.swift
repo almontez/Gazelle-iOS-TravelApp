@@ -62,10 +62,10 @@ extension LocationDetailsController {
         
         navigationItem.title = mapItem.name
         
-        placeAddressLabel.text = mapItem.placemark.formattedAddress
-        placePhoneLabel.text = mapItem.phoneNumber
-        placeWebsiteLabel.text = mapItem.url?.absoluteString
-        placeCategoriesLabel.text = formatCategories(retrieveCategory(mapItem))
+        placeAddressLabel.text = mapItem.placemark.formattedAddress ?? "Address Not Available"
+        placePhoneLabel.text = mapItem.phoneNumber ?? "Phone Number Not Available"
+        placeWebsiteLabel.text = mapItem.url?.absoluteString ?? "Website Not Available"
+        placeCategoriesLabel.text = formatCategories(retrieveCategory(mapItem)) 
         
         
         mapView.showAnnotations([mapItem.placemark], animated: false)

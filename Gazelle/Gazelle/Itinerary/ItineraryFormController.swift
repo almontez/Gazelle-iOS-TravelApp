@@ -27,7 +27,7 @@ class ItineraryFormController: UIViewController {
     
     @IBAction func saveButtonTapped(_ sender: UIButton) {
         if (eventTextField.text == "" || locationTextField.text == "") {
-            itineraryItemFieldRequredAlert()
+            showMissingFieldsAlert()
         } else {
             performSegue(withIdentifier: "unwindToItinerary", sender: nil)
         }

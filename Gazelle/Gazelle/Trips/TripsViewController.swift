@@ -125,9 +125,10 @@ extension TripsViewController {
                 self?.trips.append(savedTrip)
                 DispatchQueue.main.async {
                     self?.tripsTableView.reloadData()
+                    self?.showSucessAlert()
                 }
             case .failure(let error):
-                self?.showCreationFailureAlert(description: error.localizedDescription)
+                self?.showFailureAlert(description: error.localizedDescription)
             }
         }
     }
@@ -147,7 +148,7 @@ extension TripsViewController {
                     self?.tripsTableView.reloadData()
                 }
             case .failure(let error):
-                self?.showQueryAlert(description: error.localizedDescription)
+                self?.showFailureAlert(description: error.localizedDescription)
             }
         }
     }
@@ -170,10 +171,11 @@ extension TripsViewController {
                     self?.trips[row] = trip
                     DispatchQueue.main.async {
                         self?.tripsTableView.reloadData()
+                        self?.showSucessAlert()
                     }
                 }
             case .failure(let error):
-                self?.showUpdateFailureAlert(description: error.localizedDescription)
+                self?.showFailureAlert(description: error.localizedDescription)
             }
         }
     }
@@ -187,10 +189,11 @@ extension TripsViewController {
                     self?.trips.remove(at: row)
                     DispatchQueue.main.async {
                         self?.tripsTableView.reloadData()
+                        self?.showSucessAlert()
                     }
                 }
             case .failure(let error):
-                self?.showDeleteAlert(description: error.localizedDescription)
+                self?.showFailureAlert(description: error.localizedDescription)
             }
         }
     }

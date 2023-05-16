@@ -24,50 +24,22 @@ extension UIViewController {
         present(alertController, animated: true)
     }
 
-    func showMissingSignUpFieldsAlert() {
-        let alertController = UIAlertController(title: "Opps...", message: "We need all fields filled out in order to sign you up.", preferredStyle: .alert)
+    func showMissingFieldsAlert() {
+        let alertController = UIAlertController(title: "Required Fields Missing", message: "All fields marked with an asterisk must be completed.", preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(action)
         present(alertController, animated: true)
     }
     
-    func tripFieldRequredAlert() {
-        let alertController = UIAlertController(title: "Required", message: "The the name, location, and dates of your trip are required.", preferredStyle: .alert)
+    func showSucessAlert() {
+        let alertController = UIAlertController(title: "Success!", message: "Your request has been processed!", preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(action)
         present(alertController, animated: true)
     }
     
-    func showQueryAlert(description: String?) {
-        let alertController = UIAlertController(title: "Oops...", message: "\(description ?? "Please try again...")", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
-        present(alertController, animated: true)
-    }
-    
-    func showDeleteAlert(description: String?) {
-        let alertController = UIAlertController(title: "Unable to Delete", message: description ?? "Unknown error", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
-        present(alertController, animated: true)
-    }
-    
-    func showCreationFailureAlert(description: String?) {
-        let alertController = UIAlertController(title: "Unable to Create", message: description ?? "Unknown error", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
-        present(alertController, animated: true)
-    }
-    
-    func showUpdateFailureAlert(description: String?) {
-        let alertController = UIAlertController(title: "Unable to Update", message: description ?? "Unknown error", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
-        present(alertController, animated: true)
-    }
-    
-    func itineraryItemFieldRequredAlert() {
-        let alertController = UIAlertController(title: "Required", message: "The the name, location, dates, and possibly trip name for your itinerary event are required.", preferredStyle: .alert)
+    func showFailureAlert(description: String?) {
+        let alertController = UIAlertController(title: "Failure! Unable to process request", message: description ?? "Unknown error", preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(action)
         present(alertController, animated: true)

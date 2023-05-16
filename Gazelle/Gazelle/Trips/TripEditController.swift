@@ -27,7 +27,7 @@ class TripEditController: UIViewController {
     
     @IBAction func updateBtnTapped(_ sender: UIButton) {
         if (tripName.text == "" || tripLocation.text == "") {
-            tripFieldRequredAlert()
+            showMissingFieldsAlert()
         } else {
             performSegue(withIdentifier: "unwindToUpdatedTrips", sender: nil)
         }
@@ -76,7 +76,7 @@ extension TripEditController {
                 self?.foundTrip = foundTrip[0]
                 self?.fillInputFields()
             case .failure(let error):
-                self?.showQueryAlert(description: error.localizedDescription)
+                self?.showFailureAlert(description: error.localizedDescription)
             }
         }
     }

@@ -14,6 +14,8 @@ class TappablePOIController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
     
+    var newEvent = ItineraryItem()
+    
     private enum AnnotationReuseId: String {
         case featureAnnotation
     }
@@ -35,6 +37,42 @@ class TappablePOIController: UIViewController {
         // Set initial location in Honolulu
         let initialLocation = CLLocation(latitude: 21.282778, longitude: -157.829444)
         mapView.centerToLocation(initialLocation)
+    }
+}
+
+// MARK: - Segue Code
+extension TappablePOIController {
+    // Move from Explore to Location Details
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let LocationDetailController = segue.destination as? LocationDetailsController else { return }
+        
+        if segue.identifier == "segueToLocationDetails" {
+            guard let selectedAnnotation = mapView.selectedAnnotations.first,
+                  let featureAnnotation = selectedAnnotation as? MKMapFeatureAnnotation
+            else { return }
+            
+            // MKMapFeatureAnnotation` only has limited information about the point of interest.
+            // To get additional information, use `MKMapItemRequest` to get an `MKMapItem`.
+            let request = MKMapItemRequest(mapFeatureAnnotation: featureAnnotation)
+            request.getMapItem { mapItem, error in
+                guard error == nil
+                else {
+                    self.displayError(error)
+                    return
+                }
+                
+                if let mapItem {
+                    var region = self.mapView.region
+                    region.center = mapItem.placemark.coordinate
+                    LocationDetailController.display(mapItem, in: region)
+                }
+            }
+        }
+    }
+    
+    // Unwind from Map Item Form to Explore
+    @IBAction func unwindToExploreFromMapForm(_ unwindSegue: UIStoryboardSegue) {
+        createItineraryItem(newEvent: newEvent)
     }
 }
 
@@ -87,43 +125,24 @@ extension TappablePOIController: MKMapViewDelegate {
     
 }
 
-// MARK: - Segue Code
+// MARK: - CRUD Operations
 extension TappablePOIController {
-    // Move from Explore to Location Details
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let LocationDetailController = segue.destination as? LocationDetailsController else { return }
-        
-        if segue.identifier == "segueToLocationDetails" {
-            guard let selectedAnnotation = mapView.selectedAnnotations.first,
-                  let featureAnnotation = selectedAnnotation as? MKMapFeatureAnnotation
-            else { return }
-            
-            // MKMapFeatureAnnotation` only has limited information about the point of interest.
-            // To get additional information, use `MKMapItemRequest` to get an `MKMapItem`.
-            let request = MKMapItemRequest(mapFeatureAnnotation: featureAnnotation)
-            request.getMapItem { mapItem, error in
-                guard error == nil
-                else {
-                    self.displayError(error)
-                    return
+    private func createItineraryItem(newEvent: ItineraryItem) {
+        newEvent.save { [weak self] result in
+            switch result {
+            case .success(let savedEvent):
+                print("✅ New Event Saved")
+                DispatchQueue.main.async {
+                    let ItineraryViewController = self?.storyboard?.instantiateViewController(withIdentifier: "Itinerary") as? ItineraryViewController
+                    ItineraryViewController?.itineraryItems.append(savedEvent)
+                    self?.showSucessAlert()
                 }
-                
-                if let mapItem {
-                    var region = self.mapView.region
-                    region.center = mapItem.placemark.coordinate
-                    LocationDetailController.display(mapItem, in: region)
-                }
+            case .failure(let error):
+                self?.showFailureAlert(description: error.localizedDescription)
             }
         }
     }
-    
-    // Unwind from Map Item Form to Explore
-    @IBAction func unwindToExploreFromMapForm(_ unwindSegue: UIStoryboardSegue) {
-        _ = unwindSegue.source
-        // Use data from the view controller which initiated the unwind segue
-    }
 }
-
 
 // TODO: MAY DELETE LATER BUT COULD USE TO CENTER ON THE USERS LOCATION
 private extension MKMapView {

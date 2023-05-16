@@ -35,7 +35,7 @@ class AddItineraryFromMap: UIViewController {
         print("Save button tapped")
         if (eventTextField.text == "" || locationTextField.text == ""
         || tripId == nil) {
-            itineraryItemFieldRequredAlert()
+            showMissingFieldsAlert()
         } else {
             performSegue(withIdentifier: "unwindToExplore", sender: nil)
         }
@@ -47,9 +47,24 @@ extension AddItineraryFromMap {
     // Prepare data for TappablePOIController (i.e. Explore)
     // Pass new itinerary item to TappablePOIController for create (CRUD) operation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("Map to Itinerary Segue being called")
         if segue.identifier == "unwindToExplore" {
             print("Unwinding to Explore")
+            if let ExploreViewController = segue.destination as? TappablePOIController {
+                // Create Itinerary Item
+                var newItem = ItineraryItem()
+                
+                // Set Properties
+                newItem.title = eventTextField.text
+                newItem.location = locationTextField.text
+                newItem.startDate = formatDate(startDatePicker)
+                newItem.startTime = formatTime(startTimePicker)
+                newItem.endDate = formatDate(endDatePicker)
+                newItem.endTime = formatTime(endTimePicker)
+                newItem.description = descriptionTextField.text
+                newItem.tripId = tripId!
+                
+                ExploreViewController.newEvent = newItem
+            }
         }
     }
 }
@@ -95,7 +110,7 @@ extension AddItineraryFromMap {
     private func queryTrips() {
         // Create query to fetch Trips for User
         let userId = User.current?.objectId
-        let query = Trip.query("userId" == "\(userId!)")
+        let query = Trip.query("userId" == "\(userId!)").order([.ascending("title")])
         
         // Fetch Trip objects from D
         query.find { [weak self] result in

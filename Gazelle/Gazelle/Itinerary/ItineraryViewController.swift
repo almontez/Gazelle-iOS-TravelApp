@@ -16,7 +16,7 @@ class ItineraryViewController: UIViewController, UITableViewDelegate {
     var newEvent = ItineraryItem()
     var updatedEvent = ItineraryItem()
     var updatedEventId: String?
-    private var itineraryItems = [ItineraryItem]()
+    var itineraryItems = [ItineraryItem]()
     
     @IBOutlet weak var itineraryTableView: UITableView!
     
@@ -26,6 +26,7 @@ class ItineraryViewController: UIViewController, UITableViewDelegate {
         itineraryTableView.delegate = self
         itineraryTableView.dataSource = self
         itineraryTableView.allowsSelection = false
+        itineraryTableView.rowHeight = 275
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -109,9 +110,10 @@ extension ItineraryViewController {
                 self?.itineraryItems.append(savedEvent)
                 DispatchQueue.main.async {
                     self?.itineraryTableView.reloadData()
+                    self?.showSucessAlert()
                 }
             case .failure(let error):
-                self?.showCreationFailureAlert(description: error.localizedDescription)
+                self?.showFailureAlert(description: error.localizedDescription)
             }
         }
     }
@@ -130,7 +132,7 @@ extension ItineraryViewController {
                     self?.itineraryTableView.reloadData()
                 }
             case .failure(let error):
-                self?.showQueryAlert(description: error.localizedDescription)
+                self?.showFailureAlert(description: error.localizedDescription)
             }
             
         }
@@ -156,10 +158,11 @@ extension ItineraryViewController {
                     self?.itineraryItems[row] = item
                     DispatchQueue.main.async {
                         self?.itineraryTableView.reloadData()
+                        self?.showSucessAlert()
                     }
                 }
             case .failure(let error):
-                self?.showUpdateFailureAlert(description: error.localizedDescription)
+                self?.showFailureAlert(description: error.localizedDescription)
             }
         }
     }
@@ -173,10 +176,11 @@ extension ItineraryViewController {
                     self?.itineraryItems.remove(at: row)
                     DispatchQueue.main.async {
                         self?.itineraryTableView.reloadData()
+                        self?.showSucessAlert()
                     }
                 }
             case .failure(let error):
-                self?.showDeleteAlert(description: error.localizedDescription)
+                self?.showFailureAlert(description: error.localizedDescription)
             }
         }
     }
