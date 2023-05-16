@@ -105,6 +105,29 @@ extension UITableViewController {
         let formatted_str = cat_str.dropLast(2)
         return String(formatted_str)
     }
+    
+    func formatAddress(of selectedItem: MKPlacemark) -> String {
+        var address = ""
+        if selectedItem.subThoroughfare != nil {
+            address += selectedItem.subThoroughfare! + " "
+        }
+        if selectedItem.thoroughfare != nil {
+            address += selectedItem.thoroughfare! + ", "
+        }
+        if selectedItem.locality != nil {
+            address += selectedItem.locality! + ", "
+        }
+        if selectedItem.administrativeArea != nil {
+            address += selectedItem.administrativeArea! + " "
+        }
+        if selectedItem.postalCode != nil {
+            address += selectedItem.postalCode! + ", "
+        }
+        if selectedItem.country != nil {
+            address += selectedItem.country!
+        }
+        return address
+    }
 }
 
 extension MKPlacemark {

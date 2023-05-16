@@ -11,6 +11,10 @@
 import UIKit
 import MapKit
 
+protocol HandleMapSearch {
+    func zoomInSearchLocation(placemark: MKPlacemark)
+}
+
 class TappablePOIController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
@@ -26,6 +30,10 @@ class TappablePOIController: UIViewController {
     
     // Used for location related operations
     let locationManager = CLLocationManager()
+    
+    // Search variables
+    var resultSearchController: UISearchController? = nil
+    var selectedPin: MKPlacemark? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +55,24 @@ class TappablePOIController: UIViewController {
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestLocation()
+        // END
+        
+        // START: Use for search operations
+        let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable
+        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
+        resultSearchController?.searchResultsUpdater = locationSearchTable
+        
+        // Programmatically insert search bar into MapViewController
+        let searchBar = resultSearchController!.searchBar
+        searchBar.sizeToFit()
+        searchBar.placeholder = "Search for places"
+        navigationItem.searchController = resultSearchController
+        
+        resultSearchController?.hidesNavigationBarDuringPresentation = false
+        definesPresentationContext = true
+        
+        locationSearchTable.mapView = mapView
+        locationSearchTable.handleMapSearchDelegate = self
         // END
     }
 }
@@ -153,7 +179,6 @@ extension TappablePOIController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
-            print("Location:: \(location)")
             let zoom = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
             let region = MKCoordinateRegion(center: location.coordinate, span: zoom)
             mapView.setRegion(region, animated: true)
@@ -181,5 +206,16 @@ extension TappablePOIController {
                 self?.showFailureAlert(description: error.localizedDescription)
             }
         }
+    }
+}
+
+
+// https://stackoverflow.com/questions/25829173/change-font-of-mapkit-annotation-callout-title-and-subtitle
+extension TappablePOIController: HandleMapSearch {
+    func zoomInSearchLocation(placemark: MKPlacemark) {
+        // Zoom level
+        let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+        let region = MKCoordinateRegion(center: placemark.coordinate, span: span)
+        mapView.setRegion(region, animated: true)
     }
 }

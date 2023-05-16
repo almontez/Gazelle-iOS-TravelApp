@@ -26,7 +26,6 @@ class ItineraryViewController: UIViewController, UITableViewDelegate {
         itineraryTableView.delegate = self
         itineraryTableView.dataSource = self
         itineraryTableView.allowsSelection = false
-        itineraryTableView.rowHeight = 275
     }
     
     override func viewWillAppear(_ animated: Bool) {

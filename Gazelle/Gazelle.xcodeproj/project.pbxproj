@@ -12,7 +12,6 @@
 		0B031C2029F195AF00FB4A70 /* ItineraryItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B031C1F29F195AF00FB4A70 /* ItineraryItems.swift */; };
 		0B092BD329F8ACCA0008B7D9 /* TripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B092BD229F8ACCA0008B7D9 /* TripCell.swift */; };
 		0B16853729EF11610069DDCA /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B16853629EF11610069DDCA /* LocationSearchTable.swift */; };
-		0B2BFD9629ED93BA007ED65B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2BFD9529ED93BA007ED65B /* MapViewController.swift */; };
 		0B38355F2A0FFE4F0000A2DA /* TappablePOIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B38355E2A0FFE4F0000A2DA /* TappablePOIController.swift */; };
 		0B38356B2A12AA550000A2DA /* LocationDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B38356A2A12AA550000A2DA /* LocationDetailsController.swift */; };
 		0B38356F2A12DA1D0000A2DA /* AddItineraryFromMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B38356E2A12DA1D0000A2DA /* AddItineraryFromMap.swift */; };
@@ -41,7 +40,6 @@
 		0B031C1F29F195AF00FB4A70 /* ItineraryItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryItems.swift; sourceTree = "<group>"; };
 		0B092BD229F8ACCA0008B7D9 /* TripCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripCell.swift; sourceTree = "<group>"; };
 		0B16853629EF11610069DDCA /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
-		0B2BFD9529ED93BA007ED65B /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		0B38355E2A0FFE4F0000A2DA /* TappablePOIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappablePOIController.swift; sourceTree = "<group>"; };
 		0B38356A2A12AA550000A2DA /* LocationDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailsController.swift; sourceTree = "<group>"; };
 		0B38356E2A12DA1D0000A2DA /* AddItineraryFromMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItineraryFromMap.swift; sourceTree = "<group>"; };
@@ -103,7 +101,6 @@
 		0B2BFD9429ED9378007ED65B /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				0B2BFD9529ED93BA007ED65B /* MapViewController.swift */,
 				0B16853629EF11610069DDCA /* LocationSearchTable.swift */,
 				0B38355E2A0FFE4F0000A2DA /* TappablePOIController.swift */,
 				0B38356A2A12AA550000A2DA /* LocationDetailsController.swift */,
@@ -276,7 +273,6 @@
 				0B3835762A1321E90000A2DA /* Keyboard.swift in Sources */,
 				0BEB4A902A0D521D00EFB55C /* ItineraryEditController.swift in Sources */,
 				0B3835722A131F5D0000A2DA /* Alerts.swift in Sources */,
-				0B2BFD9629ED93BA007ED65B /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

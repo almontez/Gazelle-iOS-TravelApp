@@ -35,9 +35,8 @@ class LocationSearchTable: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let categories = retrieveCategory(matchingItems[indexPath.row])
         let selectedItem = matchingItems[indexPath.row].placemark
-        handleMapSearchDelegate?.dropPinZoomIn(placemark: selectedItem, categories)
+        handleMapSearchDelegate?.zoomInSearchLocation(placemark: selectedItem)
         dismiss(animated: true, completion: nil)
     }
 
@@ -59,47 +58,4 @@ extension LocationSearchTable : UISearchResultsUpdating {
             self.tableView.reloadData()
         }
     }
-}
-
-func formatAddress(of selectedItem: MKPlacemark) -> String {
-    var address = ""
-    if selectedItem.subThoroughfare != nil {
-        address += selectedItem.subThoroughfare! + " "
-    }
-    if selectedItem.thoroughfare != nil {
-        address += selectedItem.thoroughfare! + ", "
-    }
-    if selectedItem.locality != nil {
-        address += selectedItem.locality! + ", "
-    }
-    if selectedItem.administrativeArea != nil {
-        address += selectedItem.administrativeArea! + " "
-    }
-    if selectedItem.postalCode != nil {
-        address += selectedItem.postalCode! + ", "
-    }
-    if selectedItem.country != nil {
-        address += selectedItem.country!
-    }
-    return address
-}
-
-// Citation: https://stackoverflow.com/questions/27478034/how-to-access-the-category-or-type-of-an-mkmapitem
-func retrieveCategory(_ item: MKMapItem) -> Set<String> {
-    let geo_place = item.value(forKey: "place") as! NSObject
-    // print(geo_place)
-    let geo_business = geo_place.value(forKey: "business") as! NSObject
-    let categories = geo_business.value(forKey: "localizedCategories") as! [AnyObject]
-    
-    var categoriesSet = Set<String>()
-    
-    if let categoriesResult = (categories.first as? [AnyObject]) {
-        for geo_cat in categoriesResult {
-            let geo_loc_name = geo_cat.value(forKeyPath: "localizedNames") as! NSObject
-            let category = (geo_loc_name.value(forKeyPath: "name") as! [String]).first!
-            
-            categoriesSet.insert(category)
-        }
-    }
-    return categoriesSet
 }
