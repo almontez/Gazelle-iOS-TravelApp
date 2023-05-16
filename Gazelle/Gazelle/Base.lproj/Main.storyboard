@@ -1863,6 +1863,7 @@
                         <outlet property="startDatePicker" destination="BW8-wX-jSf" id="ixg-ZK-fRw"/>
                         <outlet property="startTimePicker" destination="sR6-ol-Gdi" id="UTB-wy-KzT"/>
                         <outlet property="tripNamePicker" destination="a4G-4h-AQS" id="Wc5-9g-ozv"/>
+                        <segue destination="Qmr-B8-18c" kind="unwind" identifier="unwindToExplore" unwindAction="unwindToExploreFromMapForm:" id="6dI-Hx-c8r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="psh-zz-ab0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -30,12 +30,27 @@ class TripsViewController: UIViewController, UITableViewDelegate {
         super.viewWillAppear(animated)
         queryTrips()
     }
+    
+    @IBAction func deleteButtonTapped(_ sender: UIButton) {
+        deleteTrip(trip: trips[sender.tag])
+    }
+    
+    @IBAction func onLogOutTapped(_ sender: Any) {
+        let alertController = UIAlertController(title: "Log out of your account?", message: nil, preferredStyle: .alert)
+        let logOutAction = UIAlertAction(title: "Log out", style: .destructive) { _ in
+            NotificationCenter.default.post(name: Notification.Name("logout"), object: nil)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alertController.addAction(logOutAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true)
+    }
 }
 
 
 // MARK: - Segue Code
 extension TripsViewController {
-    // Prepare data for segue from Trips View Controller to Itinerary View Controller
+    // Prepare data for segues
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "segueToEditTrip":
@@ -62,10 +77,12 @@ extension TripsViewController {
         createTrip(newTrip: newTrip)
     }
     
+    // Unwind from Update Trip Form to Trips View Controller
     @IBAction func unwindToUpdatedTrips(_ unwindSegue: UIStoryboardSegue) {
         updateTrip(tripId: updatedTripId!, updatedTrip: updatedTrip)
     }
     
+    // Unwind from create new Trip Form and Update Trip Form to Trips View Controller
     @IBAction func unwindToCancelTripForm(_ unwindSegue: UIStoryboardSegue) {
         _ = unwindSegue.source
         // Use data from the view controller which initiated the unwind segue
@@ -178,23 +195,4 @@ extension TripsViewController {
         }
     }
     
-}
-
-
-// MARK: - Button Actions
-extension TripsViewController {
-    @IBAction func deleteButtonTapped(_ sender: UIButton) {
-        deleteTrip(trip: trips[sender.tag])
-    }
-    
-    @IBAction func onLogOutTapped(_ sender: Any) {
-        let alertController = UIAlertController(title: "Log out of your account?", message: nil, preferredStyle: .alert)
-        let logOutAction = UIAlertAction(title: "Log out", style: .destructive) { _ in
-            NotificationCenter.default.post(name: Notification.Name("logout"), object: nil)
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-        alertController.addAction(logOutAction)
-        alertController.addAction(cancelAction)
-        present(alertController, animated: true)
-    }
 }

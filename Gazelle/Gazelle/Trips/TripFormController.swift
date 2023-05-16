@@ -30,6 +30,7 @@ class TripFormController: UIViewController {
         }
     }
     
+    // Send new trip object to TripsViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let TripsViewController = segue.destination as? TripsViewController {
             // Create new Trip object

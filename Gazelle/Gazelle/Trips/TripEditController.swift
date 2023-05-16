@@ -25,21 +25,6 @@ class TripEditController: UIViewController {
         findSpecificTrip(id: tripId!)
     }
     
-    private func findSpecificTrip(id tripId: String) {
-        let query = Trip.query("objectId" == "\(tripId)")
-        
-        query.find { [weak self] result in
-            switch result {
-            case .success(let foundTrip):
-                print("✅ Specific Trip Found")
-                self?.foundTrip = foundTrip[0]
-                self?.fillInputFields()
-            case .failure(let error):
-                self?.showQueryAlert(description: error.localizedDescription)
-            }
-        }
-    }
-    
     @IBAction func updateBtnTapped(_ sender: UIButton) {
         if (tripName.text == "" || tripLocation.text == "") {
             tripFieldRequredAlert()
@@ -76,5 +61,23 @@ extension TripEditController {
         tripDescription.text = foundTrip.description
         tripStartDate.date = formatOldDate(foundTrip.startDate)
         tripEndDate.date = formatOldDate(foundTrip.endDate)
+    }
+}
+
+// MARK: - CRUD Related Operations
+extension TripEditController {
+    private func findSpecificTrip(id tripId: String) {
+        let query = Trip.query("objectId" == "\(tripId)")
+        
+        query.find { [weak self] result in
+            switch result {
+            case .success(let foundTrip):
+                print("✅ Specific Trip Found")
+                self?.foundTrip = foundTrip[0]
+                self?.fillInputFields()
+            case .failure(let error):
+                self?.showQueryAlert(description: error.localizedDescription)
+            }
+        }
     }
 }

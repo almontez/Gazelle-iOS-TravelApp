@@ -36,7 +36,28 @@ class TappablePOIController: UIViewController {
         let initialLocation = CLLocation(latitude: 21.282778, longitude: -157.829444)
         mapView.centerToLocation(initialLocation)
     }
+}
+
+// MARK: - MapView operations
+extension TappablePOIController: MKMapViewDelegate {
+    // Called when POI is tapped
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if let annotation = annotation as? MKMapFeatureAnnotation {
+            // Provide custom annotation for tapped POI
+            return setupPOIAnnotation(annotation)
+        } else {
+            return nil
+        }
+    }
     
+    // Called when detail callout is tapped
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if let annotation = view.annotation, annotation.isKind(of: MKMapFeatureAnnotation.self) {
+            performSegue(withIdentifier: "segueToLocationDetails", sender: self)
+        }
+    }
+    
+    // Styles POI Annotation
     private func setupPOIAnnotation(_ annotation: MKMapFeatureAnnotation) -> MKAnnotationView? {
         let markerAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: AnnotationReuseId.featureAnnotation.rawValue, for: annotation)
         
@@ -61,34 +82,14 @@ class TappablePOIController: UIViewController {
                 markerAnnotationView.leftCalloutAccessoryView = imageView
             }
         }
-        
         return markerAnnotationView
-    }
-}
-
-extension TappablePOIController: MKMapViewDelegate {
-    // Called when POI is tapped
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        if let annotation = annotation as? MKMapFeatureAnnotation {
-            // Provide custom annotation for tapped POI
-            return setupPOIAnnotation(annotation)
-        } else {
-            return nil
-        }
-    }
-    
-    // Called when callout is tapped
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        if let annotation = view.annotation, annotation.isKind(of: MKMapFeatureAnnotation.self) {
-            performSegue(withIdentifier: "segueToLocationDetails", sender: self)
-        }
-        
     }
     
 }
 
 // MARK: - Segue Code
 extension TappablePOIController {
+    // Move from Explore to Location Details
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let LocationDetailController = segue.destination as? LocationDetailsController else { return }
         
@@ -114,6 +115,12 @@ extension TappablePOIController {
                 }
             }
         }
+    }
+    
+    // Unwind from Map Item Form to Explore
+    @IBAction func unwindToExploreFromMapForm(_ unwindSegue: UIStoryboardSegue) {
+        _ = unwindSegue.source
+        // Use data from the view controller which initiated the unwind segue
     }
 }
 

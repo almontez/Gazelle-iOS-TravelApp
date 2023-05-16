@@ -37,15 +37,20 @@ class AddItineraryFromMap: UIViewController {
         || tripId == nil) {
             itineraryItemFieldRequredAlert()
         } else {
-            print("Working on Map to Itinerary Segue")
+            performSegue(withIdentifier: "unwindToExplore", sender: nil)
         }
     }
 }
 
 // MARK: - Segue Code
 extension AddItineraryFromMap {
+    // Prepare data for TappablePOIController (i.e. Explore)
+    // Pass new itinerary item to TappablePOIController for create (CRUD) operation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("Map to Itinerary Segue being called")
+        if segue.identifier == "unwindToExplore" {
+            print("Unwinding to Explore")
+        }
     }
 }
 
@@ -59,6 +64,8 @@ extension AddItineraryFromMap {
         setPopupOptions()
     }
     
+    // Use for pop-up componnent
+    // Data is from query
     private func setPopupOptions() {
         let optionClosure = { (action: UIAction) in
             self.tripId = self.tripDict[action.title]
@@ -84,6 +91,7 @@ extension AddItineraryFromMap {
 
 // MARK: - CRUD Related Operations
 extension AddItineraryFromMap {
+    // Query Trips to Use for popup button
     private func queryTrips() {
         // Create query to fetch Trips for User
         let userId = User.current?.objectId
@@ -101,9 +109,10 @@ extension AddItineraryFromMap {
                 print("❌ Unable to query trips from Add Itinerary Item from Map")
             }
         }
-        
     }
     
+    // Create a dictionary to save TripName: ObjectId Key:Value pairs
+    // Needed to assign tripId. Associate itinerary item with specific trip
     private func createTripDictionary() {
         for trip in trips {
             tripDict[trip.title!] = trip.objectId!

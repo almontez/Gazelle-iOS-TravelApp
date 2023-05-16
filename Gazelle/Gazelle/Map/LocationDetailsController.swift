@@ -37,6 +37,8 @@ class LocationDetailsController: UITableViewController {
 
 // MARK: - Segue Code
 extension LocationDetailsController {
+    // Prepare data for Add Map Item Form
+    // Pass mapItem to Map Item Form to prepopulate input fields
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueToItineraryFromMap" {
             if let AddItineraryItemFromMap = segue.destination as? AddItineraryFromMap {
@@ -45,6 +47,7 @@ extension LocationDetailsController {
         }
     }
     
+    // Unwind from add Map Item Form to Location Details Controller
     @IBAction func unwindToCancelMapItemForm(_ unwindSegue: UIStoryboardSegue) {
         _ = unwindSegue.source
         // Use data from the view controller which initiated the unwind segue
@@ -69,6 +72,7 @@ extension LocationDetailsController {
         mapView.region = region
     }
     
+    // Get category data from a MKMapItem
     // Citation: https://stackoverflow.com/questions/27478034/how-to-access-the-category-or-type-of-an-mkmapitem
     func retrieveCategory(_ item: MKMapItem) -> Set<String> {
         let geo_place = item.value(forKey: "place") as! NSObject

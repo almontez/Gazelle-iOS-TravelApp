@@ -32,6 +32,10 @@ class ItineraryViewController: UIViewController, UITableViewDelegate {
         super.viewWillAppear(animated)
         queryItineraryItems()
     }
+    
+    @IBAction func deleteBtnTapped(_ sender: UIButton) {
+        deleteItinteraryItem(event: itineraryItems[sender.tag])
+    }
 }
 
 
@@ -179,10 +183,3 @@ extension ItineraryViewController {
     
 }
 
-
-// MARK: - Button Actions
-extension ItineraryViewController {
-    @IBAction func deleteBtnTapped(_ sender: UIButton) {
-        deleteItinteraryItem(event: itineraryItems[sender.tag])
-    }
-}

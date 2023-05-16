@@ -28,21 +28,6 @@ class ItineraryEditController: UIViewController {
         findSpecificEvent(id: itineraryItemId!)
     }
     
-    private func findSpecificEvent(id eventId: String) {
-        let query = ItineraryItem.query("objectId" == "\(eventId)")
-        
-        query.find { [weak self] result in
-            switch result {
-            case .success(let foundEvent):
-                print("✅ Specific Event Found")
-                self?.foundItem = foundEvent[0]
-                self?.fillInputFields()
-            case .failure(let error):
-                self?.showQueryAlert(description: error.localizedDescription)
-            }
-        }
-    }
-    
     @IBAction func updateBtnTapped(_ sender: UIButton) {
         if (eventTextField.text == "" || locationTextField.text == "") {
             itineraryItemFieldRequredAlert()
@@ -83,5 +68,23 @@ extension ItineraryEditController {
         formatOldTime(time: foundItem.startTime!, picker: startTimePicker)
         endDatePicker.date = formatOldDate(foundItem.endDate)
         formatOldTime(time: foundItem.endTime!, picker: endTimePicker)
+    }
+}
+
+// MARK: - CRUD Related Operations
+extension ItineraryEditController {
+    private func findSpecificEvent(id eventId: String) {
+        let query = ItineraryItem.query("objectId" == "\(eventId)")
+        
+        query.find { [weak self] result in
+            switch result {
+            case .success(let foundEvent):
+                print("✅ Specific Event Found")
+                self?.foundItem = foundEvent[0]
+                self?.fillInputFields()
+            case .failure(let error):
+                self?.showQueryAlert(description: error.localizedDescription)
+            }
+        }
     }
 }
