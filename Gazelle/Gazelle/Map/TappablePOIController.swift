@@ -49,12 +49,6 @@ class TappablePOIController: UIViewController {
             let infoBtn = UIButton(type: .detailDisclosure)
             markerAnnotationView.rightCalloutAccessoryView = infoBtn
             
-            let detailLabel = UILabel()
-            detailLabel.numberOfLines = 0
-            detailLabel.font = detailLabel.font.withSize(12)
-            detailLabel.text = "Add categories or other data"
-            markerAnnotationView.detailCalloutAccessoryView = detailLabel
-            
             // Style annotation
             if let tappedFeatureColor = annotation.iconStyle?.backgroundColor,
                let image = annotation.iconStyle?.image {
@@ -100,7 +94,6 @@ class TappablePOIController: UIViewController {
 }
 
 extension TappablePOIController: MKMapViewDelegate {
-    
     // Called when POI is tapped
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if let annotation = annotation as? MKMapFeatureAnnotation {
@@ -135,14 +128,3 @@ private extension MKMapView {
   }
 }
 
-
-// MARK: - Alerts
-extension TappablePOIController {
-    private func displayError(_ error: Error?) {
-        guard let error = error as NSError? else { return }
-        let alertController = UIAlertController(title: "Oops...", message: error.description, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
-        present(alertController, animated: true)
-    }
-}

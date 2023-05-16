@@ -37,7 +37,7 @@ class SignupViewController: UIViewController {
               !email.isEmpty,
               !password.isEmpty else {
 
-            showMissingFieldsAlert()
+            showMissingSignUpFieldsAlert()
             return
         }
         
@@ -57,7 +57,7 @@ class SignupViewController: UIViewController {
 
             case .failure(let error):
                 // Failed sign up
-                self?.showAlert(description: error.localizedDescription)
+                self?.showSignUpAlert(description: error.localizedDescription)
             }
         }
     }
@@ -75,20 +75,4 @@ class SignupViewController: UIViewController {
             backImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
-    
-
-    private func showAlert(description: String?) {
-        let alertController = UIAlertController(title: "Unable to Sign Up", message: description ?? "Unknown error", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
-        present(alertController, animated: true)
-    }
-
-    private func showMissingFieldsAlert() {
-        let alertController = UIAlertController(title: "Opps...", message: "We need all fields filled out in order to sign you up.", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
-        present(alertController, animated: true)
-    }
-
 }

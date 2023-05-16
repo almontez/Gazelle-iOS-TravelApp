@@ -198,35 +198,3 @@ extension TripsViewController {
         present(alertController, animated: true)
     }
 }
-
-
-// MARK: - Alerts
-extension TripsViewController {
-    private func showQueryAlert(description: String?) {
-        let alertController = UIAlertController(title: "Oops...", message: "\(description ?? "Please try again...")", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
-        present(alertController, animated: true)
-    }
-    
-    private func showDeleteAlert(description: String?) {
-        let alertController = UIAlertController(title: "Unable to Delete Trip", message: description ?? "Unknown error", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
-        present(alertController, animated: true)
-    }
-    
-    private func showCreationFailureAlert(description: String?) {
-        let alertController = UIAlertController(title: "Unable to Create Trip", message: description ?? "Unknown error", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
-        present(alertController, animated: true)
-    }
-    
-    private func showUpdateFailureAlert(description: String?) {
-        let alertController = UIAlertController(title: "Unable to Update Trip", message: description ?? "Unknown error", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
-        present(alertController, animated: true)
-    }
-}

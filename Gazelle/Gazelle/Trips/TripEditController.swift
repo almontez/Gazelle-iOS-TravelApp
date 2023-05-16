@@ -58,8 +58,8 @@ class TripEditController: UIViewController {
             updatedTrip.description = tripDescription.text
             updatedTrip.userId = User.current?.objectId as String?
             updatedTrip.location = tripLocation.text
-            updatedTrip.startDate = formatNewDate(tripStartDate)
-            updatedTrip.endDate = formatNewDate(tripEndDate)
+            updatedTrip.startDate = formatDate(tripStartDate)
+            updatedTrip.endDate = formatDate(tripEndDate)
             
             TripsViewController.updatedTrip = updatedTrip
             TripsViewController.updatedTripId = tripId
@@ -76,50 +76,5 @@ extension TripEditController {
         tripDescription.text = foundTrip.description
         tripStartDate.date = formatOldDate(foundTrip.startDate)
         tripEndDate.date = formatOldDate(foundTrip.endDate)
-    }
-    
-    private func formatOldDate(_ date: String?) -> Date {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMMM dd, yyyy"
-        let formattedDate = dateFormatter.date(from: date!)
-        return formattedDate!
-    }
-    
-    private func formatNewDate(_ date: UIDatePicker) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMMM dd, yyyy"
-        let dateString = dateFormatter.string(from: date.date)
-        return dateString
-    }
-    
-}
-
-
-// MARK: - Alerts
-extension TripEditController {
-    private func showQueryAlert(description: String?) {
-        let alertController = UIAlertController(title: "Oops...", message: "\(description ?? "Please try again...")", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
-        present(alertController, animated: true)
-    }
-    
-    private func tripFieldRequredAlert() {
-        let alertController = UIAlertController(title: "Required", message: "The the name, location, and dates of your trip are required.", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
-        present(alertController, animated: true)
-    }
-}
-
-// citation: https://www.cometchat.com/tutorials/how-to-dismiss-ios-keyboard-swift
-extension TripEditController {
-    func initializeHideKeyboard() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissMyKeyboard))
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissMyKeyboard(){
-        view.endEditing(true)
     }
 }

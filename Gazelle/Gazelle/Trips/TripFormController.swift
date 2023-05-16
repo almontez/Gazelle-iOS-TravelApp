@@ -46,30 +46,4 @@ class TripFormController: UIViewController {
             TripsViewController.newTrip = newTrip
         }
     }
-    
-    private func tripFieldRequredAlert() {
-        let alertController = UIAlertController(title: "Required", message: "The the name, location, and dates of your trip are required.", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
-        present(alertController, animated: true)
-    }
-    
-    func formatDate(_ date: UIDatePicker) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMMM dd, yyyy"
-        let dateString = dateFormatter.string(from: date.date)
-        return dateString
-    }
-}
-
-// citation: https://www.cometchat.com/tutorials/how-to-dismiss-ios-keyboard-swift
-extension TripFormController {
-    func initializeHideKeyboard() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissMyKeyboard))
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissMyKeyboard(){
-        view.endEditing(true)
-    }
 }

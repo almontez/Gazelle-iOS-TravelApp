@@ -15,7 +15,10 @@
 		0B2BFD9629ED93BA007ED65B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2BFD9529ED93BA007ED65B /* MapViewController.swift */; };
 		0B38355F2A0FFE4F0000A2DA /* TappablePOIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B38355E2A0FFE4F0000A2DA /* TappablePOIController.swift */; };
 		0B38356B2A12AA550000A2DA /* LocationDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B38356A2A12AA550000A2DA /* LocationDetailsController.swift */; };
-		0B38356D2A12ABB90000A2DA /* TestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B38356C2A12ABB90000A2DA /* TestTableViewController.swift */; };
+		0B38356F2A12DA1D0000A2DA /* AddItineraryFromMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B38356E2A12DA1D0000A2DA /* AddItineraryFromMap.swift */; };
+		0B3835722A131F5D0000A2DA /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3835712A131F5D0000A2DA /* Alerts.swift */; };
+		0B3835742A1321D90000A2DA /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3835732A1321D90000A2DA /* Formatters.swift */; };
+		0B3835762A1321E90000A2DA /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3835752A1321E90000A2DA /* Keyboard.swift */; };
 		0B43044229F8769700A03026 /* ItineraryItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B43044129F8769700A03026 /* ItineraryItemCell.swift */; };
 		0B43044629F87AA300A03026 /* TripFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B43044529F87AA300A03026 /* TripFormController.swift */; };
 		0B43044829F87C0B00A03026 /* TripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B43044729F87C0B00A03026 /* TripsViewController.swift */; };
@@ -41,7 +44,10 @@
 		0B2BFD9529ED93BA007ED65B /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		0B38355E2A0FFE4F0000A2DA /* TappablePOIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappablePOIController.swift; sourceTree = "<group>"; };
 		0B38356A2A12AA550000A2DA /* LocationDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailsController.swift; sourceTree = "<group>"; };
-		0B38356C2A12ABB90000A2DA /* TestTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTableViewController.swift; sourceTree = "<group>"; };
+		0B38356E2A12DA1D0000A2DA /* AddItineraryFromMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItineraryFromMap.swift; sourceTree = "<group>"; };
+		0B3835712A131F5D0000A2DA /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
+		0B3835732A1321D90000A2DA /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
+		0B3835752A1321E90000A2DA /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
 		0B43044129F8769700A03026 /* ItineraryItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryItemCell.swift; sourceTree = "<group>"; };
 		0B43044529F87AA300A03026 /* TripFormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripFormController.swift; sourceTree = "<group>"; };
 		0B43044729F87C0B00A03026 /* TripsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsViewController.swift; sourceTree = "<group>"; };
@@ -101,9 +107,19 @@
 				0B16853629EF11610069DDCA /* LocationSearchTable.swift */,
 				0B38355E2A0FFE4F0000A2DA /* TappablePOIController.swift */,
 				0B38356A2A12AA550000A2DA /* LocationDetailsController.swift */,
-				0B38356C2A12ABB90000A2DA /* TestTableViewController.swift */,
+				0B38356E2A12DA1D0000A2DA /* AddItineraryFromMap.swift */,
 			);
 			path = Map;
+			sourceTree = "<group>";
+		};
+		0B3835702A131F4C0000A2DA /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				0B3835712A131F5D0000A2DA /* Alerts.swift */,
+				0B3835732A1321D90000A2DA /* Formatters.swift */,
+				0B3835752A1321E90000A2DA /* Keyboard.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		0B43044329F87A5700A03026 /* Trips */ = {
@@ -145,6 +161,7 @@
 		0BFFAB3129E640FE002C249E /* Gazelle */ = {
 			isa = PBXGroup;
 			children = (
+				0B3835702A131F4C0000A2DA /* Utilities */,
 				0B031C1A29F1956100FB4A70 /* Models */,
 				0B43044329F87A5700A03026 /* Trips */,
 				0B4FDD8029F75C0800B60588 /* Users */,
@@ -239,23 +256,26 @@
 			files = (
 				0B43044629F87AA300A03026 /* TripFormController.swift in Sources */,
 				0B43044229F8769700A03026 /* ItineraryItemCell.swift in Sources */,
+				0B3835742A1321D90000A2DA /* Formatters.swift in Sources */,
 				695E523A29EB66CA00FCFC0D /* LoginViewController.swift in Sources */,
 				0B4FDD8629F779D800B60588 /* ItineraryViewController.swift in Sources */,
 				695E523E29EB66E700FCFC0D /* User.swift in Sources */,
 				0B43044829F87C0B00A03026 /* TripsViewController.swift in Sources */,
+				0B38356F2A12DA1D0000A2DA /* AddItineraryFromMap.swift in Sources */,
 				695E523C29EB66DA00FCFC0D /* SignupViewController.swift in Sources */,
 				0B4FDD8429F75DC200B60588 /* ItineraryFormController.swift in Sources */,
 				0B092BD329F8ACCA0008B7D9 /* TripCell.swift in Sources */,
 				0B031C2029F195AF00FB4A70 /* ItineraryItems.swift in Sources */,
 				0BFFAB3329E640FE002C249E /* AppDelegate.swift in Sources */,
-				0B38356D2A12ABB90000A2DA /* TestTableViewController.swift in Sources */,
 				0B031C1C29F1958D00FB4A70 /* Trip.swift in Sources */,
 				0BEB4A8E2A0C118C00EFB55C /* TripEditController.swift in Sources */,
 				0B16853729EF11610069DDCA /* LocationSearchTable.swift in Sources */,
 				0BFFAB3529E640FE002C249E /* SceneDelegate.swift in Sources */,
 				0B38355F2A0FFE4F0000A2DA /* TappablePOIController.swift in Sources */,
 				0B38356B2A12AA550000A2DA /* LocationDetailsController.swift in Sources */,
+				0B3835762A1321E90000A2DA /* Keyboard.swift in Sources */,
 				0BEB4A902A0D521D00EFB55C /* ItineraryEditController.swift in Sources */,
+				0B3835722A131F5D0000A2DA /* Alerts.swift in Sources */,
 				0B2BFD9629ED93BA007ED65B /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
