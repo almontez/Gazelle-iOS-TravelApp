@@ -33,7 +33,8 @@ class AddItineraryFromMap: UIViewController {
     
     @IBAction func saveButtonTapped(_ sender: UIButton) {
         print("Save button tapped")
-        if (eventTextField.text == "" || locationTextField.text == "") {
+        if (eventTextField.text == "" || locationTextField.text == ""
+        || tripId == nil) {
             itineraryItemFieldRequredAlert()
         } else {
             print("Working on Map to Itinerary Segue")

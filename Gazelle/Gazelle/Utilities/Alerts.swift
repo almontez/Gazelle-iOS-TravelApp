@@ -67,7 +67,7 @@ extension UIViewController {
     }
     
     func itineraryItemFieldRequredAlert() {
-        let alertController = UIAlertController(title: "Required", message: "The the name, location, and dates of your itinerary event are required.", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Required", message: "The the name, location, dates, and possibly trip name for your itinerary event are required.", preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(action)
         present(alertController, animated: true)
