@@ -11,9 +11,9 @@ import MapKit
 class LocationDetailsController: UITableViewController {
     
     @IBOutlet weak var placePhoneLabel: UILabel!
-    @IBOutlet weak var placeWebsiteLabel: UILabel!
     @IBOutlet weak var placeAddressLabel: UILabel!
     @IBOutlet weak var placeCategoriesLabel: UILabel!
+    @IBOutlet weak var placeWebsiteLink: UITextView!
     @IBOutlet weak var mapView: MKMapView!
     
     private var mapItem: MKMapItem?
@@ -64,8 +64,8 @@ extension LocationDetailsController {
         
         placeAddressLabel.text = mapItem.placemark.formattedAddress ?? "Address Not Available"
         placePhoneLabel.text = mapItem.phoneNumber ?? "Phone Number Not Available"
-        placeWebsiteLabel.text = mapItem.url?.absoluteString ?? "Website Not Available"
-        placeCategoriesLabel.text = formatCategories(retrieveCategory(mapItem)) 
+        placeWebsiteLink.text = mapItem.url?.absoluteString ?? "Website Not Available"
+        placeCategoriesLabel.text = formatCategories(retrieveCategory(mapItem))
         
         
         mapView.showAnnotations([mapItem.placemark], animated: false)
