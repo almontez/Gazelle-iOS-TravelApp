@@ -26,7 +26,7 @@ GIF created with Apple Simulator
 
 ## Product Specs
 
-### 1. User Stories (Required and Optional)
+### 1. User Stories
 
 **Implemented Stories**
 
@@ -35,10 +35,9 @@ GIF created with Apple Simulator
 * Users can view, create, edit, and delete itinerary events
 * Users can view a map
 * Users can search the map based on zip code or other geolocation data
-
-**Future User Stories**
-
 * Users can add points of interest from the map to their itinerary
+* Users can navigate to website from Itinerary Event Details and Explore Location Details
+* Users can be redirected to Apple Maps from Itinerary Event Details and Explore Location Details
 
 ### 2. Screen Archetypes
 
@@ -48,9 +47,12 @@ GIF created with Apple Simulator
 * **Create Trip Form:** Users can log a new scheduled trip.
 * **Edit Trip Form:** Users can edit their scheduled trip.
 * **Itinerary:** Users can view, edit, and delete travel information such as flights, hotel bookings, transportation, and excursions.
-* **Itinerary Event Form:** Users can add itinerary events to a scheduled trip.
+* **Create Itinerary Event Form:** Users can add itinerary events to a scheduled trip.
 * **Edit Itinerary Event Form:** Users can edit their itinerary event.
+* **Itinerary Details:** Users can view additional details regarding their itinerary event.
 * **Explore:** Users can view a map to see points of interest at their travel destination. 
+* **Location Details:** Users can view details regarding a clickable point of interest.
+* **Map Search Table:** Users can search for locations and points of interest using a search bar and see matching results. 
 
 ### 3. Navigation
 
@@ -65,12 +67,19 @@ GIF created with Apple Simulator
    * Sign up (if NO account exists)
    * Trips tab (if account exists)
 * Trips
-   * Create Trips Form
+   * Create Trip Form
+   * Edit Trip Form
    * Itinerary TableView
       * Add Itinerary Event Form
+      * Edit Itinerary Event Form
+      * Itinerary Event Details Controller
 * Explore
    * Map View
-   * List View
+   * Search Results Table
+   * Point of Interest Detail Controller
+      * Add Itinerary Event Form
+      * Open in Maps
+      * Website (if available)
 
 ## Schema
 <img src="https://github.com/almontez/CodePathiOS-SP23-Project/blob/main/Read%20Me%20Media/Gazelle%20Database%20diagram.png" height=500>
