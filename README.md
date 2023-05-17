@@ -17,6 +17,7 @@ Gazelle allows users to plan and log their journeys as they travel locally, nati
 - **Market:** This app is useful for any user who like to plan and track their trips.
 - **Habit:** Users can use Gazelle as many times they want to plan trips, view plans, log experiences, and revisit past trips.
 - **Scope:** Gazelle will act as a central hub for users to store relevant travel information about their trip including but not limited to flight data, hotel bookings, transportation, points of interest, and excursions.
+- **Tools & Technolgies:** Swift, iOS, UIKit, MapKit, Back4App
 
 ## Demo
 
