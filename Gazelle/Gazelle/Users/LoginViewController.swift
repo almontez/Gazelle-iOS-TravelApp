@@ -40,15 +40,12 @@ class LoginViewController: UIViewController {
                 NotificationCenter.default.post(name: Notification.Name("login"), object: nil)
                 
             case .failure(let error):
-                self?.showAlert(description: error.localizedDescription)
+                self?.showLoginAlert(description: error.localizedDescription)
             }
             
         }
     }
     
-    
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -60,14 +57,6 @@ class LoginViewController: UIViewController {
             backImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         // Do any additional setup after loading the view.
-    }
-    
-
-    private func showAlert(description: String?) {
-        let alertController = UIAlertController(title: "Unable to Log in", message: description ?? "Unknown error", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
-        present(alertController, animated: true)
     }
 
 }

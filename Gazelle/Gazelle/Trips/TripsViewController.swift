@@ -30,12 +30,27 @@ class TripsViewController: UIViewController, UITableViewDelegate {
         super.viewWillAppear(animated)
         queryTrips()
     }
+    
+    @IBAction func deleteButtonTapped(_ sender: UIButton) {
+        deleteTrip(trip: trips[sender.tag])
+    }
+    
+    @IBAction func onLogOutTapped(_ sender: Any) {
+        let alertController = UIAlertController(title: "Log out of your account?", message: nil, preferredStyle: .alert)
+        let logOutAction = UIAlertAction(title: "Log out", style: .destructive) { _ in
+            NotificationCenter.default.post(name: Notification.Name("logout"), object: nil)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alertController.addAction(logOutAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true)
+    }
 }
 
 
 // MARK: - Segue Code
 extension TripsViewController {
-    // Prepare data for segue from Trips View Controller to Itinerary View Controller
+    // Prepare data for segues
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "segueToEditTrip":
@@ -62,10 +77,12 @@ extension TripsViewController {
         createTrip(newTrip: newTrip)
     }
     
+    // Unwind from Update Trip Form to Trips View Controller
     @IBAction func unwindToUpdatedTrips(_ unwindSegue: UIStoryboardSegue) {
         updateTrip(tripId: updatedTripId!, updatedTrip: updatedTrip)
     }
     
+    // Unwind from create new Trip Form and Update Trip Form to Trips View Controller
     @IBAction func unwindToCancelTripForm(_ unwindSegue: UIStoryboardSegue) {
         _ = unwindSegue.source
         // Use data from the view controller which initiated the unwind segue
@@ -108,9 +125,10 @@ extension TripsViewController {
                 self?.trips.append(savedTrip)
                 DispatchQueue.main.async {
                     self?.tripsTableView.reloadData()
+                    self?.showSucessAlert()
                 }
             case .failure(let error):
-                self?.showCreationFailureAlert(description: error.localizedDescription)
+                self?.showFailureAlert(description: error.localizedDescription)
             }
         }
     }
@@ -130,7 +148,7 @@ extension TripsViewController {
                     self?.tripsTableView.reloadData()
                 }
             case .failure(let error):
-                self?.showQueryAlert(description: error.localizedDescription)
+                self?.showFailureAlert(description: error.localizedDescription)
             }
         }
     }
@@ -153,10 +171,11 @@ extension TripsViewController {
                     self?.trips[row] = trip
                     DispatchQueue.main.async {
                         self?.tripsTableView.reloadData()
+                        self?.showSucessAlert()
                     }
                 }
             case .failure(let error):
-                self?.showUpdateFailureAlert(description: error.localizedDescription)
+                self?.showFailureAlert(description: error.localizedDescription)
             }
         }
     }
@@ -170,63 +189,13 @@ extension TripsViewController {
                     self?.trips.remove(at: row)
                     DispatchQueue.main.async {
                         self?.tripsTableView.reloadData()
+                        self?.showSucessAlert()
                     }
                 }
             case .failure(let error):
-                self?.showDeleteAlert(description: error.localizedDescription)
+                self?.showFailureAlert(description: error.localizedDescription)
             }
         }
     }
     
-}
-
-
-// MARK: - Button Actions
-extension TripsViewController {
-    @IBAction func deleteButtonTapped(_ sender: UIButton) {
-        deleteTrip(trip: trips[sender.tag])
-    }
-    
-    @IBAction func onLogOutTapped(_ sender: Any) {
-        let alertController = UIAlertController(title: "Log out of your account?", message: nil, preferredStyle: .alert)
-        let logOutAction = UIAlertAction(title: "Log out", style: .destructive) { _ in
-            NotificationCenter.default.post(name: Notification.Name("logout"), object: nil)
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-        alertController.addAction(logOutAction)
-        alertController.addAction(cancelAction)
-        present(alertController, animated: true)
-    }
-}
-
-
-// MARK: - Alerts
-extension TripsViewController {
-    private func showQueryAlert(description: String?) {
-        let alertController = UIAlertController(title: "Oops...", message: "\(description ?? "Please try again...")", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
-        present(alertController, animated: true)
-    }
-    
-    private func showDeleteAlert(description: String?) {
-        let alertController = UIAlertController(title: "Unable to Delete Trip", message: description ?? "Unknown error", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
-        present(alertController, animated: true)
-    }
-    
-    private func showCreationFailureAlert(description: String?) {
-        let alertController = UIAlertController(title: "Unable to Create Trip", message: description ?? "Unknown error", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
-        present(alertController, animated: true)
-    }
-    
-    private func showUpdateFailureAlert(description: String?) {
-        let alertController = UIAlertController(title: "Unable to Update Trip", message: description ?? "Unknown error", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
-        present(alertController, animated: true)
-    }
 }

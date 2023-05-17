@@ -24,12 +24,13 @@ class TripFormController: UIViewController {
     @IBAction func saveBtnTapped(_ sender: Any) {
         if (tripName.text == "" || tripLocation.text == "") {
             print("Empty")
-            tripFieldRequredAlert()
+            showMissingFieldsAlert()
         } else {
             performSegue(withIdentifier: "unwindToTrips", sender: nil)
         }
     }
     
+    // Send new trip object to TripsViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let TripsViewController = segue.destination as? TripsViewController {
             // Create new Trip object
@@ -45,31 +46,5 @@ class TripFormController: UIViewController {
             
             TripsViewController.newTrip = newTrip
         }
-    }
-    
-    private func tripFieldRequredAlert() {
-        let alertController = UIAlertController(title: "Required", message: "The the name, location, and dates of your trip are required.", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
-        present(alertController, animated: true)
-    }
-    
-    func formatDate(_ date: UIDatePicker) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMMM dd, yyyy"
-        let dateString = dateFormatter.string(from: date.date)
-        return dateString
-    }
-}
-
-// citation: https://www.cometchat.com/tutorials/how-to-dismiss-ios-keyboard-swift
-extension TripFormController {
-    func initializeHideKeyboard() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissMyKeyboard))
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissMyKeyboard(){
-        view.endEditing(true)
     }
 }

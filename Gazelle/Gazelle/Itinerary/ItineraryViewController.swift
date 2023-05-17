@@ -16,7 +16,7 @@ class ItineraryViewController: UIViewController, UITableViewDelegate {
     var newEvent = ItineraryItem()
     var updatedEvent = ItineraryItem()
     var updatedEventId: String?
-    private var itineraryItems = [ItineraryItem]()
+    var itineraryItems = [ItineraryItem]()
     
     @IBOutlet weak var itineraryTableView: UITableView!
     
@@ -25,19 +25,23 @@ class ItineraryViewController: UIViewController, UITableViewDelegate {
         itineraryTableView.backgroundView = UIImageView(image: UIImage(named: "bg_image"))
         itineraryTableView.delegate = self
         itineraryTableView.dataSource = self
-        itineraryTableView.allowsSelection = false
+        itineraryTableView.allowsSelection = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         queryItineraryItems()
     }
+    
+    @IBAction func deleteBtnTapped(_ sender: UIButton) {
+        deleteItinteraryItem(event: itineraryItems[sender.tag])
+    }
 }
 
 
 // MARK: - Segue Code
 extension ItineraryViewController {
-    // Send tripId to Itinerary Form Controller
+    // Send tripId to Itinerary Form Controller or Edit Trip Form
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "segueToEditEvent":
@@ -50,6 +54,13 @@ extension ItineraryViewController {
         case "segueToItineraryForm":
             let ItineraryFormController = segue.destination as? ItineraryFormController
             ItineraryFormController?.tripId = tripId
+        case "segueToEventDetails":
+            if let cell = sender as? UITableViewCell,
+               let indexPath = itineraryTableView.indexPath(for: cell),
+               let EventDetailsController = segue.destination as? ItineraryDetailsController {
+                let event = itineraryItems[indexPath.section]
+                EventDetailsController.itineraryEvent = event
+            }
         default:
             print("❌ Segue from Itinerary View Controller Unknown")
         }
@@ -65,10 +76,9 @@ extension ItineraryViewController {
     }
     
     @IBAction func unwindToCancelItemForm(_ unwindSegue: UIStoryboardSegue) {
-        let sourceViewController = unwindSegue.source
+        _ = unwindSegue.source
         // Use data from the view controller which initiated the unwind segue
     }
-    
 }
 
 
@@ -106,9 +116,10 @@ extension ItineraryViewController {
                 self?.itineraryItems.append(savedEvent)
                 DispatchQueue.main.async {
                     self?.itineraryTableView.reloadData()
+                    self?.showSucessAlert()
                 }
             case .failure(let error):
-                self?.showCreationFailureAlert(description: error.localizedDescription)
+                self?.showFailureAlert(description: error.localizedDescription)
             }
         }
     }
@@ -127,7 +138,7 @@ extension ItineraryViewController {
                     self?.itineraryTableView.reloadData()
                 }
             case .failure(let error):
-                self?.showQueryAlert(description: error.localizedDescription)
+                self?.showFailureAlert(description: error.localizedDescription)
             }
             
         }
@@ -153,10 +164,11 @@ extension ItineraryViewController {
                     self?.itineraryItems[row] = item
                     DispatchQueue.main.async {
                         self?.itineraryTableView.reloadData()
+                        self?.showSucessAlert()
                     }
                 }
             case .failure(let error):
-                self?.showUpdateFailureAlert(description: error.localizedDescription)
+                self?.showFailureAlert(description: error.localizedDescription)
             }
         }
     }
@@ -170,52 +182,14 @@ extension ItineraryViewController {
                     self?.itineraryItems.remove(at: row)
                     DispatchQueue.main.async {
                         self?.itineraryTableView.reloadData()
+                        self?.showSucessAlert()
                     }
                 }
             case .failure(let error):
-                self?.showDeleteAlert(description: error.localizedDescription)
+                self?.showFailureAlert(description: error.localizedDescription)
             }
         }
     }
     
 }
 
-
-// MARK: - Button Actions
-extension ItineraryViewController {
-    @IBAction func deleteBtnTapped(_ sender: UIButton) {
-        deleteItinteraryItem(event: itineraryItems[sender.tag])
-    }
-}
-
-
-// MARK: - Alerts
-extension ItineraryViewController {
-    private func showQueryAlert(description: String?) {
-        let alertController = UIAlertController(title: "Oops...", message: "\(description ?? "Please try again...")", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
-        present(alertController, animated: true)
-    }
-    
-    private func showDeleteAlert(description: String?) {
-        let alertController = UIAlertController(title: "Unable to Delete Itinerary Event", message: description ?? "Unknown error", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
-        present(alertController, animated: true)
-    }
-    
-    private func showCreationFailureAlert(description: String?) {
-        let alertController = UIAlertController(title: "Unable to Create Itinerary Event", message: description ?? "Unknown error", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
-        present(alertController, animated: true)
-    }
-    
-    private func showUpdateFailureAlert(description: String?) {
-        let alertController = UIAlertController(title: "Unable to Update Trip", message: description ?? "Unknown error", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
-        present(alertController, animated: true)
-    }
-}
