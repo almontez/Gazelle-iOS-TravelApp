@@ -25,7 +25,7 @@ class ItineraryViewController: UIViewController, UITableViewDelegate {
         itineraryTableView.backgroundView = UIImageView(image: UIImage(named: "bg_image"))
         itineraryTableView.delegate = self
         itineraryTableView.dataSource = self
-        itineraryTableView.allowsSelection = false
+        itineraryTableView.allowsSelection = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,6 +54,13 @@ extension ItineraryViewController {
         case "segueToItineraryForm":
             let ItineraryFormController = segue.destination as? ItineraryFormController
             ItineraryFormController?.tripId = tripId
+        case "segueToEventDetails":
+            if let cell = sender as? UITableViewCell,
+               let indexPath = itineraryTableView.indexPath(for: cell),
+               let EventDetailsController = segue.destination as? ItineraryDetailsController {
+                let event = itineraryItems[indexPath.section]
+                EventDetailsController.itineraryEvent = event
+            }
         default:
             print("❌ Segue from Itinerary View Controller Unknown")
         }
