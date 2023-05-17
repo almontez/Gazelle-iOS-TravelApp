@@ -36,7 +36,7 @@ GIF created with Apple Simulator
 * Users can view a map
 * Users can search the map based on zip code or other geolocation data
 * Users can add points of interest from the map to their itinerary
-* Users can navigate to website from Itinerary Event Details and Explore Location Details
+* Users can navigate to a location's website from Itinerary Event Details and Explore Location Details
 * Users can be redirected to Apple Maps from Itinerary Event Details and Explore Location Details
 
 ### 2. Screen Archetypes
